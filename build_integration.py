@@ -14,8 +14,8 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 from openpyxl import load_workbook
 
-PRIMARY_GROUP = "My Consolidation - Route 50"
-FIVE_GROUP = "My Consolidation - Route 50 (5% tolerance)"
+PRIMARY_GROUP = "New Consolidation - Route 50"
+FIVE_GROUP = "New Consolidation - Route 50 (5% tolerance)"
 GROUPS = (PRIMARY_GROUP, FIVE_GROUP)
 
 
@@ -104,7 +104,7 @@ def popup(r):
         f"<td>{html.escape(str(v if v not in (None, '') else '—'))}</td></tr>"
         for k, v in fields
     )
-    return "<div style='min-width:230px;max-width:340px'><b>My Consolidation · Route 50</b><table>" + body + "</table></div>"
+    return "<div style='min-width:230px;max-width:340px'><b>New Consolidation · Route 50</b><table>" + body + "</table></div>"
 
 
 def marker_call(records, group, decision_key):
@@ -176,7 +176,7 @@ def patch_map(map_path, records):
     tag.string = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
     map_path.write_text(str(soup), encoding="utf-8")
     # Save the companion data file beside the map, independent of current working directory.
-    json_path = map_path.parent / "my_consolidation_route50.json"
+    json_path = map_path.parent / "new_consolidation_route50.json"
     json_path.write_text(json.dumps(records, ensure_ascii=False, indent=2), encoding="utf-8")
     return json_path
 

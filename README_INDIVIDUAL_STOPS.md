@@ -26,7 +26,7 @@ From the map repository root, with `openpyxl` and `beautifulsoup4` installed:
 python build_integration.py --map index.html --workbook ../CTA_Bus_Stop_Consolidator-main/damen.xlsx
 ```
 
-The script reads `Individual Stops` and creates 171 individual markers in the separate, toggleable `My Consolidation - Route 50` overlay. Nik's original map layers are retained. The overlay is hidden by default and can be enabled in the existing layer control.
+The script reads `Individual Stops` and creates 171 individual markers in the separate, toggleable `New Consolidation - Route 50` overlay. Nik's original map layers are retained. The overlay is hidden by default and can be enabled in the existing layer control.
 
 ## Marker colors
 
