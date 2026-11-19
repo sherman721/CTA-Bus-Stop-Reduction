@@ -12,7 +12,8 @@ How it decides
        TERMINAL   first/last stop of a route direction
        RAIL       street/cross-street text mentions a station/terminal/transit center
        TRANSFER   a stop of a CROSSING route (different main street) is within --transfer-radius
-                  (uses every route in the file, even if you only analyze one)
+                  (uses every route in the file, even if you only analyze one); exact-coordinate
+                  stops in a contiguous interlined section are excluded from automatic protection
        RIDERSHIP  top --protect-pct % of locations on the route (and above --min-protect-riders)
        MANUAL     listed in --protect-file (e.g. hospital stops)
   3. Remaining locations are removed one at a time, cheapest first, when ALL of these hold:
@@ -24,7 +25,10 @@ How it decides
      handed to its neighbors, which makes the neighbors harder to remove next.
   4. Directional exception pass: one side of a surviving pair can be dropped if a PROTECTED stop in
      the same direction is within --asym-ft and spacing still holds (flagged ASYMMETRIC).
-  5. Steps 3-4 are repeated at each tolerance in --sensitivity. A location whose outcome changes
+  5. Interlined sections are identified by at least two consecutive stops in a direction whose
+     exact coordinates are also served by the same other route. Those stops are regular candidates,
+     but at least one shared stop must remain in each direction-specific overlap section.
+  6. Steps 3-5 are repeated at each tolerance in --sensitivity. A location whose outcome changes
      is flagged BORDERLINE for manual review.
 
 Usage
@@ -101,8 +105,14 @@ def tol_label(t):
 # One route
 # --------------------------------------------------------------------------- #
 class RouteModel:
-    def __init__(self, route, rtype, stops, pairs, transfers, manual, args):
+    def __init__(self, route, rtype, stops, pairs, transfers, manual, args,
+                 interline_groups=None, interline_routes=None):
         self.route, self.rtype, self.args = route, rtype, args
+        # Interlined sections are not automatic TRANSFER protection. They are
+        # regular candidates, subject to a group-level rule that at least one
+        # exact-coordinate shared stop remains in each contiguous overlap run.
+        self.interline_groups = [set(g) for g in (interline_groups or []) if g]
+        self.interline_routes = interline_routes or {}
         lo, hi = args.rapid_spacing if rtype == "Rapid" else args.local_spacing
         self.min_m, self.max_m = lo * MI_M, hi * MI_M
         self.st = stops
@@ -156,7 +166,7 @@ class RouteModel:
         vals = sorted(self.total0.values(), reverse=True)
         k = max(1, int(np.ceil(len(vals) * args.protect_pct / 100.0)))
         cutoff = vals[k - 1]
-        self.protect, self.transfer_routes = {}, {}
+        self.protect, self.transfer_routes, self.location_interline_routes = {}, {}, {}
         for L, m in self.locs.items():
             r = []
             if any(i in self.noseq for i in m):
@@ -166,6 +176,8 @@ class RouteModel:
             if any(RAIL_RE.search(f"{stops.at[i, 'STREET']} {stops.at[i, 'CROSS_ST']}".upper()) for i in m):
                 r.append("RAIL")
             tr = set().union(*(transfers.get(i, set()) for i in m))
+            interlined = set().union(*(self.interline_routes.get(i, set()) for i in m))
+            tr -= interlined
             if tr:
                 r.append("TRANSFER")
             if any((route.upper(), _norm_id(stops.at[i, "CTASTOPID"])) in manual for i in m):
@@ -174,6 +186,7 @@ class RouteModel:
                 r.append("RIDERSHIP")
             self.protect[L] = r
             self.transfer_routes[L] = sorted(tr)
+            self.location_interline_routes[L] = sorted(interlined)
 
         self.unprotected = [L for L in self.locs if not self.protect[L]]
         self.rank = {L: 1 + sum(1 for v in vals if v > self.total0[L]) for L in self.locs}
@@ -286,6 +299,17 @@ class RouteModel:
             return dict(merged_ok=merged_ok, trigger=trigger, rule_b=rule_b, cost=cost, tot=tot,
                         lower_neighbor=lower_neighbor, ratio_to_lower=ratio_to_lower)
 
+        interline_guarded = set()
+
+        def can_remove(members):
+            """Never remove the last still-kept shared stop in an overlap section."""
+            removing = set(members)
+            for group in self.interline_groups:
+                if group.intersection(removing):
+                    if not any(kept[j] for j in group if j not in removing):
+                        return False
+            return True
+
         def remove_stop(i, kind):
             p, n = prev_next(i)
             gp, gn = cum[i] - cum[p], cum[n] - cum[i]
@@ -304,6 +328,9 @@ class RouteModel:
                     continue
                 e = evaluate(L)
                 if e and e["merged_ok"] and e["trigger"] and e["rule_b"]:
+                    if not can_remove(locs[L]):
+                        interline_guarded.add(L)
+                        continue
                     key = (e["cost"], e["tot"], L)
                     if best is None or key < best[0]:
                         best = (key, L)
@@ -334,6 +361,9 @@ class RouteModel:
                     continue
                 near, g = (p, gp) if gp <= gn else (n, gn)
                 if g <= asym_m and self.protect[loc_of[near]]:
+                    if not can_remove([i]):
+                        interline_guarded.add(L)
+                        continue
                     cands.append((stop_total(i), i))
             if cands:
                 remove_stop(min(cands)[1], "ASYMMETRIC")
@@ -344,7 +374,10 @@ class RouteModel:
             if all(not kept[i] for i in locs[L]) or any(not kept[i] for i in locs[L]):
                 continue
             e = evaluate(L)
-            if e is None:
+            if (L in interline_guarded and e is not None and e["merged_ok"]
+                    and e["trigger"] and e["rule_b"] and not can_remove(locs[L])):
+                reasons[L] = "KEPT_LAST_INTERLINE_TRANSFER"
+            elif e is None:
                 reasons[L] = "KEPT_NO_NEIGHBOR"
             elif not e["trigger"]:
                 reasons[L] = "KEPT_SPACING_OK"
@@ -391,6 +424,53 @@ def detect_transfers(by_dir, route, stops, radius_m, overlap, primary):
     return out
 
 
+def detect_interline_sections(by_dir, route, stops):
+    """Find contiguous same-coordinate overlaps with another route.
+
+    A single shared intersection is not enough to classify as interlining.
+    A section requires at least two consecutive stops, in the analyzed route's
+    direction sequence, whose exact (LAT, LON) coordinates are also served by
+    the same other route. Each direction is evaluated separately so a viable
+    transfer remains in each direction of the overlapping segment.
+
+    Returns (groups, routes_by_stop). Each group is a set of stop row indices
+    that form one contiguous interlined section; routes_by_stop identifies the
+    other route(s) sharing those exact-coordinate stops.
+    """
+    other = by_dir[by_dir["ROUTEA"].astype(str) != str(route)].dropna(subset=["LAT", "LON"])
+    coord_routes = defaultdict(set)
+    for r, lat, lon in zip(other["ROUTEA"], other["LAT"], other["LON"]):
+        coord_routes[(float(lat), float(lon))].add(str(r))
+
+    routes_by_stop = {i: set() for i in stops.index}
+    groups = []
+    for _, direction_rows in stops.groupby("DIRECTION", sort=False):
+        ordered = direction_rows.dropna(subset=["SORTORDER", "LAT", "LON"]).sort_values(
+            "SORTORDER", kind="mergesort")
+        ids = list(ordered.index)
+        matches = {
+            i: coord_routes.get((float(stops.at[i, "LAT"]), float(stops.at[i, "LON"])), set())
+            for i in ids
+        }
+        other_routes = set().union(*(matches[i] for i in ids)) if ids else set()
+        for other_route in other_routes:
+            run = []
+            for i in ids:
+                if other_route in matches[i]:
+                    run.append(i)
+                else:
+                    if len(run) >= 2:
+                        groups.append(set(run))
+                        for j in run:
+                            routes_by_stop[j].add(other_route)
+                    run = []
+            if len(run) >= 2:
+                groups.append(set(run))
+                for j in run:
+                    routes_by_stop[j].add(other_route)
+    return groups, routes_by_stop
+
+
 def sensitivity_label(sigs):
     return "BORDERLINE" if len(set(sigs)) > 1 else "STABLE"
 
@@ -405,7 +485,9 @@ def process(by_dir, pairs, args, tols, primary_tol, rapid_patterns, manual, sel_
         prs = pairs[pairs["IDX_A"].isin(stops.index)] if len(pairs) else pairs
         rtype = "Rapid" if any(fnmatch.fnmatch(route.upper(), p.upper()) for p in rapid_patterns) else "Local"
         transfers = detect_transfers(by_dir, route, stops, args.transfer_radius, args.overlap_transfers, primary)
-        m = RouteModel(route, rtype, stops, prs, transfers, manual, args)
+        interline_groups, interline_routes = detect_interline_sections(by_dir, route, stops)
+        m = RouteModel(route, rtype, stops, prs, transfers, manual, args,
+                       interline_groups=interline_groups, interline_routes=interline_routes)
         if m.noseq:
             warnings.append(f"Route {route}: {len(m.noseq)} stops have no SORTORDER/coordinates and were "
                             f"left out of spacing (protected).")
@@ -460,6 +542,7 @@ def process(by_dir, pairs, args, tols, primary_tol, rapid_patterns, manual, sel_
                 "DECISION": decision, "REASON": reason, "SENSITIVITY": sens,
                 "REVIEW_FLAGS": "; ".join(flags),
                 "TRANSFER_ROUTES": ", ".join(m.transfer_routes[L]),
+                "INTERLINED_ROUTES": ", ".join(m.location_interline_routes.get(L, [])),
                 **m.static_info(L),
                 **prim["diagnostics"].get(L, {}),
                 "ADDED_WALK_RIDER_FT": walk_ft if removed_now else np.nan,
@@ -492,11 +575,17 @@ def process(by_dir, pairs, args, tols, primary_tol, rapid_patterns, manual, sel_
                     "LOCATION": m.label(L),
                     "LOCATION_DECISION": decision,
                     "LOCATION_REASON": reason,
+                    "INTERLINED_ROUTES": ", ".join(sorted(m.interline_routes.get(i, set()))),
                     "SENSITIVITY": sens,
                     "REVIEW_FLAGS": "; ".join(flags),
                     "REMOVAL_REASON": ("REMOVED_" + removal.get("kind", "")) if is_removed else "",
                     "ADDED_WALK_FT": removal.get("walk_m", np.nan) / FT_M if is_removed else np.nan,
                     "RANK_IN_ROUTE": m.rank[L],
+                    # Keep stop-level outcomes from every sensitivity run so the
+                    # workbook and map can compare the primary result with (for example) 5%.
+                    **{f"STOP_DECISION_AT_{tol_label(t)}": (
+                        "REMOVED" if i in runs[t]["removed"] else "KEPT"
+                    ) for t in tols},
                 })
 
             for i in removed_now:
@@ -760,6 +849,10 @@ def main():
         f"Rapid patterns: {', '.join(args.rapid_routes) or 'none'}.",
         f"Primary tolerance {primary_tol:g}% (decisions in the sheets); sensitivity runs at "
         f"{', '.join(tol_label(t).replace('PCT', '%') for t in tols)}.",
+        "Interlining rule: contiguous runs of at least two stops with exact matching coordinates on another route "
+        "are treated as ordinary consolidation candidates, not automatic TRANSFER protection; at least one "
+        "shared stop is retained in each direction-specific overlap section. Single shared intersections remain "
+        "eligible for normal transfer protection. "
         f"Protection: terminals, rail/station names, transfers within {args.transfer_radius:g} m of a crossing route "
         f"({'including' if args.overlap_transfers else 'excluding'} same-street routes), top {args.protect_pct:g}% of "
         f"locations per route (min {args.min_protect_riders:g} riders), plus {len(manual)} manual stops. "
@@ -788,7 +881,8 @@ def main():
         "Use RANK_IN_ROUTE for route-wide ranking and CURRENT_LOWER_NEIGHBOR_RIDERS / "
         "CURRENT_RIDERSHIP_RATIO_TO_LOWER_NEIGHBOR to inspect the local comparison. "
         "SENSITIVITY = BORDERLINE means the outcome changes across the tolerance runs; review those by hand.",
-        "Individual Stops contains one row per analyzed route/direction/stop with its own stop ID and coordinates; red rows are removed, green rows kept, blue rows belong to protected locations, and yellow rows are borderline.",
+        "Individual Stops contains one row per analyzed route/direction/stop with its own stop ID and coordinates; STOP_DECISION_AT_* columns show the stop-level outcome at each sensitivity tolerance (e.g. STOP_DECISION_AT_5PCT). INTERLINED_ROUTES lists routes sharing the exact coordinates as part of a contiguous interlined section.",
+        "KEPT_LAST_INTERLINE_TRANSFER means this stop/location was otherwise removable, but removing it would eliminate the final remaining shared stop in an interlined section for that direction. These stops are not protected individually; the section-level minimum-one-stop rule applies.",
         "ADDED_WALK is straight-line-along-route feet to the nearest remaining stop in that direction at the time of removal.",
         "This is a screening model. It does not know about points of interest, crosswalk/signal locations, or non-CTA transfers "
         "(Pace/Metra) unless you list them in --protect-file.",
