@@ -290,12 +290,10 @@ def norm_streets(street, cross):
 
 
 def pair_stops(stops: pd.DataFrame, max_dist: float) -> pd.DataFrame:
-    """
-    Within each route, match stops of different directions one-to-one,
-    only if closer than max_dist meters. Two passes:
-      1. pairs whose street names agree, closest first
-      2. remaining stops, closest first (distance only)
-    Returns a table of pairs: (idx_a, idx_b, distance, method).
+    """Pair opposite-direction stops only when street AND cross-street names agree.
+
+    Nearby stops with mismatched intersection names are deliberately left as solo
+    directional stops. The optimizer writes those candidates to a Pairing Review sheet.
     """
     pairs = []
     for route, rt in stops.groupby("ROUTEA"):
@@ -304,23 +302,18 @@ def pair_stops(stops: pd.DataFrame, max_dist: float) -> pd.DataFrame:
         lat, lon = rt["LAT"].to_numpy(), rt["LON"].to_numpy()
         dirs = rt["DIRECTION"].to_numpy()
         names = [norm_streets(a, b) for a, b in zip(rt["STREET"], rt["CROSS_ST"])]
-
         D = haversine_matrix(lat, lon, lat, lon)
-        D[dirs[:, None] == dirs[None, :]] = np.inf      # never pair same direction
-        upper = np.triu(np.ones_like(D, dtype=bool), k=1)   # each pair once
+        D[dirs[:, None] == dirs[None, :]] = np.inf
+        upper = np.triu(np.ones_like(D, dtype=bool), k=1)
         cand = [(D[i, j], i, j) for i, j in np.argwhere(np.isfinite(D) & upper)
-                if D[i, j] <= max_dist]
+                if D[i, j] <= max_dist and names[i] == names[j]]
         cand.sort()
-
         used = set()
-        for want_names, method in ((True, "Name + distance"), (False, "Distance only")):
-            for d, i, j in cand:
-                if i in used or j in used:
-                    continue
-                if (names[i] == names[j]) != want_names:
-                    continue
-                used.update((i, j))
-                pairs.append((idx[i], idx[j], d, method))
+        for d, i, j in cand:
+            if i in used or j in used:
+                continue
+            used.update((i, j))
+            pairs.append((idx[i], idx[j], d, "Name + distance"))
     return pd.DataFrame(pairs, columns=["IDX_A", "IDX_B", "DIST_M", "METHOD"])
 
 

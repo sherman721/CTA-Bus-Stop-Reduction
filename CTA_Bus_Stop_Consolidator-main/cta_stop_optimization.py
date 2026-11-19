@@ -284,9 +284,14 @@ class RouteModel:
                 m = min(gp, gn)
                 if m <= trig:
                     trigger = True
-                nb += [loc_total(loc_of[p]), loc_total(loc_of[n])]
+                def same_direction_location_total(j):
+                    direction = self.st.at[j, "DIRECTION"]
+                    return sum(stop_total(q) for q in locs[loc_of[j]]
+                               if kept[q] and self.st.at[q, "DIRECTION"] == direction)
+                nb += [same_direction_location_total(p), same_direction_location_total(n)]
                 cost += stop_total(i) * m / FT_M
-            tot = loc_total(L)
+            directional_totals = [stop_total(i) for i in members]
+            tot = sum(directional_totals)
             lower_neighbor = min(nb) if nb else np.nan
             ratio_to_lower = tot / lower_neighbor if lower_neighbor > 0 else np.nan
             # The bottom portion of the route-wide ridership distribution should
@@ -294,8 +299,24 @@ class RouteModel:
             # Only the upper-middle band (after top-stop protection and through
             # this cutoff) is subject to the local neighbor-ridership comparison.
             bottom_half = self.rank[L] > self.neighbor_logic_cutoff
-            rule_b = (bottom_half or tot < a.low_volume or
-                      (lower_neighbor > 0 and tot <= a.ratio * lower_neighbor))
+            # Evaluate each directional member against same-direction neighbor ridership.
+            # A paired stop in the opposite direction can never inflate the neighbor total.
+            direction_checks = []
+            for i in members:
+                directional_neighbors = []
+                for j in (self.seq[self.pos[i][0]][self.pos[i][1] - 1]
+                          if self.pos[i][1] > 0 else None,
+                          self.seq[self.pos[i][0]][self.pos[i][1] + 1]
+                          if self.pos[i][1] + 1 < len(self.seq[self.pos[i][0]]) else None):
+                    if j is not None:
+                        direction = self.st.at[i, "DIRECTION"]
+                        directional_neighbors.append(sum(stop_total(q) for q in locs[loc_of[j]]
+                            if kept[q] and self.st.at[q, "DIRECTION"] == direction))
+                dtotal = stop_total(i)
+                dlower = min(directional_neighbors) if directional_neighbors else np.nan
+                direction_checks.append(dtotal < a.low_volume or
+                    (dlower > 0 and dtotal <= a.ratio * dlower))
+            rule_b = bottom_half or all(direction_checks)
             return dict(merged_ok=merged_ok, trigger=trigger, rule_b=rule_b, cost=cost, tot=tot,
                         lower_neighbor=lower_neighbor, ratio_to_lower=ratio_to_lower)
 
@@ -450,12 +471,27 @@ class OptimizedRouteModel(RouteModel):
                 if gp+gn>cap and not barrier: merged=False
                 near=min(gp,gn)
                 trigger |= near<=trig
-                neighbors.extend([loc_total(st,loc_of[p]),loc_total(st,loc_of[n])])
+                def same_direction_location_total(j):
+                    direction = self.st.at[j, "DIRECTION"]
+                    return sum(stop_total(st,q) for q in locs[loc_of[j]]
+                               if q in st['kept'] and self.st.at[q, "DIRECTION"] == direction)
+                neighbors.extend([same_direction_location_total(p),same_direction_location_total(n)])
                 cost += stop_total(st,i)*near/FT_M
                 walks[i]=(p,n,gp,gn,near)
-            total=loc_total(st,L); lower=min(neighbors) if neighbors else float('nan')
+            total=sum(stop_total(st,i) for i in members); lower=min(neighbors) if neighbors else float('nan')
             bottom=self.rank[L] > self.neighbor_logic_cutoff
-            ridership_ok=(bottom or total<a.low_volume or (lower>0 and total<=a.ratio*lower))
+            direction_checks=[]
+            for i in members:
+                d,k=pos[i]; sq=seq[d]
+                directional_neighbors=[]
+                for j in (sq[k-1] if k>0 else None, sq[k+1] if k+1<len(sq) else None):
+                    if j is not None:
+                        direction=self.st.at[i,"DIRECTION"]
+                        directional_neighbors.append(sum(stop_total(st,q) for q in locs[loc_of[j]]
+                            if q in st['kept'] and self.st.at[q,"DIRECTION"]==direction))
+                dtotal=stop_total(st,i); dlower=min(directional_neighbors) if directional_neighbors else float('nan')
+                direction_checks.append(dtotal<a.low_volume or (dlower>0 and dtotal<=a.ratio*dlower))
+            ridership_ok=bottom or all(direction_checks)
             return dict(members=members,merged=merged,trigger=trigger,ridership_ok=ridership_ok,
                         cost=cost,total=total,lower=lower,ratio=(total/lower if lower>0 else float('nan')),walks=walks)
         def apply(st, action):
@@ -613,6 +649,35 @@ def detect_interline_sections(by_dir, route, stops):
 
 def sensitivity_label(sigs):
     return "BORDERLINE" if len(set(sigs)) > 1 else "STABLE"
+
+
+def pairing_review_candidates(stops, max_dist):
+    """Nearby opposite-direction stops with mismatched intersection names, left solo."""
+    rows = []
+    for route, rt in stops.groupby("ROUTEA"):
+        rt = rt.dropna(subset=["LAT", "LON"])
+        if len(rt) < 2:
+            continue
+        idx = rt.index.to_numpy()
+        D = haversine_matrix(rt["LAT"].to_numpy(), rt["LON"].to_numpy(),
+                             rt["LAT"].to_numpy(), rt["LON"].to_numpy())
+        dirs = rt["DIRECTION"].astype(str).to_numpy()
+        names = [norm_streets(a, b) for a, b in zip(rt["STREET"], rt["CROSS_ST"])]
+        for i, j in np.argwhere(np.triu((D <= max_dist) & (dirs[:, None] != dirs[None, :]), k=1)):
+            if names[i] == names[j]:
+                continue
+            a, b = rt.loc[idx[i]], rt.loc[idx[j]]
+            rows.append({
+                "ROUTE": route,
+                "STOP_ID_A": _norm_id(a["CTASTOPID"]), "DIRECTION_A": a["DIRECTION"],
+                "LOCATION_A": f'{a["STREET"]} & {a["CROSS_ST"]}',
+                "STOP_ID_B": _norm_id(b["CTASTOPID"]), "DIRECTION_B": b["DIRECTION"],
+                "LOCATION_B": f'{b["STREET"]} & {b["CROSS_ST"]}',
+                "DISTANCE_M": float(D[i, j]), "DISTANCE_FT": float(D[i, j] / FT_M),
+                "PAIRING_ACTION": "NOT PAIRED - BOTH STOPS TREATED AS SOLO",
+                "REVIEW_FLAG": "NEARBY OPPOSITE-DIRECTION STOPS HAVE DIFFERENT INTERSECTION NAMES",
+            })
+    return pd.DataFrame(rows)
 
 
 def process(by_dir, pairs, args, tols, primary_tol, rapid_patterns, manual, sel_routes):
@@ -884,7 +949,7 @@ def gap_fill(row):
     return None
 
 
-def write_workbook(path, notes, summary, locs, removed, individual, gaps, changes=None):
+def write_workbook(path, notes, summary, locs, removed, individual, gaps, changes=None, pairing_review=None):
     review = locs[locs["REVIEW_FLAGS"] != ""] if len(locs) else locs
     with pd.ExcelWriter(path, engine="openpyxl") as xw:
         pd.DataFrame({"Notes": notes}).to_excel(xw, sheet_name="Notes", index=False)
@@ -894,6 +959,9 @@ def write_workbook(path, notes, summary, locs, removed, individual, gaps, change
                                ("Remaining Gaps", gaps, gap_fill), ("Removed Stops", removed, None)):
             df.to_excel(xw, sheet_name=name, index=False)
             style_df_sheet(xw.sheets[name], df, fill)
+        if pairing_review is not None:
+            pairing_review.to_excel(xw, sheet_name="Pairing Review", index=False)
+            style_df_sheet(xw.sheets["Pairing Review"], pairing_review)
         if changes is not None and len(changes):
             changes.to_excel(xw, sheet_name="Stop ID Changes", index=False)
             style_df_sheet(xw.sheets["Stop ID Changes"], changes)
@@ -962,7 +1030,9 @@ def main():
     else:
         sel = available
 
-    pairs = pair_stops(by_dir[by_dir["ROUTEA"].isin(sel)], args.max_dist)
+    selected_stops = by_dir[by_dir["ROUTEA"].isin(sel)]
+    pairs = pair_stops(selected_stops, args.max_dist)
+    pairing_review = pairing_review_candidates(selected_stops, args.max_dist)
 
     manual = set()
     if args.protect_file:
@@ -973,6 +1043,20 @@ def main():
 
     locs, removed, individual, summary, gaps, warns = process(by_dir, pairs, args, tols, primary_tol,
                                             args.rapid_routes, manual, sel)
+
+    # Make pairing anomalies visible directly on each affected stop, not only in the audit tab.
+    if len(pairing_review) and len(individual):
+        flagged_ids = set()
+        for _, pr in pairing_review.iterrows():
+            flagged_ids.add((str(pr["ROUTE"]), str(pr["STOP_ID_A"])))
+            flagged_ids.add((str(pr["ROUTE"]), str(pr["STOP_ID_B"])))
+        for ix, row in individual.iterrows():
+            if (str(row["ROUTE"]), str(row["CTASTOPID"])) in flagged_ids:
+                current = str(row.get("REVIEW_FLAGS", "") or "")
+                tags = [x for x in current.split("; ") if x]
+                if "PAIRING_MISMATCH_SOLO" not in tags:
+                    tags.append("PAIRING_MISMATCH_SOLO")
+                individual.at[ix, "REVIEW_FLAGS"] = "; ".join(tags)
 
     # total row
     if len(summary):
@@ -1031,7 +1115,8 @@ def main():
 
     if changes is not None and len(changes):
         changes = changes[changes["ROUTE"].isin(sel)]
-    write_workbook(args.output, notes, summary, locs, removed, individual, gaps, changes)
+    notes.append("Opposite-direction pairing now requires matching normalized STREET + CROSS_ST names. Nearby mismatched-name candidates are NOT paired; each remains a solo directional stop and is listed in Pairing Review. Neighbor-ridership tests compare each direction only with same-direction ridership.")
+    write_workbook(args.output, notes, summary, locs, removed, individual, gaps, changes, pairing_review)
 
     # Plain CSV list of the removed stops (handy for mapping or comparing against another list)
     csv_path = args.output.with_name(args.output.stem + "_removed_stops.csv")
