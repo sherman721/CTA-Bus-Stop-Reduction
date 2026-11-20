@@ -280,20 +280,64 @@ def haversine_matrix(lat1, lon1, lat2, lon2):
     return 2 * R * np.arcsin(np.sqrt(a))
 
 
+def _clean_street_name(value):
+    """Normalize a street label, removing only explicit parenthetical leg notes."""
+    s = str(value).upper()
+    s = re.sub(
+        r"\(\s*(?:NORTH|SOUTH|EAST|WEST)\s+LEG\s*\)",
+        " ",
+        s,
+        flags=re.IGNORECASE,
+    )
+    s = re.sub(r"\b(STREET|ST|AVENUE|AVE|ROAD|RD|BLVD|BOULEVARD)\b", "", s)
+    s = re.sub(r"\b(STATION|LINE)\b", "", s)
+    return " ".join(re.sub(r"[^A-Z0-9 ]", " ", s).split())
+
+
 def norm_streets(street, cross):
-    """Rough normalized set of street names, used only as a sanity check on matches."""
-    def clean(s):
-        s = re.sub(r"\b(STREET|ST|AVENUE|AVE|ROAD|RD|BLVD|BOULEVARD)\b", "", s.upper())
-        s = re.sub(r"\b(STATION|LINE)\b", "", s)
-        return re.sub(r"[^A-Z0-9 ]", " ", s).split()
-    return frozenset(clean(street) + clean(cross))
+    """Normalized intersection identity; preserves real directional street names."""
+    return frozenset((_clean_street_name(street), _clean_street_name(cross)))
+
+
+def _same_intersection_or_address_alias(a, b):
+    """Allow exact normalized intersections, plus narrow numeric-address aliases.
+
+    The alias exception is for the same named street intersecting two numeric
+    address labels with the same directional suffix (e.g. 2559 SOUTH / 2608 SOUTH).
+    It does not allow a named cross street (e.g. BLUE ISLAND) to match an address.
+    """
+    a_street, a_cross = _clean_street_name(a["STREET"]), _clean_street_name(a["CROSS_ST"])
+    b_street, b_cross = _clean_street_name(b["STREET"]), _clean_street_name(b["CROSS_ST"])
+
+    if norm_streets(a["STREET"], a["CROSS_ST"]) == norm_streets(b["STREET"], b["CROSS_ST"]):
+        return True, "Same normalized intersection"
+
+    address_a = re.fullmatch(r"(\d+)\s+(NORTH|SOUTH|EAST|WEST)", a_cross)
+    address_b = re.fullmatch(r"(\d+)\s+(NORTH|SOUTH|EAST|WEST)", b_cross)
+    if a_street == b_street and address_a and address_b and address_a.group(2) == address_b.group(2):
+        return True, "Same street; numeric address alias"
+
+    return False, "Intersection names differ"
+
+
+def _display_intersection(street, cross):
+    """Display paired locations without directional-leg annotations."""
+    def strip_leg(value):
+        return re.sub(
+            r"\s*\(\s*(?:NORTH|SOUTH|EAST|WEST)\s+LEG\s*\)",
+            "",
+            str(value),
+            flags=re.IGNORECASE,
+        ).strip()
+    return f"{strip_leg(street)} & {strip_leg(cross)}"
 
 
 def pair_stops(stops: pd.DataFrame, max_dist: float) -> pd.DataFrame:
-    """Pair opposite-direction stops by mutual-nearest coordinates, not labels.
+    """Pair only name-compatible opposite-direction stops, using mutual-nearest distance.
 
-    Matching is route-specific and direction-specific. A pair must be within
-    max_dist and each stop must be the other's nearest opposite-direction stop.
+    Exact normalized intersection names are preferred. A narrow numeric-address
+    alias is allowed only when the named street and directional address suffix
+    agree. Different named intersections are never paired on proximity alone.
     """
     pairs = []
     for route, rt in stops.groupby("ROUTEA"):
@@ -303,21 +347,38 @@ def pair_stops(stops: pd.DataFrame, max_dist: float) -> pd.DataFrame:
         dirs = rt["DIRECTION"].astype(str).to_numpy()
         D = haversine_matrix(lat, lon, lat, lon)
         D[dirs[:, None] == dirs[None, :]] = np.inf
+
+        # Exclude name-incompatible stops BEFORE computing nearest neighbors.
+        compatible = np.zeros(D.shape, dtype=bool)
+        methods = {}
+        records = [rt.loc[i] for i in idx]
+        for i in range(len(rt)):
+            for j in range(i + 1, len(rt)):
+                if not np.isfinite(D[i, j]) or D[i, j] > max_dist:
+                    continue
+                ok, method = _same_intersection_or_address_alias(records[i], records[j])
+                if ok:
+                    compatible[i, j] = compatible[j, i] = True
+                    methods[(i, j)] = method
+        eligible_dist = np.where(compatible, D, np.inf)
+
         nearest = {}
         for i in range(len(rt)):
-            candidates = np.flatnonzero(np.isfinite(D[i]) & (D[i] <= max_dist))
+            candidates = np.flatnonzero(np.isfinite(eligible_dist[i]))
             if len(candidates):
-                nearest[i] = min(candidates, key=lambda j: (D[i, j], str(dirs[j]), str(idx[j])))
-        candidates = [(D[i, j], i, j) for i, j in nearest.items()
-                      if nearest.get(j) == i and i < j]
-        candidates.sort(key=lambda x: (x[0], str(idx[x[1]]), str(idx[x[2]])))
+                nearest[i] = min(candidates, key=lambda j: (eligible_dist[i, j], str(dirs[j]), str(idx[j])))
+
+        mutual = [(eligible_dist[i, j], i, j) for i, j in nearest.items()
+                  if nearest.get(j) == i and i < j]
+        mutual.sort(key=lambda x: (x[0], str(idx[x[1]]), str(idx[x[2]])))
+
         used = set()
-        for distance, i, j in candidates:
+        for distance, i, j in mutual:
             if i in used or j in used:
                 continue
             used.update((i, j))
-            pairs.append((idx[i], idx[j], distance,
-                          "Mutual nearest opposite-direction coordinates"))
+            key = (i, j)
+            pairs.append((idx[i], idx[j], distance, methods[key]))
     return pd.DataFrame(pairs, columns=["IDX_A", "IDX_B", "DIST_M", "METHOD"])
 
 
@@ -380,8 +441,8 @@ def build_combined(stops: pd.DataFrame, pairs: pd.DataFrame) -> pd.DataFrame:
         rows.append({
             "ROUTE": a["ROUTEA"],
             "STATUS": "Paired",
-            "LOCATION": f'{a["STREET"]} & {a["CROSS_ST"]}',
-            "LOCATION_OPPOSITE": f'{b["STREET"]} & {b["CROSS_ST"]}',
+            "LOCATION": _display_intersection(a["STREET"], a["CROSS_ST"]),
+            "LOCATION_OPPOSITE": _display_intersection(b["STREET"], b["CROSS_ST"]),
             "NAMES_AGREE": "Yes" if same_names else "Check",
             "MATCH_METHOD": p["METHOD"],
             "DIST_BETWEEN_M": round(p["DIST_M"], 1),
