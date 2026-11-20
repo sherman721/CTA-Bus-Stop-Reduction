@@ -8,49 +8,50 @@ consolidations. The project combines:
 3.  An Excel workbook for auditing decisions and comparing sensitivity
     runs.
 4.  A Leaflet map integration that overlays the optimizer's stop-level
-    results on the existing CTA Bus Stop Reduction map.
+    results on the existing CTA Bus Stop Reduction map proposed by Nik Hunder.
 5.  GitHub Pages hosting for sharing the static interactive map.
 
 > **Important:** This is a planning and screening model, not an official
 > CTA recommendation or an automated service-change decision. Every
 > proposed removal should be reviewed against field conditions,
 > pedestrian access, accessibility, transfers, nearby destinations, and
-> agency policy.
+> agency policy. The model uses 2025 stop/pick ridership data directly from the
+> CTA from the entire year with averages taken from weekdays only.
 
-------------------------------------------------------------------------
+---
 
 ## Contents
 
--   [Project layout](#project-layout)
--   [What each script does](#what-each-script-does)
--   [How the optimization works](#how-the-optimization-works)
--   [Pairing, solo stops, and direction
-    handling](#pairing-solo-stops-and-direction-handling)
--   [Protection rules](#protection-rules)
--   [Spacing and ridership rules](#spacing-and-ridership-rules)
--   [Combination search and
-    objective](#combination-search-and-objective)
--   [Interlining and special cases](#interlining-and-special-cases)
--   [Understanding the Excel
-    workbook](#understanding-the-excel-workbook)
--   [Using the interactive map](#using-the-interactive-map)
--   [Map dot colors and popups](#map-dot-colors-and-popups)
--   [Running the optimizer](#running-the-optimizer)
--   [Updating the map from a new
-    workbook](#updating-the-map-from-a-new-workbook)
--   [Publishing the map with GitHub
-    Pages](#publishing-the-map-with-github-pages)
--   [Updating the public map](#updating-the-public-map)
--   [Limitations and recommended
-    review](#limitations-and-recommended-review)
+- [Project layout](#project-layout)
+- [What each script does](#what-each-script-does)
+- [How the optimization works](#how-the-optimization-works)
+- [Pairing, solo stops, and direction
+  handling](#pairing-solo-stops-and-direction-handling)
+- [Protection rules](#protection-rules)
+- [Spacing and ridership rules](#spacing-and-ridership-rules)
+- [Combination search and
+  objective](#combination-search-and-objective)
+- [Interlining and special cases](#interlining-and-special-cases)
+- [Understanding the Excel
+  workbook](#understanding-the-excel-workbook)
+- [Using the interactive map](#using-the-interactive-map)
+- [Map dot colors and popups](#map-dot-colors-and-popups)
+- [Running the optimizer](#running-the-optimizer)
+- [Updating the map from a new
+  workbook](#updating-the-map-from-a-new-workbook)
+- [Publishing the map with GitHub
+  Pages](#publishing-the-map-with-github-pages)
+- [Updating the public map](#updating-the-public-map)
+- [Limitations and recommended
+  review](#limitations-and-recommended-review)
 
-------------------------------------------------------------------------
+---
 
 ## Project layout
 
 A suggested working layout is:
 
-``` text
+```text
 CTA-Bus-Stop-Project/
 │
 ├── optimizer/
@@ -62,7 +63,7 @@ CTA-Bus-Stop-Project/
 │
 └── map-site/
     ├── index.html
-    ├── my_consolidation_route50.json
+    ├── new_consolidation_route50.json
     ├── build_integration.py
     ├── README.md
     └── .nojekyll
@@ -70,14 +71,14 @@ CTA-Bus-Stop-Project/
 
 The names and folders can differ. The important requirements are:
 
--   `cta_stop_optimization.py` and `cta_stop_cleanup.py` must be in the
-    same folder.
--   The optimizer needs the raw stop/ridership data CSV.
--   `build_integration.py` must be able to read the generated workbook.
--   The map's `index.html` and its companion assets/data files must be
-    kept together.
--   The published GitHub Pages folder must contain `index.html` at its
-    top level.
+- `cta_stop_optimization.py` and `cta_stop_cleanup.py` must be in the
+  same folder.
+- The optimizer needs the raw stop/ridership data CSV.
+- `build_integration.py` must be able to read the generated workbook.
+- The map's `index.html` and its companion assets/data files must be
+  kept together.
+- The published GitHub Pages folder must contain `index.html` at its
+  top level.
 
 Do not publish the raw ridership dataset or private working files unless
 you have confirmed that they are appropriate for public release.
@@ -89,15 +90,15 @@ you have confirmed that they are appropriate for public release.
 This is the shared preprocessing dependency. It prepares the raw CTA
 stop/pick data for analysis. Among other things, the project uses it to:
 
--   Load and normalize the source data.
--   Average boardings and alightings over the available weekday picks.
--   Standardize street and cross-street names for comparisons.
--   Merge verified stop-ID changes where the records indicate that a
-    stop ID moved or was replaced.
--   Identify route order and direction-specific stop sequences.
--   Pair opposite-direction stops into a common intersection/location
-    when the pairing rules are satisfied.
--   Calculate geographic distances used by the optimizer.
+- Load and normalize the source data.
+- Average boardings and alightings over the available weekday picks.
+- Standardize street and cross-street names for comparisons.
+- Merge verified stop-ID changes where the records indicate that a
+  stop ID moved or was replaced.
+- Identify route order and direction-specific stop sequences.
+- Pair opposite-direction stops into a common intersection/location
+  when the pairing rules are satisfied.
+- Calculate geographic distances used by the optimizer.
 
 Keep this file in sync with the version supplied for the optimizer. The
 optimization script imports its preprocessing functions; it is not a
@@ -128,10 +129,10 @@ The optimizer:
 This script reads the workbook's `Individual Stops` sheet and inserts
 two additional Leaflet marker layers into the existing map:
 
--   `My Consolidation - Route 50`
--   `My Consolidation - Route 50 (5% tolerance)`
+- `New Consolidation - Route 50`
+- `New Consolidation - Route 50 (5% tolerance)`
 
-It also writes `my_consolidation_route50.json` beside the map. The JSON
+It also writes `new_consolidation_route50.json` beside the map. The JSON
 contains the stop-level attributes used by the popups and is a companion
 data export; the map integration script creates it automatically.
 
@@ -139,7 +140,7 @@ The integration script is designed to preserve the existing map and add
 separate toggleable overlays. It edits `index.html` in place, so make a
 backup before running it.
 
-------------------------------------------------------------------------
+---
 
 ## How the optimization works
 
@@ -153,7 +154,7 @@ information where available.
 
 Average total ridership is:
 
-``` text
+```text
 Average total riders = average boardings + average alightings
 ```
 
@@ -168,14 +169,16 @@ neighbor is within the route type's minimum-spacing trigger.
 
 For a local route, the default minimum is one-eighth of a mile:
 
-``` text
+```text
 1/8 mile = 660 feet
 ```
 
 The sensitivity tolerance scales this candidate trigger:
 
     Tolerance   Local candidate trigger
-  ----------- -------------------------
+
+---
+
            0%                    660 ft
            5%                    693 ft
           10%                    726 ft
@@ -213,21 +216,21 @@ applicable checks on its other side and the ridership test.
 
 The model uses two different ridership concepts:
 
--   **Route-wide protection:** high-ridership locations can be protected
-    based on their rank across the route.
--   **Local neighbor comparison:** for eligible middle-ranked locations,
-    the candidate is compared with a lower-ridership adjacent location.
+- **Route-wide protection:** high-ridership locations can be protected
+  based on their rank across the route.
+- **Local neighbor comparison:** for eligible middle-ranked locations,
+  the candidate is compared with a lower-ridership adjacent location.
 
 The carried-forward defaults are:
 
--   Protect the top 15% of route locations, subject to the minimum
-    average-ridership threshold of 10 riders.
--   The bottom 50% of route locations automatically pass the
-    neighbor-ridership test.
--   The remaining middle band must satisfy the local lower-neighbor
-    comparison.
--   The low-volume exception remains available as configured in the
-    engine.
+- Protect the top 15% of route locations, subject to the minimum
+  average-ridership threshold of 10 riders.
+- The bottom 50% of route locations automatically pass the
+  neighbor-ridership test.
+- The remaining middle band must satisfy the local lower-neighbor
+  comparison.
+- The low-volume exception remains available as configured in the
+  engine.
 
 Passing the ridership test does **not** guarantee removal. A candidate
 must still pass spacing, protection, interlining, and other applicable
@@ -254,7 +257,7 @@ used by the model for the removed stop at the time it was removed. It
 should not be mistaken for the final gap between the two retained stops
 surrounding a series of removals.
 
-------------------------------------------------------------------------
+---
 
 ## Pairing, solo stops, and direction handling
 
@@ -266,9 +269,9 @@ represent the same physical intersection.
 
 The updated pairing rule requires:
 
--   Matching normalized `STREET` names.
--   Matching normalized `CROSS_ST` names.
--   The required geographic proximity.
+- Matching normalized `STREET` names.
+- Matching normalized `CROSS_ST` names.
+- The required geographic proximity.
 
 A distance-only match is not sufficient.
 
@@ -288,12 +291,12 @@ automatically be grouped with a southbound record named
 
 The optimizer evaluates each route direction independently:
 
--   Northbound spacing uses northbound stop coordinates and sequence
-    order.
--   Southbound spacing uses southbound stop coordinates and sequence
-    order.
--   Northbound ridership is not added to southbound neighbor ridership.
--   Southbound ridership is not added to northbound neighbor ridership.
+- Northbound spacing uses northbound stop coordinates and sequence
+  order.
+- Southbound spacing uses southbound stop coordinates and sequence
+  order.
+- Northbound ridership is not added to southbound neighbor ridership.
+- Southbound ridership is not added to northbound neighbor ridership.
 
 A valid opposite-direction pair can still be represented as a common
 location for reporting, but the directional stop records remain distinct
@@ -302,7 +305,7 @@ for directional spacing and neighbor-ridership calculations.
 This prevents a stop on one side of a corridor from acting as a
 substitute for a stop on the other side of the corridor.
 
-------------------------------------------------------------------------
+---
 
 ## Protection rules
 
@@ -325,14 +328,14 @@ The model checks the broader source dataset for stops served by other
 routes near the candidate. A nearby stop on a crossing route can trigger
 transfer protection.
 
--   The default transfer radius is controlled by `--transfer-radius`.
--   The test uses the full input dataset even when only one route is
-    selected for optimization.
--   Same-street routes are handled according to the
-    `--overlap-transfers` setting.
--   Exact-coordinate stops in a contiguous interlined section are
-    handled by the interline logic rather than being automatically
-    protected as ordinary crossing-route transfers.
+- The default transfer radius is controlled by `--transfer-radius`.
+- The test uses the full input dataset even when only one route is
+  selected for optimization.
+- Same-street routes are handled according to the
+  `--overlap-transfers` setting.
+- Exact-coordinate stops in a contiguous interlined section are
+  handled by the interline logic rather than being automatically
+  protected as ordinary crossing-route transfers.
 
 ### Top-ridership protection
 
@@ -359,7 +362,7 @@ spacing still works.
 The resulting one-sided decision is flagged as asymmetric. This is an
 exception, not a general permission to remove one side of any pair.
 
-------------------------------------------------------------------------
+---
 
 ## Interlining and special cases
 
@@ -371,13 +374,13 @@ by the same other route.
 
 Within such a section:
 
--   Shared stops remain eligible for ordinary consolidation.
--   The model does not automatically protect every shared stop as a
-    transfer.
--   At least one shared stop must remain in each direction-specific
-    overlap section.
--   A stop that would eliminate the final remaining shared stop is
-    retained and can be identified as `KEPT_LAST_INTERLINE_TRANSFER`.
+- Shared stops remain eligible for ordinary consolidation.
+- The model does not automatically protect every shared stop as a
+  transfer.
+- At least one shared stop must remain in each direction-specific
+  overlap section.
+- A stop that would eliminate the final remaining shared stop is
+  retained and can be identified as `KEPT_LAST_INTERLINE_TRANSFER`.
 
 A single shared intersection by itself is not enough to classify a
 stretch as an interlined section; ordinary transfer protection may still
@@ -399,7 +402,7 @@ model can mark a resulting gap as `PRE_EXISTING_BARRIER_GAP`. This is an
 informational exception for an existing gap, not a claim that the gap is
 desirable or accessible.
 
-------------------------------------------------------------------------
+---
 
 ## Combination search and objective
 
@@ -450,7 +453,7 @@ The original greedy engine remains separate. Use it as a comparison
 baseline rather than assuming the combination optimizer must always
 produce the preferred answer.
 
-------------------------------------------------------------------------
+---
 
 ## Understanding the Excel workbook
 
@@ -459,98 +462,106 @@ The optimizer produces an `.xlsx` workbook and a companion
 
 The workbook's key sheets include:
 
-  -----------------------------------------------------------------------
-  Sheet                               What it is for
-  ----------------------------------- -----------------------------------
-  `Notes`                             Run settings, thresholds, rules,
-                                      warnings, and interpretation notes.
-                                      Read this first.
+---
 
-  `Summary`                           Route-level totals and overall
-                                      results.
+Sheet What it is for
 
-  `All Locations`                     Location-level decisions and
-                                      reasons.
+---
 
-  `Review Queue`                      Locations that warrant closer
-                                      inspection, including sensitivity
-                                      changes and exceptions.
+`Notes` Run settings, thresholds, rules,
+warnings, and interpretation notes.
+Read this first.
 
-  `Individual Stops`                  One record per analyzed
-                                      route/direction/stop, including
-                                      stop ID and its own coordinates.
+`Summary` Route-level totals and overall
+results.
 
-  `Remaining Gaps`                    Distance between consecutive
-                                      retained stops in each direction
-                                      after the primary run.
+`All Locations` Location-level decisions and
+reasons.
 
-  `Removed Stops`                     Stop-level removal details and
-                                      added-walk information.
+`Review Queue` Locations that warrant closer
+inspection, including sensitivity
+changes and exceptions.
 
-  `Pairing Review`                    Nearby opposite-direction records
-                                      with mismatched intersection names
-                                      that were left as solo stops.
+`Individual Stops` One record per analyzed
+route/direction/stop, including
+stop ID and its own coordinates.
 
-  `Stop ID Changes`                   Stop-ID changes that were merged or
-                                      left unresolved.
-  -----------------------------------------------------------------------
+`Remaining Gaps` Distance between consecutive
+retained stops in each direction
+after the primary run.
+
+`Removed Stops` Stop-level removal details and
+added-walk information.
+
+`Pairing Review` Nearby opposite-direction records
+with mismatched intersection names
+that were left as solo stops.
+
+`Stop ID Changes` Stop-ID changes that were merged or
+left unresolved.
+
+---
 
 Some sheet names may be omitted when there is no relevant data for a
 particular run.
 
 ### Important fields
 
--   `STOP_DECISION`: primary-tolerance stop-level decision.
--   `LOCATION_DECISION`: location-level decision.
--   `LOCATION_REASON` / `REMOVAL_REASON`: explanation or rule associated
-    with the decision.
--   `STOP_DECISION_AT_0PCT`, `STOP_DECISION_AT_5PCT`, etc.: outcome at
-    each sensitivity tolerance.
--   `SENSITIVITY = BORDERLINE`: the decision changes across the
-    requested tolerance runs.
--   `REVIEW_FLAGS`: additional warnings that should be checked manually.
--   `RANK_IN_ROUTE`: route-wide ridership rank.
--   `AVG_BOARDINGS`, `AVG_ALIGHTINGS`, `AVG_TOTAL`: average weekday
-    ridership measures.
--   `ADDED_WALK_FT`: added walk measure used by the model at removal
-    time; not the final gap between retained endpoints.
--   `PICKS_PRESENT`: number of source picks in which the stop appears.
--   `INTERLINED_ROUTES`: other routes sharing exact coordinates in a
-    qualifying interlined section.
+- `STOP_DECISION`: primary-tolerance stop-level decision.
+- `LOCATION_DECISION`: location-level decision.
+- `LOCATION_REASON` / `REMOVAL_REASON`: explanation or rule associated
+  with the decision.
+- `STOP_DECISION_AT_0PCT`, `STOP_DECISION_AT_5PCT`, etc.: outcome at
+  each sensitivity tolerance.
+- `SENSITIVITY = BORDERLINE`: the decision changes across the
+  requested tolerance runs.
+- `REVIEW_FLAGS`: additional warnings that should be checked manually.
+- `RANK_IN_ROUTE`: route-wide ridership rank.
+- `AVG_BOARDINGS`, `AVG_ALIGHTINGS`, `AVG_TOTAL`: average weekday
+  ridership measures.
+- `ADDED_WALK_FT`: added walk measure used by the model at removal
+  time; not the final gap between retained endpoints.
+- `PICKS_PRESENT`: number of source picks in which the stop appears.
+- `INTERLINED_ROUTES`: other routes sharing exact coordinates in a
+  qualifying interlined section.
 
 ### Remaining Gaps flags
 
 The `Remaining Gaps` sheet measures the distance between each pair of
 consecutive retained stops in the same direction.
 
-  -----------------------------------------------------------------------
-  Flag                                Meaning
-  ----------------------------------- -----------------------------------
-  `OK`                                The resulting gap passes the
-                                      configured spacing checks.
+---
 
-  `OVER_LIMIT`                        The resulting gap exceeds the hard
-                                      maximum and is attributable to the
-                                      proposed removals.
+Flag Meaning
 
-  `PRE_EXISTING_BARRIER_GAP`          The over-limit gap contains an
-                                      original over-limit edge and is
-                                      treated as a pre-existing
-                                      barrier-gap exception.
+---
 
-  `OVER_MAX`                          The gap exceeds the maximum spacing
-                                      check as represented by the
-                                      workbook's current rule
-                                      configuration.
+`OK` The resulting gap passes the
+configured spacing checks.
 
-  `UNDER_MIN`                         The retained stops are closer than
-                                      the minimum-spacing threshold.
-  -----------------------------------------------------------------------
+`OVER_LIMIT` The resulting gap exceeds the hard
+maximum and is attributable to the
+proposed removals.
+
+`PRE_EXISTING_BARRIER_GAP` The over-limit gap contains an
+original over-limit edge and is
+treated as a pre-existing
+barrier-gap exception.
+
+`OVER_MAX` The gap exceeds the maximum spacing
+check as represented by the
+workbook's current rule
+configuration.
+
+`UNDER_MIN` The retained stops are closer than
+the minimum-spacing threshold.
+
+---
 
 Always inspect the actual gap distance, route direction, endpoint stop
 IDs, and skipped-stop count---not just the flag.
 
-------------------------------------------------------------------------
+---
 
 ## Using the interactive map
 
@@ -562,9 +573,9 @@ its own overlays without replacing the original layers.
 1.  Open the map in a browser.
 2.  Find the layer control, normally in the upper-right corner.
 3.  Expand the overlay list if it is collapsed.
-4.  Toggle `My Consolidation - Route 50` to show the primary optimizer
+4.  Toggle `New Consolidation - Route 50` to show the primary optimizer
     result.
-5.  Toggle `My Consolidation - Route 50 (5% tolerance)` to show the 5%
+5.  Toggle `New Consolidation - Route 50 (5% tolerance)` to show the 5%
     sensitivity result.
 6.  Toggle either layer off to compare it with the original map or with
     the other optimizer run.
@@ -577,19 +588,19 @@ decisions change when the minimum-spacing candidate trigger is relaxed.
 Click a marker to open its popup. The integration script includes these
 fields when available:
 
--   Primary stop decision.
--   Stop ID and stop name.
--   Route direction.
--   Location-level decision and location name.
--   Decision reason.
--   Routes sharing the stop as part of interlining.
--   Removal reason.
--   Sensitivity status.
--   Review flags.
--   Decision at each tolerance.
--   Average boardings, alightings, and total riders.
--   Added walk in feet.
--   Coordinates.
+- Primary stop decision.
+- Stop ID and stop name.
+- Route direction.
+- Location-level decision and location name.
+- Decision reason.
+- Routes sharing the stop as part of interlining.
+- Removal reason.
+- Sensitivity status.
+- Review flags.
+- Decision at each tolerance.
+- Average boardings, alightings, and total riders.
+- Added walk in feet.
+- Coordinates.
 
 The popup is intended to let you inspect the evidence behind an
 individual marker without having to search the workbook for every stop.
@@ -604,37 +615,41 @@ changed between runs.
 The base map's original layers are preserved. Their colors, symbols, and
 meanings are controlled by the original map project; they should be
 interpreted using that project's own legend and popup information. The
-color key below applies specifically to the two `My Consolidation`
+color key below applies specifically to the two `New Consolidation`
 overlays added by `build_integration.py`.
 
-------------------------------------------------------------------------
+---
 
 ## Map dot colors and popups
 
 The integration script assigns colors to the optimizer's circle markers
 using this precedence:
 
-  -----------------------------------------------------------------------
-  Dot color               Hex color               Meaning in the
-                                                  optimizer overlay
-  ----------------------- ----------------------- -----------------------
-  **Red**                 `#c62828`               The stop is marked
-                                                  `REMOVED` for that
-                                                  overlay's tolerance.
+---
 
-  **Blue**                `#1565c0`               The stop belongs to a
-                                                  protected location.
+Dot color Hex color Meaning in the
+optimizer overlay
 
-  **Yellow / amber**      `#f9a825`               The stop is kept, but
-                                                  its outcome changes
-                                                  across sensitivity runs
-                                                  (`BORDERLINE`).
+---
 
-  **Green**               `#2e7d32`               The stop is kept and is
-                                                  not classified as
-                                                  protected or
-                                                  borderline.
-  -----------------------------------------------------------------------
+**Red** `#c62828` The stop is marked
+`REMOVED` for that
+overlay's tolerance.
+
+**Blue** `#1565c0` The stop belongs to a
+protected location.
+
+**Yellow / amber** `#f9a825` The stop is kept, but
+its outcome changes
+across sensitivity runs
+(`BORDERLINE`).
+
+**Green** `#2e7d32` The stop is kept and is
+not classified as
+protected or
+borderline.
+
+---
 
 The color precedence is important:
 
@@ -651,7 +666,7 @@ These colors are not ridership categories. A green dot does not mean low
 ridership, and a red dot does not mean the stop has no riders. The popup
 provides the ridership figures and decision details.
 
-------------------------------------------------------------------------
+---
 
 ## Running the optimizer
 
@@ -659,14 +674,14 @@ provides the ridership figures and decision details.
 
 Recommended:
 
--   Python 3.10 or newer.
--   `pandas`
--   `numpy`
--   `openpyxl`
+- Python 3.10 or newer.
+- `pandas`
+- `numpy`
+- `openpyxl`
 
 Install dependencies:
 
-``` bash
+```bash
 python -m pip install pandas numpy openpyxl
 ```
 
@@ -674,7 +689,7 @@ python -m pip install pandas numpy openpyxl
 
 From the optimizer folder:
 
-``` bash
+```bash
 python cta_stop_optimization.py raw_data.csv \
   --routes 50 \
   -o route50_optimized.xlsx \
@@ -689,7 +704,7 @@ produces comparison results at 0%, 5%, 10%, and 15%.
 
 Specify multiple route identifiers after `--routes`:
 
-``` bash
+```bash
 python cta_stop_optimization.py raw_data.csv \
   --routes 50 9 X49 \
   -o selected_routes.xlsx \
@@ -699,7 +714,7 @@ python cta_stop_optimization.py raw_data.csv \
 
 To analyze all routes in the input file, omit `--routes`:
 
-``` bash
+```bash
 python cta_stop_optimization.py raw_data.csv \
   -o all_routes.xlsx \
   --tolerance 0 \
@@ -713,7 +728,7 @@ for crossing-route transfer detection.
 
 The default beam width is 12. To explore more alternative sequences:
 
-``` bash
+```bash
 python cta_stop_optimization.py raw_data.csv \
   --routes 50 \
   -o route50_wider_search.xlsx \
@@ -729,14 +744,14 @@ before choosing a production setting.
 
 Use:
 
-``` bash
+```bash
 python cta_stop_optimization.py --help
 ```
 
 This is the authoritative list of command-line options for the exact
 script version you are running.
 
-------------------------------------------------------------------------
+---
 
 ## Updating the map from a new workbook
 
@@ -747,13 +762,13 @@ generated workbook.
 
 From the map repository folder:
 
-``` bash
+```bash
 cp index.html index_before_optimizer_update.html
 ```
 
 ### 2. Install map-builder dependencies
 
-``` bash
+```bash
 python -m pip install openpyxl beautifulsoup4
 ```
 
@@ -762,7 +777,7 @@ python -m pip install openpyxl beautifulsoup4
 Run the integration script from the map folder. For example, if
 `optimizer` and `map-site` are sibling folders:
 
-``` bash
+```bash
 python build_integration.py \
   --map index.html \
   --workbook ../optimizer/route50_optimized.xlsx
@@ -770,12 +785,12 @@ python build_integration.py \
 
 The script:
 
--   Reads Route 50 records from `Individual Stops`.
--   Requires the 5% sensitivity decision column.
--   Creates the primary and 5%-tolerance marker layers.
--   Adds both layers to the map's layer control and search
-    configuration.
--   Writes `my_consolidation_route50.json` beside `index.html`.
+- Reads Route 50 records from `Individual Stops`.
+- Requires the 5% sensitivity decision column.
+- Creates the primary and 5%-tolerance marker layers.
+- Adds both layers to the map's layer control and search
+  configuration.
+- Writes `new_consolidation_route50.json` beside `index.html`.
 
 The integration is designed to be repeatable: it removes the previous
 copies of its own two overlays before inserting updated ones.
@@ -785,32 +800,32 @@ copies of its own two overlays before inserting updated ones.
 Open `index.html` in a browser or run a simple local server from the map
 folder:
 
-``` bash
+```bash
 python -m http.server 8000
 ```
 
 Then visit:
 
-``` text
+```text
 http://localhost:8000
 ```
 
 Check that:
 
--   The map loads.
--   The original map layers still work.
--   Both `My Consolidation` overlays appear in the layer control.
--   Markers are at the expected locations.
--   Clicking markers opens the correct popups.
--   The primary and 5% layers show the expected different decisions.
+- The map loads.
+- The original map layers still work.
+- Both `New Consolidation` overlays appear in the layer control.
+- Markers are at the expected locations.
+- Clicking markers opens the correct popups.
+- The primary and 5% layers show the expected different decisions.
 
 If something is wrong, restore the backup:
 
-``` bash
+```bash
 cp index_before_optimizer_update.html index.html
 ```
 
-------------------------------------------------------------------------
+---
 
 ## Publishing the map with GitHub Pages
 
@@ -833,14 +848,14 @@ On GitHub:
 
 A project site URL follows this pattern:
 
-``` text
+```text
 https://YOUR-USERNAME.github.io/REPOSITORY-NAME/
 ```
 
 For example, a repository named `CTA-Bus-Stop-Optimizer-Map` would
 publish at:
 
-``` text
+```text
 https://YOUR-USERNAME.github.io/CTA-Bus-Stop-Optimizer-Map/
 ```
 
@@ -851,13 +866,13 @@ Include all files the map needs, not just the HTML file.
 
 At minimum, include:
 
--   `index.html`
--   `my_consolidation_route50.json`
--   Any local JavaScript, CSS, images, or data files referenced by the
-    map.
--   `README.md`
--   `.nojekyll` (an empty file; useful when publishing prebuilt static
-    assets).
+- `index.html`
+- `new_consolidation_route50.json`
+- Any local JavaScript, CSS, images, or data files referenced by the
+  map.
+- `README.md`
+- `.nojekyll` (an empty file; useful when publishing prebuilt static
+  assets).
 
 Do not upload the raw source ridership CSV, the optimizer's private
 working files, or sensitive data simply because the map needs a small
@@ -869,7 +884,7 @@ information you intend to make public.
 If Git is installed, open Terminal in the folder containing the map
 files:
 
-``` bash
+```bash
 git init
 git add .
 git commit -m "Initial CTA stop optimizer map"
@@ -914,7 +929,7 @@ settings.
 Visit the URL shown under **Settings → Pages**. It will normally have
 this form:
 
-``` text
+```text
 https://YOUR-USERNAME.github.io/CTA-Bus-Stop-Optimizer-Map/
 ```
 
@@ -933,8 +948,8 @@ Whenever you rebuild the optimizer results:
 4.  Test the map locally.
 5.  Commit and push the updated map files:
 
-``` bash
-git add index.html my_consolidation_route50.json
+```bash
+git add index.html new_consolidation_route50.json
 git commit -m "Update Route 50 consolidation results"
 git push
 ```
@@ -949,7 +964,7 @@ provide a Python backend.
 
 The workflow is:
 
-``` text
+```text
 Raw CTA data
     |
     v
@@ -976,7 +991,7 @@ run the optimizer directly from the website, that would require a
 separate backend or a browser-based reimplementation of the optimization
 logic. GitHub Pages alone cannot run the Python script.
 
-------------------------------------------------------------------------
+---
 
 ## Limitations and recommended review
 
@@ -985,17 +1000,17 @@ represent every real-world consideration.
 
 It does not inherently know:
 
--   Whether a stop is near a hospital entrance, senior housing, a
-    school, or another important destination unless protected through
-    the manual protection file or another explicit rule.
--   Exact sidewalk conditions, pedestrian barriers, crosswalks, signal
-    timing, or safe crossing routes.
--   All Pace, Metra, or other non-CTA transfer opportunities unless they
-    are represented in the input or manual protections.
--   Whether a straight-line or route-sequence distance corresponds to
-    the actual walking path a passenger would take.
--   Temporary construction, stop closures, planned development, or
-    operational constraints not represented in the source data.
+- Whether a stop is near a hospital entrance, senior housing, a
+  school, or another important destination unless protected through
+  the manual protection file or another explicit rule.
+- Exact sidewalk conditions, pedestrian barriers, crosswalks, signal
+  timing, or safe crossing routes.
+- All Pace, Metra, or other non-CTA transfer opportunities unless they
+  are represented in the input or manual protections.
+- Whether a straight-line or route-sequence distance corresponds to
+  the actual walking path a passenger would take.
+- Temporary construction, stop closures, planned development, or
+  operational constraints not represented in the source data.
 
 A model result should therefore be reviewed using:
 
@@ -1014,15 +1029,15 @@ retained-stop spacing.
 
 The most useful review cases are generally:
 
--   Stops marked `BORDERLINE`.
--   Stops with pairing or data-quality flags.
--   Stops near the maximum allowed resulting gap.
--   Locations where one direction is removed but the other remains.
--   Interlined sections with only one shared stop remaining.
--   Stops with low pick counts or unusual ridership patterns.
--   Any result that conflicts with local knowledge.
+- Stops marked `BORDERLINE`.
+- Stops with pairing or data-quality flags.
+- Stops near the maximum allowed resulting gap.
+- Locations where one direction is removed but the other remains.
+- Interlined sections with only one shared stop remaining.
+- Stops with low pick counts or unusual ridership patterns.
+- Any result that conflicts with local knowledge.
 
-------------------------------------------------------------------------
+---
 
 ## Credits and project lineage
 
@@ -1038,8 +1053,8 @@ source repository's license before redistributing modified copies.
 
 ## GitHub Pages references
 
--   GitHub Pages overview: https://docs.github.com/en/pages
--   Creating a GitHub Pages site:
-    https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site
--   Configuring a publishing source:
-    https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
+- GitHub Pages overview: https://docs.github.com/en/pages
+- Creating a GitHub Pages site:
+  https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site
+- Configuring a publishing source:
+  https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
