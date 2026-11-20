@@ -13,7 +13,7 @@ consolidations. The project combines:
 
 > **Data source and scope:** This analysis uses CTA stop/pick data directly
 > from the Chicago Transit Authority, covering the entirety of calendar
-> year 2025.
+> year 2025, for weeekdays only.
 >
 > **Important:** This is a planning and screening model, not an official
 > CTA recommendation or an automated service-change decision. The use of
