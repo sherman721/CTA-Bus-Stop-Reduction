@@ -8,15 +8,19 @@ consolidations. The project combines:
 3.  An Excel workbook for auditing decisions and comparing sensitivity
     runs.
 4.  A Leaflet map integration that overlays the optimizer's stop-level
-    results on the existing CTA Bus Stop Reduction map proposed by Nik Hunder.
+    results on the existing CTA Bus Stop Reduction map.
 5.  GitHub Pages hosting for sharing the static interactive map.
 
+> **Data source and scope:** This analysis uses CTA stop/pick data directly
+> from the Chicago Transit Authority, covering the entirety of calendar
+> year 2025.
+>
 > **Important:** This is a planning and screening model, not an official
-> CTA recommendation or an automated service-change decision. Every
-> proposed removal should be reviewed against field conditions,
+> CTA recommendation or an automated service-change decision. The use of
+> CTA-provided data does not mean CTA endorses the model or its results.
+> Every proposed removal should be reviewed against field conditions,
 > pedestrian access, accessibility, transfers, nearby destinations, and
-> agency policy. The model uses 2025 stop/pick ridership data directly from the
-> CTA from the entire year with averages taken from weekdays only.
+> agency policy.
 
 ---
 
@@ -121,7 +125,7 @@ The optimizer:
     to the first locally attractive removal.
 7.  Selects the best configuration found within the configured search
     width.
-8.  Repeats the analysis for each requested sensitivity tolerance.
+8.  Repeats the analysis for each requested comparison tolerance.
 9.  Writes an Excel workbook and a stop-level CSV export.
 
 ### `build_integration.py` --- map overlay builder
@@ -129,8 +133,8 @@ The optimizer:
 This script reads the workbook's `Individual Stops` sheet and inserts
 two additional Leaflet marker layers into the existing map:
 
-- `New Consolidation - Route 50`
-- `New Consolidation - Route 50 (5% tolerance)`
+- `New Consolidation - Route 50 (5% primary)`
+- `New Consolidation - Route 50 (0% comparison)`
 
 It also writes `new_consolidation_route50.json` beside the map. The JSON
 contains the stop-level attributes used by the popups and is a companion
@@ -173,20 +177,20 @@ For a local route, the default minimum is one-eighth of a mile:
 1/8 mile = 660 feet
 ```
 
-The sensitivity tolerance scales this candidate trigger:
+The standard optimization now uses **5% tolerance as its primary run**.
+The 0% run is retained as a comparison only. The 10% and 15% (not used in the standard workflow) runs have
+been removed from the standard workflow because they were not providing
+useful additional discrimination.
 
-    Tolerance   Local candidate trigger
+    Run / tolerance       Local candidate trigger
+    --------------------  ------------------------
+    0% comparison         660 ft
+    5% primary            693 ft
 
----
-
-           0%                    660 ft
-           5%                    693 ft
-          10%                    726 ft
-          15%                    759 ft
-
-The tolerance is a way to test how the model behaves when the
-minimum-spacing trigger is relaxed. It is not permission to exceed the
-maximum resulting gap.
+The 5% tolerance gives a small practical buffer for stops that are only
+a few feet beyond the exact 660-foot threshold. This changes only the
+candidate trigger. It is not permission to exceed the **1,500-foot hard
+maximum resulting gap**, which remains unchanged.
 
 Rapid-route spacing uses its own defaults: 0.20 mile minimum and
 one-third mile maximum. The minimum candidate trigger is
@@ -575,8 +579,9 @@ its own overlays without replacing the original layers.
 3.  Expand the overlay list if it is collapsed.
 4.  Toggle `New Consolidation - Route 50` to show the primary optimizer
     result.
-5.  Toggle `New Consolidation - Route 50 (5% tolerance)` to show the 5%
-    sensitivity result.
+5.  Toggle `New Consolidation - Route 50 (5% primary)` for the default
+    optimization and `New Consolidation - Route 50 (0% comparison)` to
+    compare the exact 660-ft trigger.
 6.  Toggle either layer off to compare it with the original map or with
     the other optimizer run.
 
@@ -693,12 +698,13 @@ From the optimizer folder:
 python cta_stop_optimization.py raw_data.csv \
   --routes 50 \
   -o route50_optimized.xlsx \
-  --tolerance 0 \
-  --sensitivity 0 5 10 15
+  --tolerance 5 \
+  --sensitivity 0 5
 ```
 
-This runs Route 50 with 0% as the primary decision tolerance and
-produces comparison results at 0%, 5%, 10%, and 15%.
+This runs Route 50 with 5% as the primary decision tolerance (693 ft
+local-route trigger) and retains a 0% comparison (660 ft). The 1,500-ft
+maximum resulting gap remains a hard cap.
 
 ### Run multiple routes or all routes
 
@@ -708,8 +714,8 @@ Specify multiple route identifiers after `--routes`:
 python cta_stop_optimization.py raw_data.csv \
   --routes 50 9 X49 \
   -o selected_routes.xlsx \
-  --tolerance 0 \
-  --sensitivity 0 5 10 15
+  --tolerance 5 \
+  --sensitivity 0 5
 ```
 
 To analyze all routes in the input file, omit `--routes`:
@@ -717,8 +723,8 @@ To analyze all routes in the input file, omit `--routes`:
 ```bash
 python cta_stop_optimization.py raw_data.csv \
   -o all_routes.xlsx \
-  --tolerance 0 \
-  --sensitivity 0 5 10 15
+  --tolerance 5 \
+  --sensitivity 0 5
 ```
 
 Even when only one route is analyzed, the full source dataset is used
@@ -733,8 +739,8 @@ python cta_stop_optimization.py raw_data.csv \
   --routes 50 \
   -o route50_wider_search.xlsx \
   --beam-width 24 \
-  --tolerance 0 \
-  --sensitivity 0 5 10 15
+  --tolerance 5 \
+  --sensitivity 0 5
 ```
 
 A wider beam can take substantially longer. Compare runtime and results
@@ -786,8 +792,8 @@ python build_integration.py \
 The script:
 
 - Reads Route 50 records from `Individual Stops`.
-- Requires the 5% sensitivity decision column.
-- Creates the primary and 5%-tolerance marker layers.
+- Requires both the 0% and 5% comparison decision columns.
+- Creates the 5%-primary and 0%-comparison marker layers.
 - Adds both layers to the map's layer control and search
   configuration.
 - Writes `new_consolidation_route50.json` beside `index.html`.
@@ -817,7 +823,7 @@ Check that:
 - Both `New Consolidation` overlays appear in the layer control.
 - Markers are at the expected locations.
 - Clicking markers opens the correct popups.
-- The primary and 5% layers show the expected different decisions.
+- The 5%-primary and 0%-comparison layers show the expected different decisions.
 
 If something is wrong, restore the backup:
 
