@@ -192,7 +192,7 @@ class RouteModel:
         self.rank = {L: 1 + sum(1 for v in vals if v > self.total0[L]) for L in self.locs}
         # Route-wide rank cutoff: locations ranked below this percentile are
         # eligible under the ridership test without comparing against neighbors.
-        self.neighbor_logic_cutoff = int(np.ceil(len(self.locs) * args.neighbor_logic_pct / 100.0))
+        self.neighbor_logic_cutoff = int(np.floor(len(self.locs) * args.neighbor_logic_pct / 100.0))
 
     # ------------------------------------------------------------------ #
     def label(self, L):
