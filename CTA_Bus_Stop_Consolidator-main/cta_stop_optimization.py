@@ -35,7 +35,7 @@ Usage
   python cta_stop_reduction.py raw_data.csv -o reduction.xlsx
   python cta_stop_reduction.py raw_data.csv --routes 50            # just the 50 (still uses all routes
                                                                    # in the file to find transfers)
-  python cta_stop_reduction.py raw_data.csv --routes 50 9 X49 --tolerance 10 --sensitivity 0 5 10 15
+  python cta_stop_optimization.py raw_data.csv --routes 50 9 X49 --tolerance 5 --sensitivity 0 5
 
 Requires: pandas, numpy, openpyxl
 """
@@ -478,22 +478,62 @@ class OptimizedRouteModel(RouteModel):
                 neighbors.extend([same_direction_location_total(p),same_direction_location_total(n)])
                 cost += stop_total(st,i)*near/FT_M
                 walks[i]=(p,n,gp,gn,near)
-            total=sum(stop_total(st,i) for i in members); lower=min(neighbors) if neighbors else float('nan')
+            total=sum(stop_total(st,i) for i in members)
             bottom=self.rank[L] > self.neighbor_logic_cutoff
-            direction_checks=[]
+
+            # Paired locations are compared as combined NB+SB units by default.
+            # If ANY adjacent location is currently solo, switch this candidate to
+            # direction-specific comparisons so a solo neighbor is never compared
+            # against an artificial two-direction total.
+            adjacent_locations=set()
             for i in members:
-                d,k=pos[i]; sq=seq[d]
-                directional_neighbors=[]
-                for j in (sq[k-1] if k>0 else None, sq[k+1] if k+1<len(sq) else None):
-                    if j is not None:
-                        direction=self.st.at[i,"DIRECTION"]
-                        directional_neighbors.append(sum(stop_total(st,q) for q in locs[loc_of[j]]
-                            if q in st['kept'] and self.st.at[q,"DIRECTION"]==direction))
-                dtotal=stop_total(st,i); dlower=min(directional_neighbors) if directional_neighbors else float('nan')
-                direction_checks.append(dtotal<a.low_volume or (dlower>0 and dtotal<=a.ratio*dlower))
-            ridership_ok=bottom or all(direction_checks)
+                p,n=prev_next(st,i)
+                adjacent_locations.add(loc_of[p])
+                adjacent_locations.add(loc_of[n])
+            def active_members(neighbor_L):
+                return [q for q in locs[neighbor_L] if q in st['kept']]
+            adjacent_has_solo=any(len(active_members(nL)) < 2 for nL in adjacent_locations)
+            use_combined_pair_logic=(len(members) >= 2 and not adjacent_has_solo)
+
+            if use_combined_pair_logic:
+                # Compare the full paired candidate total with full totals for
+                # adjacent paired locations (deduplicated across NB/SB sequences).
+                pair_neighbor_totals=[loc_total(st,nL) for nL in adjacent_locations
+                                      if len(active_members(nL)) >= 2]
+                lower=min(pair_neighbor_totals) if pair_neighbor_totals else float('nan')
+                ridership_pass=(total<a.low_volume or
+                                (lower>0 and total<=a.ratio*lower))
+                ridership_mode='PAIRED_COMBINED'
+            else:
+                # Solo candidates always use this path. Paired candidates use it
+                # whenever at least one adjacent location is solo; each direction
+                # is compared only with same-direction ridership at its neighbors.
+                direction_checks=[]
+                directional_lowers=[]
+                for i in members:
+                    d,k=pos[i]; sq=seq[d]
+                    directional_neighbors=[]
+                    for j in (sq[k-1] if k>0 else None,
+                              sq[k+1] if k+1<len(sq) else None):
+                        if j is not None:
+                            direction=self.st.at[i,"DIRECTION"]
+                            directional_neighbors.append(sum(
+                                stop_total(st,q) for q in locs[loc_of[j]]
+                                if q in st['kept'] and self.st.at[q,"DIRECTION"]==direction))
+                    dtotal=stop_total(st,i)
+                    dlower=min(directional_neighbors) if directional_neighbors else float('nan')
+                    directional_lowers.append(dlower)
+                    direction_checks.append(dtotal<a.low_volume or
+                        (dlower>0 and dtotal<=a.ratio*dlower))
+                lower=min(directional_lowers) if directional_lowers else float('nan')
+                ridership_pass=all(direction_checks)
+                ridership_mode='DIRECTIONAL_SOLO_ADJACENCY' if len(members)>=2 else 'DIRECTIONAL_SOLO'
+
+            ridership_ok=bottom or ridership_pass
             return dict(members=members,merged=merged,trigger=trigger,ridership_ok=ridership_ok,
-                        cost=cost,total=total,lower=lower,ratio=(total/lower if lower>0 else float('nan')),walks=walks)
+                        cost=cost,total=total,lower=lower,
+                        ratio=(total/lower if lower>0 else float('nan')),walks=walks,
+                        ridership_mode=ridership_mode)
         def apply(st, action):
             ns=dict(kept=st['kept'], absorbed=dict(st['absorbed']), removed=dict(st['removed']), guarded=set(st['guarded']))
             kind, payload=action
@@ -573,7 +613,8 @@ class OptimizedRouteModel(RouteModel):
             else: reasons[L]='KEPT'
             if e:
                 diagnostics[L]={'CURRENT_LOWER_NEIGHBOR_RIDERS':e['lower'],
-                                'CURRENT_RIDERSHIP_RATIO_TO_LOWER_NEIGHBOR':e['ratio']}
+                                'CURRENT_RIDERSHIP_RATIO_TO_LOWER_NEIGHBOR':e['ratio'],
+                                'RIDERSHIP_COMPARISON_MODE':e.get('ridership_mode','')}
         kept={i:i in best['kept'] for i in ids}
         n_after={d:sum(1 for i in s if kept[i]) for d,s in seq.items()}
         return dict(removed=best['removed'],reasons=reasons,diagnostics=diagnostics,n_after=n_after,kept=kept)
@@ -786,6 +827,7 @@ def process(by_dir, pairs, args, tols, primary_tol, rapid_patterns, manual, sel_
                     "REMOVAL_REASON": ("REMOVED_" + removal.get("kind", "")) if is_removed else "",
                     "ADDED_WALK_FT": removal.get("walk_m", np.nan) / FT_M if is_removed else np.nan,
                     "RANK_IN_ROUTE": m.rank[L],
+                    "RIDERSHIP_COMPARISON_MODE": prim["diagnostics"].get(L, {}).get("RIDERSHIP_COMPARISON_MODE", ""),
                     # Keep stop-level outcomes from every sensitivity run so the
                     # workbook and map can compare the primary result with (for example) 5%.
                     **{f"STOP_DECISION_AT_{tol_label(t)}": (
@@ -979,10 +1021,10 @@ def main():
                     help="local route min/max stop spacing in miles (default 0.125 mi / 1500 ft)")
     ap.add_argument("--rapid-spacing", nargs=2, type=float, default=[0.2, 1 / 3], metavar=("MIN", "MAX"),
                     help="rapid route min/max stop spacing in miles (default 0.2 0.333)")
-    ap.add_argument("--tolerance", type=float, default=0.0,
-                    help="primary tolerance in percent used for the decisions (default 0; max spacing is a hard 1500 ft)")
-    ap.add_argument("--sensitivity", nargs="+", type=float, default=[0, 5, 10, 15],
-                    help="tolerances (percent) to run for the sensitivity check (default 0 5 10 15)")
+    ap.add_argument("--tolerance", type=float, default=5.0,
+                    help="primary tolerance in percent used for decisions (default 5%%; local trigger 693 ft; max gap remains a hard 1500 ft)")
+    ap.add_argument("--sensitivity", nargs="+", type=float, default=[0, 5],
+                    help="tolerances (percent) to compare (default 0 5); 5%% is the primary decision run")
     ap.add_argument("--protect-pct", type=float, default=15.0, help="protect top N%% of locations per route (default 15)")
     ap.add_argument("--min-protect-riders", type=float, default=10.0,
                     help="a top-ranked location still isn't protected below this avg daily total (default 10)")
@@ -1072,7 +1114,7 @@ def main():
         f"Spacing bands: local {args.local_spacing[0]:g} mi minimum / {args.local_spacing[1] * 5280:,.0f} ft maximum; "
         f"rapid {args.rapid_spacing[0]:g}-{args.rapid_spacing[1]:g} mi. "
         f"Rapid patterns: {', '.join(args.rapid_routes) or 'none'}.",
-        f"Primary tolerance {primary_tol:g}% (decisions in the sheets); sensitivity runs at "
+        f"Primary tolerance {primary_tol:g}% (decisions in the sheets; default 5%); comparison runs at "
         f"{', '.join(tol_label(t).replace('PCT', '%') for t in tols)}.",
         "Interlining rule: contiguous runs of at least two stops with exact matching coordinates on another route "
         "are treated as ordinary consolidation candidates, not automatic TRANSFER protection; at least one "
@@ -1106,7 +1148,7 @@ def main():
         "Use RANK_IN_ROUTE for route-wide ranking and CURRENT_LOWER_NEIGHBOR_RIDERS / "
         "CURRENT_RIDERSHIP_RATIO_TO_LOWER_NEIGHBOR to inspect the local comparison. "
         "SENSITIVITY = BORDERLINE means the outcome changes across the tolerance runs; review those by hand.",
-        "Individual Stops contains one row per analyzed route/direction/stop with its own stop ID and coordinates; STOP_DECISION_AT_* columns show the stop-level outcome at each sensitivity tolerance (e.g. STOP_DECISION_AT_5PCT). INTERLINED_ROUTES lists routes sharing the exact coordinates as part of a contiguous interlined section.",
+        "Individual Stops contains one row per analyzed route/direction/stop with its own stop ID and coordinates; STOP_DECISION_AT_* columns show the stop-level outcome at each comparison tolerance (STOP_DECISION_AT_0PCT and STOP_DECISION_AT_5PCT by default). INTERLINED_ROUTES lists routes sharing the exact coordinates as part of a contiguous interlined section.",
         "KEPT_LAST_INTERLINE_TRANSFER means this stop/location was otherwise removable, but removing it would eliminate the final remaining shared stop in an interlined section for that direction. These stops are not protected individually; the section-level minimum-one-stop rule applies.",
         "ADDED_WALK is straight-line-along-route feet to the nearest remaining stop in that direction at the time of removal.",
         "This is a screening model. It does not know about points of interest, crosswalk/signal locations, or non-CTA transfers "
@@ -1115,7 +1157,8 @@ def main():
 
     if changes is not None and len(changes):
         changes = changes[changes["ROUTE"].isin(sel)]
-    notes.append("Opposite-direction pairing now requires matching normalized STREET + CROSS_ST names. Nearby mismatched-name candidates are NOT paired; each remains a solo directional stop and is listed in Pairing Review. Neighbor-ridership tests compare each direction only with same-direction ridership.")
+    notes.append("Opposite-direction pairing requires matching normalized STREET + CROSS_ST names. Nearby mismatched-name candidates are NOT paired; each remains a solo directional stop and is listed in Pairing Review.")
+    notes.append("Neighbor-ridership comparison: paired locations are compared using combined NB+SB ridership against adjacent paired locations when every adjacent location is also paired. If any adjacent location is solo, the paired candidate is evaluated direction-by-direction against same-direction neighbor ridership. Solo candidates always use direction-specific comparisons. Individual Stops includes RIDERSHIP_COMPARISON_MODE for auditing.")
     write_workbook(args.output, notes, summary, locs, removed, individual, gaps, changes, pairing_review)
 
     # Plain CSV list of the removed stops (handy for mapping or comparing against another list)

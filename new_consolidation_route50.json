@@ -7,11 +7,6 @@
     "street": "35TH/ARCHER",
     "cross_street": "ORANGE LINE STATION",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "35TH/ARCHER & ORANGE LINE STATION",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TERMINAL; PROTECTED_RAIL; PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -35,11 +30,6 @@
     "street": "35TH/ARCHER",
     "cross_street": "ORANGE LINE STATION",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "35TH/ARCHER & ORANGE LINE STATION",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TERMINAL; PROTECTED_RAIL; PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -63,11 +53,6 @@
     "street": "35TH/ARCHER",
     "cross_street": "ORANGE LINE STATION",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "35TH/ARCHER & ORANGE LINE STATION",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_RAIL; PROTECTED_TRANSFER",
@@ -91,11 +76,6 @@
     "street": "LEAVITT",
     "cross_street": "35TH STREET",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "LEAVITT & 35TH STREET",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -119,11 +99,6 @@
     "street": "ARCHER",
     "cross_street": "35TH STREET/HOYNE",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "ARCHER & 35TH STREET/HOYNE",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -147,11 +122,6 @@
     "street": "ARCHER",
     "cross_street": "35TH STREET/HOYNE",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "ARCHER & 35TH STREET/HOYNE",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -175,11 +145,6 @@
     "street": "DAMEN",
     "cross_street": "ARCHER",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & ARCHER",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -203,11 +168,6 @@
     "street": "DAMEN",
     "cross_street": "ARCHER",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & ARCHER",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -231,11 +191,6 @@
     "street": "DAMEN",
     "cross_street": "33RD STREET",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & 33RD STREET",
     "location_decision": "KEPT",
     "reason": "KEPT_NEEDED_FOR_SPACING",
@@ -259,11 +214,6 @@
     "street": "DAMEN",
     "cross_street": "33RD STREET",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & 33RD STREET",
     "location_decision": "KEPT",
     "reason": "KEPT_NEEDED_FOR_SPACING",
@@ -287,11 +237,6 @@
     "street": "DAMEN",
     "cross_street": "2608 SOUTH",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & 2608 SOUTH",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -315,11 +260,6 @@
     "street": "DAMEN",
     "cross_street": "2559 SOUTH",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & 2559 SOUTH",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -343,11 +283,6 @@
     "street": "DAMEN",
     "cross_street": "2501 SOUTH",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & 2501 SOUTH",
     "location_decision": "KEPT",
     "reason": "KEPT_NEEDED_FOR_SPACING",
@@ -371,11 +306,6 @@
     "street": "DAMEN",
     "cross_street": "2501 SOUTH",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & 2501 SOUTH",
     "location_decision": "KEPT",
     "reason": "KEPT_NEEDED_FOR_SPACING",
@@ -399,11 +329,6 @@
     "street": "DAMEN",
     "cross_street": "BLUE ISLAND",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & BLUE ISLAND",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -427,11 +352,6 @@
     "street": "DAMEN",
     "cross_street": "BLUE ISLAND",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & BLUE ISLAND",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -455,11 +375,6 @@
     "street": "DAMEN",
     "cross_street": "COULTER",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & COULTER",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -483,11 +398,6 @@
     "street": "DAMEN",
     "cross_street": "23RD STREET",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & 23RD STREET",
     "location_decision": "KEPT",
     "reason": "KEPT_NEEDED_FOR_SPACING",
@@ -511,11 +421,6 @@
     "street": "DAMEN",
     "cross_street": "23RD STREET",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & 23RD STREET",
     "location_decision": "KEPT",
     "reason": "KEPT_NEEDED_FOR_SPACING",
@@ -539,11 +444,6 @@
     "street": "DAMEN",
     "cross_street": "CERMAK",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & CERMAK",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -567,11 +467,6 @@
     "street": "DAMEN",
     "cross_street": "CERMAK",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & CERMAK",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -595,11 +490,6 @@
     "street": "DAMEN",
     "cross_street": "PINK LINE STATION",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & PINK LINE STATION",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_RAIL",
@@ -623,11 +513,6 @@
     "street": "DAMEN",
     "cross_street": "PINK LINE STATION",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & PINK LINE STATION",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_RAIL",
@@ -651,11 +536,6 @@
     "street": "DAMEN",
     "cross_street": "19TH STREET",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & 19TH STREET",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -679,11 +559,6 @@
     "street": "DAMEN",
     "cross_street": "19TH STREET",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & 19TH STREET",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -707,11 +582,6 @@
     "street": "DAMEN",
     "cross_street": "18TH STREET",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & 18TH STREET",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -735,11 +605,6 @@
     "street": "DAMEN",
     "cross_street": "18TH STREET",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & 18TH STREET",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -763,11 +628,6 @@
     "street": "DAMEN",
     "cross_street": "17TH STREET",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & 17TH STREET",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -791,11 +651,6 @@
     "street": "DAMEN",
     "cross_street": "17TH STREET",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & 17TH STREET",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -819,11 +674,6 @@
     "street": "DAMEN",
     "cross_street": "14TH STREET",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & 14TH STREET",
     "location_decision": "KEPT",
     "reason": "KEPT_NEEDED_FOR_SPACING",
@@ -847,11 +697,6 @@
     "street": "DAMEN",
     "cross_street": "14TH STREET",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & 14TH STREET",
     "location_decision": "KEPT",
     "reason": "KEPT_NEEDED_FOR_SPACING",
@@ -875,11 +720,6 @@
     "street": "DAMEN",
     "cross_street": "HASTINGS",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & HASTINGS",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -903,11 +743,6 @@
     "street": "DAMEN",
     "cross_street": "HASTINGS",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & HASTINGS",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -931,11 +766,6 @@
     "street": "DAMEN",
     "cross_street": "13TH STREET",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & 13TH STREET",
     "location_decision": "KEPT",
     "reason": "KEPT_RIDERSHIP_NOT_LOW_ENOUGH_VS_NEIGHBOR",
@@ -959,11 +789,6 @@
     "street": "DAMEN",
     "cross_street": "13TH STREET",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & 13TH STREET",
     "location_decision": "KEPT",
     "reason": "KEPT_RIDERSHIP_NOT_LOW_ENOUGH_VS_NEIGHBOR",
@@ -987,11 +812,6 @@
     "street": "DAMEN",
     "cross_street": "ROOSEVELT",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & ROOSEVELT",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -1015,11 +835,6 @@
     "street": "DAMEN",
     "cross_street": "ROOSEVELT",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & ROOSEVELT",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -1043,11 +858,6 @@
     "street": "DAMEN",
     "cross_street": "TAYLOR",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & TAYLOR",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -1071,11 +881,6 @@
     "street": "DAMEN",
     "cross_street": "TAYLOR",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & TAYLOR",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -1099,11 +904,6 @@
     "street": "DAMEN",
     "cross_street": "820 SOUTH V.A. HOSPITAL",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & 820 SOUTH V.A. HOSPITAL",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -1127,11 +927,6 @@
     "street": "DAMEN",
     "cross_street": "POLK",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & POLK",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -1155,11 +950,6 @@
     "street": "DAMEN",
     "cross_street": "POLK",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & POLK",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -1183,11 +973,6 @@
     "street": "DAMEN",
     "cross_street": "OGDEN",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & OGDEN",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_RIDERSHIP",
@@ -1211,11 +996,6 @@
     "street": "DAMEN",
     "cross_street": "OGDEN",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & OGDEN",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_RIDERSHIP",
@@ -1239,11 +1019,6 @@
     "street": "DAMEN",
     "cross_street": "HARRISON",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & HARRISON",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -1267,11 +1042,6 @@
     "street": "DAMEN",
     "cross_street": "HARRISON",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & HARRISON",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -1295,11 +1065,6 @@
     "street": "DAMEN",
     "cross_street": "CONGRESS",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & CONGRESS",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -1323,11 +1088,6 @@
     "street": "DAMEN",
     "cross_street": "BLUE LINE STATION",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & BLUE LINE STATION",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_RAIL; PROTECTED_TRANSFER",
@@ -1351,11 +1111,6 @@
     "street": "DAMEN",
     "cross_street": "JACKSON",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & JACKSON",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -1379,11 +1134,6 @@
     "street": "DAMEN",
     "cross_street": "JACKSON",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & JACKSON",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -1407,11 +1157,6 @@
     "street": "DAMEN",
     "cross_street": "ADAMS",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & ADAMS",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -1435,11 +1180,6 @@
     "street": "DAMEN",
     "cross_street": "ADAMS",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & ADAMS",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -1463,11 +1203,6 @@
     "street": "DAMEN",
     "cross_street": "MADISON",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & MADISON",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -1491,11 +1226,6 @@
     "street": "DAMEN",
     "cross_street": "MADISON",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & MADISON",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -1519,11 +1249,6 @@
     "street": "DAMEN",
     "cross_street": "WARREN",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & WARREN",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -1547,11 +1272,6 @@
     "street": "DAMEN",
     "cross_street": "WASHINGTON",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & WASHINGTON",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -1575,11 +1295,6 @@
     "street": "DAMEN",
     "cross_street": "WASHINGTON",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & WASHINGTON",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -1603,11 +1318,6 @@
     "street": "DAMEN",
     "cross_street": "LAKE",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & LAKE",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_RIDERSHIP",
@@ -1631,11 +1341,6 @@
     "street": "DAMEN",
     "cross_street": "LAKE",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & LAKE",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_RIDERSHIP",
@@ -1659,11 +1364,6 @@
     "street": "DAMEN",
     "cross_street": "FULTON",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & FULTON",
     "location_decision": "KEPT",
     "reason": "KEPT_NEEDED_FOR_SPACING",
@@ -1687,11 +1387,6 @@
     "street": "DAMEN",
     "cross_street": "FULTON",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & FULTON",
     "location_decision": "KEPT",
     "reason": "KEPT_NEEDED_FOR_SPACING",
@@ -1715,11 +1410,6 @@
     "street": "DAMEN",
     "cross_street": "CARROLL",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & CARROLL",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -1743,11 +1433,6 @@
     "street": "DAMEN",
     "cross_street": "CARROLL",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & CARROLL",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -1771,11 +1456,6 @@
     "street": "DAMEN",
     "cross_street": "HUBBARD",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & HUBBARD",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -1799,11 +1479,6 @@
     "street": "DAMEN",
     "cross_street": "HUBBARD",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & HUBBARD",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -1827,11 +1502,6 @@
     "street": "DAMEN",
     "cross_street": "GRAND",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & GRAND",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -1855,11 +1525,6 @@
     "street": "DAMEN",
     "cross_street": "GRAND",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & GRAND",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -1883,11 +1548,6 @@
     "street": "DAMEN",
     "cross_street": "OHIO",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & OHIO",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -1911,11 +1571,6 @@
     "street": "DAMEN",
     "cross_street": "OHIO",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & OHIO",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -1939,11 +1594,6 @@
     "street": "DAMEN",
     "cross_street": "HURON",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & HURON",
     "location_decision": "KEPT",
     "reason": "KEPT_NEEDED_FOR_SPACING",
@@ -1967,11 +1617,6 @@
     "street": "DAMEN",
     "cross_street": "HURON",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & HURON",
     "location_decision": "KEPT",
     "reason": "KEPT_NEEDED_FOR_SPACING",
@@ -1995,11 +1640,6 @@
     "street": "DAMEN",
     "cross_street": "CHICAGO",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & CHICAGO",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -2023,11 +1663,6 @@
     "street": "DAMEN",
     "cross_street": "CHICAGO",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & CHICAGO",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -2051,11 +1686,6 @@
     "street": "DAMEN",
     "cross_street": "IOWA",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & IOWA",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -2079,11 +1709,6 @@
     "street": "DAMEN",
     "cross_street": "IOWA",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & IOWA",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -2107,11 +1732,6 @@
     "street": "DAMEN",
     "cross_street": "AUGUSTA",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & AUGUSTA",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -2135,11 +1755,6 @@
     "street": "DAMEN",
     "cross_street": "AUGUSTA",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & AUGUSTA",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -2163,11 +1778,6 @@
     "street": "DAMEN",
     "cross_street": "THOMAS",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & THOMAS",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -2191,11 +1801,6 @@
     "street": "DAMEN",
     "cross_street": "THOMAS",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & THOMAS",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -2219,11 +1824,6 @@
     "street": "DAMEN",
     "cross_street": "DIVISION",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & DIVISION",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -2247,11 +1847,6 @@
     "street": "DAMEN",
     "cross_street": "DIVISION",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & DIVISION",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -2275,11 +1870,6 @@
     "street": "DAMEN",
     "cross_street": "POTOMAC",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & POTOMAC",
     "location_decision": "KEPT",
     "reason": "KEPT_NEEDED_FOR_SPACING",
@@ -2303,11 +1893,6 @@
     "street": "DAMEN",
     "cross_street": "POTOMAC",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & POTOMAC",
     "location_decision": "KEPT",
     "reason": "KEPT_NEEDED_FOR_SPACING",
@@ -2331,11 +1916,6 @@
     "street": "DAMEN",
     "cross_street": "SCHILLER",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & SCHILLER",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -2359,11 +1939,6 @@
     "street": "DAMEN",
     "cross_street": "SCHILLER",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & SCHILLER",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -2387,11 +1962,6 @@
     "street": "DAMEN",
     "cross_street": "MILWAUKEE/NORTH AVE.",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & MILWAUKEE/NORTH AVE.",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -2415,11 +1985,6 @@
     "street": "DAMEN",
     "cross_street": "MILWAUKEE/NORTH AVE.",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & MILWAUKEE/NORTH AVE.",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -2443,11 +2008,6 @@
     "street": "DAMEN",
     "cross_street": "WABANSIA",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & WABANSIA",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -2471,11 +2031,6 @@
     "street": "DAMEN",
     "cross_street": "WABANSIA",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & WABANSIA",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -2499,11 +2054,6 @@
     "street": "DAMEN",
     "cross_street": "CHURCHILL",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & CHURCHILL",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -2527,11 +2077,6 @@
     "street": "DAMEN",
     "cross_street": "CHURCHILL",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & CHURCHILL",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -2555,11 +2100,6 @@
     "street": "DAMEN",
     "cross_street": "CORTLAND (south leg)",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & CORTLAND (south leg)",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -2583,11 +2123,6 @@
     "street": "DAMEN",
     "cross_street": "CORTLAND (north leg)",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & CORTLAND (north leg)",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -2611,11 +2146,6 @@
     "street": "DAMEN",
     "cross_street": "ARMITAGE",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & ARMITAGE",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -2639,11 +2169,6 @@
     "street": "DAMEN",
     "cross_street": "ARMITAGE",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & ARMITAGE",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -2667,11 +2192,6 @@
     "street": "DAMEN",
     "cross_street": "DICKENS (north leg)",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & DICKENS (north leg)",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -2695,11 +2215,6 @@
     "street": "DAMEN",
     "cross_street": "DICKENS (south leg)",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & DICKENS (south leg)",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -2723,11 +2238,6 @@
     "street": "DAMEN",
     "cross_street": "WEBSTER",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & WEBSTER",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -2751,11 +2261,6 @@
     "street": "DAMEN",
     "cross_street": "WEBSTER",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & WEBSTER",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -2779,11 +2284,6 @@
     "street": "DAMEN",
     "cross_street": "FULLERTON",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & FULLERTON",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -2807,11 +2307,6 @@
     "street": "DAMEN",
     "cross_street": "FULLERTON",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & FULLERTON",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -2835,11 +2330,6 @@
     "street": "DAMEN",
     "cross_street": "CLYBOURN/DIVERSEY",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & CLYBOURN/DIVERSEY",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -2863,11 +2353,6 @@
     "street": "DAMEN",
     "cross_street": "CLYBOURN/DIVERSEY",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & CLYBOURN/DIVERSEY",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -2891,11 +2376,6 @@
     "street": "DAMEN",
     "cross_street": "GEORGE",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & GEORGE",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -2919,11 +2399,6 @@
     "street": "DAMEN",
     "cross_street": "GEORGE",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & GEORGE",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -2947,11 +2422,6 @@
     "street": "DAMEN",
     "cross_street": "WELLINGTON",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & WELLINGTON",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -2975,11 +2445,6 @@
     "street": "DAMEN",
     "cross_street": "WELLINGTON",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & WELLINGTON",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -3003,11 +2468,6 @@
     "street": "DAMEN",
     "cross_street": "BARRY",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & BARRY",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -3031,11 +2491,6 @@
     "street": "DAMEN",
     "cross_street": "BARRY",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & BARRY",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -3059,11 +2514,6 @@
     "street": "DAMEN",
     "cross_street": "BELMONT",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & BELMONT",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -3087,11 +2537,6 @@
     "street": "DAMEN",
     "cross_street": "BELMONT",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & BELMONT",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -3115,11 +2560,6 @@
     "street": "DAMEN",
     "cross_street": "SCHOOL",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & SCHOOL",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -3143,11 +2583,6 @@
     "street": "DAMEN",
     "cross_street": "SCHOOL",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & SCHOOL",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -3171,11 +2606,6 @@
     "street": "DAMEN",
     "cross_street": "ROSCOE",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & ROSCOE",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -3199,11 +2629,6 @@
     "street": "DAMEN",
     "cross_street": "ROSCOE",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & ROSCOE",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -3227,11 +2652,6 @@
     "street": "DAMEN",
     "cross_street": "CORNELIA",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & CORNELIA",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -3255,11 +2675,6 @@
     "street": "DAMEN",
     "cross_street": "CORNELIA",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & CORNELIA",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -3283,11 +2698,6 @@
     "street": "DAMEN",
     "cross_street": "ADDISON",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & ADDISON",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -3311,11 +2721,6 @@
     "street": "DAMEN",
     "cross_street": "ADDISON",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & ADDISON",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -3339,11 +2744,6 @@
     "street": "DAMEN",
     "cross_street": "WAVELAND",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & WAVELAND",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -3367,11 +2767,6 @@
     "street": "DAMEN",
     "cross_street": "WAVELAND",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & WAVELAND",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -3395,11 +2790,6 @@
     "street": "DAMEN",
     "cross_street": "GRACE",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & GRACE",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -3423,11 +2813,6 @@
     "street": "DAMEN",
     "cross_street": "GRACE",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & GRACE",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -3451,11 +2836,6 @@
     "street": "DAMEN",
     "cross_street": "BYRON",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & BYRON",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -3479,11 +2859,6 @@
     "street": "DAMEN",
     "cross_street": "BYRON",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & BYRON",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -3507,11 +2882,6 @@
     "street": "DAMEN",
     "cross_street": "IRVING PARK/LINCOLN",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & IRVING PARK/LINCOLN",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -3535,11 +2905,6 @@
     "street": "DAMEN",
     "cross_street": "IRVING PARK/LINCOLN",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & IRVING PARK/LINCOLN",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -3563,11 +2928,6 @@
     "street": "DAMEN",
     "cross_street": "BELLE PLAINE",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & BELLE PLAINE",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -3591,11 +2951,6 @@
     "street": "DAMEN",
     "cross_street": "BELLE PLAINE",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & BELLE PLAINE",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -3619,11 +2974,6 @@
     "street": "DAMEN",
     "cross_street": "BERTEAU",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & BERTEAU",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -3647,11 +2997,6 @@
     "street": "DAMEN",
     "cross_street": "BERTEAU",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & BERTEAU",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -3675,11 +3020,6 @@
     "street": "DAMEN",
     "cross_street": "CULLOM",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & CULLOM",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -3703,11 +3043,6 @@
     "street": "DAMEN",
     "cross_street": "CULLOM",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & CULLOM",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -3731,11 +3066,6 @@
     "street": "DAMEN",
     "cross_street": "MONTROSE",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & MONTROSE",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -3759,11 +3089,6 @@
     "street": "DAMEN",
     "cross_street": "MONTROSE",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & MONTROSE",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -3786,23 +3111,18 @@
     "stop_name": "DAMEN & SUNNYSIDE",
     "street": "DAMEN",
     "cross_street": "SUNNYSIDE",
-    "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
+    "stop_decision": "REMOVED",
     "location": "DAMEN & SUNNYSIDE",
-    "location_decision": "KEPT",
-    "reason": "KEPT_RIDERSHIP_NOT_LOW_ENOUGH_VS_NEIGHBOR",
+    "location_decision": "REMOVED",
+    "reason": "REMOVED_REDUNDANT",
     "interlined_routes": null,
-    "removal_reason": null,
+    "removal_reason": "REMOVED_REDUNDANT",
     "sensitivity": "STABLE",
     "review_flags": null,
     "avg_boardings": 23.63375,
     "avg_alightings": 36.70291666666667,
     "avg_total": 60.33666666666667,
-    "added_walk_ft": null,
+    "added_walk_ft": 665.3147803638894,
     "rank_in_route": 43,
     "lat": 41.96319287,
     "lon": -87.67895877
@@ -3814,23 +3134,18 @@
     "stop_name": "DAMEN & SUNNYSIDE",
     "street": "DAMEN",
     "cross_street": "SUNNYSIDE",
-    "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
+    "stop_decision": "REMOVED",
     "location": "DAMEN & SUNNYSIDE",
-    "location_decision": "KEPT",
-    "reason": "KEPT_RIDERSHIP_NOT_LOW_ENOUGH_VS_NEIGHBOR",
+    "location_decision": "REMOVED",
+    "reason": "REMOVED_REDUNDANT",
     "interlined_routes": null,
-    "removal_reason": null,
+    "removal_reason": "REMOVED_REDUNDANT",
     "sensitivity": "STABLE",
     "review_flags": null,
     "avg_boardings": 32.37833333333334,
     "avg_alightings": 26.44908333333333,
     "avg_total": 58.82741666666667,
-    "added_walk_ft": null,
+    "added_walk_ft": 646.9421743751118,
     "rank_in_route": 43,
     "lat": 41.96335787,
     "lon": -87.67910377
@@ -3843,14 +3158,9 @@
     "street": "DAMEN",
     "cross_street": "WILSON",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & WILSON",
     "location_decision": "KEPT",
-    "reason": "KEPT_RIDERSHIP_NOT_LOW_ENOUGH_VS_NEIGHBOR",
+    "reason": "KEPT_NEEDED_FOR_SPACING",
     "interlined_routes": null,
     "removal_reason": null,
     "sensitivity": "STABLE",
@@ -3871,14 +3181,9 @@
     "street": "DAMEN",
     "cross_street": "WILSON",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & WILSON",
     "location_decision": "KEPT",
-    "reason": "KEPT_RIDERSHIP_NOT_LOW_ENOUGH_VS_NEIGHBOR",
+    "reason": "KEPT_NEEDED_FOR_SPACING",
     "interlined_routes": null,
     "removal_reason": null,
     "sensitivity": "STABLE",
@@ -3899,11 +3204,6 @@
     "street": "DAMEN",
     "cross_street": "EASTWOOD/BROWN LINE STATION",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & EASTWOOD/BROWN LINE STATION",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_RAIL; PROTECTED_RIDERSHIP",
@@ -3927,11 +3227,6 @@
     "street": "DAMEN",
     "cross_street": "EASTWOOD/BROWN LINE STATION",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & EASTWOOD/BROWN LINE STATION",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_RAIL; PROTECTED_RIDERSHIP",
@@ -3955,11 +3250,6 @@
     "street": "DAMEN",
     "cross_street": "LAWRENCE",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & LAWRENCE",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -3983,11 +3273,6 @@
     "street": "DAMEN",
     "cross_street": "LAWRENCE",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & LAWRENCE",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -4011,11 +3296,6 @@
     "street": "DAMEN",
     "cross_street": "AINSLIE",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & AINSLIE",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -4039,11 +3319,6 @@
     "street": "DAMEN",
     "cross_street": "AINSLIE",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "DAMEN & AINSLIE",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -4067,11 +3342,6 @@
     "street": "DAMEN",
     "cross_street": "ARGYLE",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & ARGYLE",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -4095,11 +3365,6 @@
     "street": "DAMEN",
     "cross_street": "ARGYLE",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & ARGYLE",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -4122,23 +3387,18 @@
     "stop_name": "DAMEN & WINONA",
     "street": "DAMEN",
     "cross_street": "WINONA",
-    "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
+    "stop_decision": "REMOVED",
     "location": "DAMEN & WINONA",
-    "location_decision": "KEPT",
-    "reason": "KEPT_RIDERSHIP_NOT_LOW_ENOUGH_VS_NEIGHBOR",
+    "location_decision": "REMOVED",
+    "reason": "REMOVED_REDUNDANT",
     "interlined_routes": null,
-    "removal_reason": null,
+    "removal_reason": "REMOVED_REDUNDANT",
     "sensitivity": "STABLE",
     "review_flags": null,
     "avg_boardings": 3.22075,
     "avg_alightings": 60.37375,
     "avg_total": 63.5945,
-    "added_walk_ft": null,
+    "added_walk_ft": 473.7655727345444,
     "rank_in_route": 37,
     "lat": 41.97462887,
     "lon": -87.67926977
@@ -4150,23 +3410,18 @@
     "stop_name": "DAMEN & WINONA",
     "street": "DAMEN",
     "cross_street": "WINONA",
-    "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
+    "stop_decision": "REMOVED",
     "location": "DAMEN & WINONA",
-    "location_decision": "KEPT",
-    "reason": "KEPT_RIDERSHIP_NOT_LOW_ENOUGH_VS_NEIGHBOR",
+    "location_decision": "REMOVED",
+    "reason": "REMOVED_REDUNDANT",
     "interlined_routes": null,
-    "removal_reason": null,
+    "removal_reason": "REMOVED_REDUNDANT",
     "sensitivity": "STABLE",
     "review_flags": null,
     "avg_boardings": 71.33916666666667,
     "avg_alightings": 4.007000000000001,
     "avg_total": 75.34616666666668,
-    "added_walk_ft": null,
+    "added_walk_ft": 421.2792522497742,
     "rank_in_route": 37,
     "lat": 41.97471187,
     "lon": -87.67941577
@@ -4179,11 +3434,6 @@
     "street": "DAMEN",
     "cross_street": "FOSTER",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & FOSTER",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -4207,11 +3457,6 @@
     "street": "DAMEN",
     "cross_street": "FOSTER",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "DAMEN & FOSTER",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -4235,11 +3480,6 @@
     "street": "FOSTER",
     "cross_street": "WOLCOTT",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "FOSTER & WOLCOTT",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -4263,11 +3503,6 @@
     "street": "FOSTER",
     "cross_street": "WOLCOTT",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "FOSTER & WOLCOTT",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -4291,11 +3526,6 @@
     "street": "FOSTER",
     "cross_street": "RAVENSWOOD",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "FOSTER & RAVENSWOOD",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -4319,11 +3549,6 @@
     "street": "FOSTER",
     "cross_street": "RAVENSWOOD",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "FOSTER & RAVENSWOOD",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -4347,11 +3572,6 @@
     "street": "FOSTER",
     "cross_street": "PAULINA",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "FOSTER & PAULINA",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -4375,11 +3595,6 @@
     "street": "FOSTER",
     "cross_street": "PAULINA",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "FOSTER & PAULINA",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -4403,11 +3618,6 @@
     "street": "ASHLAND",
     "cross_street": "FOSTER",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "ASHLAND & FOSTER",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -4431,11 +3641,6 @@
     "street": "ASHLAND",
     "cross_street": "FOSTER",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "ASHLAND & FOSTER",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -4459,11 +3664,6 @@
     "street": "ASHLAND",
     "cross_street": "BERWYN",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "ASHLAND & BERWYN",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -4487,11 +3687,6 @@
     "street": "ASHLAND",
     "cross_street": "BERWYN",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "ASHLAND & BERWYN",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -4515,11 +3710,6 @@
     "street": "ASHLAND",
     "cross_street": "BALMORAL",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "ASHLAND & BALMORAL",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -4543,11 +3733,6 @@
     "street": "ASHLAND",
     "cross_street": "BALMORAL",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "ASHLAND & BALMORAL",
     "location_decision": "KEPT",
     "reason": "KEPT_SPACING_OK",
@@ -4571,11 +3756,6 @@
     "street": "ASHLAND",
     "cross_street": "CATALPA",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "ASHLAND & CATALPA",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -4599,11 +3779,6 @@
     "street": "ASHLAND",
     "cross_street": "CATALPA",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "ASHLAND & CATALPA",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -4627,11 +3802,6 @@
     "street": "ASHLAND",
     "cross_street": "GREGORY",
     "stop_decision": "REMOVED",
-    "stop_decision_5pct": "REMOVED",
-    "tolerance_decisions": {
-      "0%": "REMOVED",
-      "5%": "REMOVED"
-    },
     "location": "ASHLAND & GREGORY",
     "location_decision": "REMOVED",
     "reason": "REMOVED_REDUNDANT",
@@ -4655,11 +3825,6 @@
     "street": "ASHLAND",
     "cross_street": "BRYN MAWR",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "ASHLAND & BRYN MAWR",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -4683,11 +3848,6 @@
     "street": "CLARK",
     "cross_street": "BRYN MAWR",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "CLARK & BRYN MAWR",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -4711,11 +3871,6 @@
     "street": "ASHLAND",
     "cross_street": "HOLLYWOOD",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "ASHLAND & HOLLYWOOD",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TRANSFER",
@@ -4739,11 +3894,6 @@
     "street": "EDGEWATER",
     "cross_street": "CLARK",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "EDGEWATER & CLARK",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TERMINAL; PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",
@@ -4767,11 +3917,6 @@
     "street": "EDGEWATER",
     "cross_street": "CLARK",
     "stop_decision": "KEPT",
-    "stop_decision_5pct": "KEPT",
-    "tolerance_decisions": {
-      "0%": "KEPT",
-      "5%": "KEPT"
-    },
     "location": "EDGEWATER & CLARK",
     "location_decision": "PROTECTED",
     "reason": "PROTECTED_TERMINAL; PROTECTED_TRANSFER; PROTECTED_RIDERSHIP",

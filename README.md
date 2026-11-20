@@ -130,12 +130,17 @@ The optimizer:
 
 ### `build_integration.py` --- map overlay builder
 
-This script reads the workbook's `Individual Stops` sheet and inserts
-two additional Leaflet marker layers into the existing map:
+This script reads the workbook's `Individual Stops` sheet and inserts one
+Leaflet marker layer into the existing map:
 
-- `New Consolidation - Route 50 (5% primary)`
-- `New Consolidation - Route 50 (0% comparison)`
+- `New Consolidation - Route 50` (the 5% primary result)
 
+The map does not offer a separate 0% comparison layer. The 0% run may
+remain in the workbook for internal comparison, but it is not shown as a
+separate map overlay or in stop popups. The map export and popups include
+only the primary 5% stop decision; legacy 10% and 15% decision columns
+in an older workbook are ignored. Re-running the integration script also
+removes obsolete consolidation layer names from the map controls.
 It also writes `new_consolidation_route50.json` beside the map. The JSON
 contains the stop-level attributes used by the popups and is a companion
 data export; the map integration script creates it automatically.
@@ -235,6 +240,26 @@ The carried-forward defaults are:
   comparison.
 - The low-volume exception remains available as configured in the
   engine.
+
+**Paired-location comparison (updated):**
+
+- When a paired candidate is adjacent only to other paired locations,
+  compare its combined northbound + southbound ridership with the
+  combined ridership of its adjacent paired locations. The pair is
+  evaluated as one ridership unit.
+- If at least one adjacent location is solo, evaluate the paired
+  candidate direction-by-direction. Each side is compared only with
+  same-direction ridership at its adjacent locations. This allows the
+  pair to be split when the surrounding stop pattern requires it.
+- Solo candidates always use direction-specific comparisons.
+- This changes only the neighbor-ridership comparison. Spacing,
+  protection, transfer, terminal, interline, and optimization rules
+  remain unchanged.
+
+The `All Locations` and `Individual Stops` sheets include
+`RIDERSHIP_COMPARISON_MODE` where a kept candidate has an evaluated
+comparison. Values identify combined paired comparison or directional
+comparison (including the solo-adjacency case).
 
 Passing the ridership test does **not** guarantee removal. A candidate
 must still pass spacing, protection, interlining, and other applicable
@@ -703,7 +728,8 @@ python cta_stop_optimization.py raw_data.csv \
 ```
 
 This runs Route 50 with 5% as the primary decision tolerance (693 ft
-local-route trigger) and retains a 0% comparison (660 ft). The 1,500-ft
+local-route trigger). The 0% comparison can be retained in the workbook;
+it is not exposed as a separate map layer. The 1,500-ft
 maximum resulting gap remains a hard cap.
 
 ### Run multiple routes or all routes
@@ -792,8 +818,8 @@ python build_integration.py \
 The script:
 
 - Reads Route 50 records from `Individual Stops`.
-- Requires both the 0% and 5% comparison decision columns.
-- Creates the 5%-primary and 0%-comparison marker layers.
+- Requires the `STOP_DECISION_AT_5PCT` decision column.
+- Creates one marker layer: `New Consolidation - Route 50`.
 - Adds both layers to the map's layer control and search
   configuration.
 - Writes `new_consolidation_route50.json` beside `index.html`.
@@ -823,7 +849,7 @@ Check that:
 - Both `New Consolidation` overlays appear in the layer control.
 - Markers are at the expected locations.
 - Clicking markers opens the correct popups.
-- The 5%-primary and 0%-comparison layers show the expected different decisions.
+- The single 5%-primary layers show the expected different decisions.
 
 If something is wrong, restore the backup:
 

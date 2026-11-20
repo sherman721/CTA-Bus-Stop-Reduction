@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Add primary and 5%-tolerance CTA Route 50 layers to Nik's Leaflet map.
+"""Add the single 5%-primary CTA Route 50 New Consolidation layer to Nik's Leaflet map.
 
 Run from the Nik repository root:
-  python build_integration.py --map index.html --workbook ../CTA_Bus_Stop_Consolidator-main/damen.xlsx
+  python build_integration.py --map index.html --workbook ../CTA_Combination_Optimizer/route50_optimized.xlsx
 
 Requires: openpyxl, beautifulsoup4
 """
@@ -14,15 +14,26 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 from openpyxl import load_workbook
 
-PRIMARY_GROUP = "New Consolidation - Route 50"
-FIVE_GROUP = "New Consolidation - Route 50 (5% tolerance)"
-GROUPS = (PRIMARY_GROUP, FIVE_GROUP)
+LAYER = "New Consolidation - Route 50"
+# Historical names are removed from the map's overlay/search/hide controls on rebuild.
+OLD_LAYER_NAMES = {
+    "New Consolidation",
+    "New Consolidation (5% tolerance)",
+    "New Consolidation - Route 50 (5% tolerance)",
+    "My Consolidation - Route 50",
+    "My Consolidation - Route 50 (5% tolerance)",
+    "My Consolidation - Route 50 (5% primary)",
+    "My Consolidation - Route 50 (0% comparison)",
+    "New Consolidation - Route 50 (5% tolerance)",
+    "New Consolidation - Route 50 (5% primary)",
+    "New Consolidation - Route 50 (0% comparison)",
+}
 
 
 def records_from_workbook(path):
     wb = load_workbook(path, data_only=True, read_only=True)
     if "Individual Stops" not in wb.sheetnames:
-        raise RuntimeError("Workbook needs an 'Individual Stops' sheet. Regenerate it with the updated cta_stop_reduction.py.")
+        raise RuntimeError("Workbook needs an 'Individual Stops' sheet. Regenerate it with the updated optimizer.")
     ws = wb["Individual Stops"]
     rows = ws.iter_rows(values_only=True)
     headers = next(rows)
@@ -34,27 +45,22 @@ def records_from_workbook(path):
         lat, lon = r.get("LAT"), r.get("LON")
         if lat is None or lon is None:
             continue
-        tolerance_decisions = {
-            key.removeprefix("STOP_DECISION_AT_").replace("PCT", "%"): value
-            for key, value in r.items()
-            if key.startswith("STOP_DECISION_AT_") and value not in (None, "")
-        }
-        if "5%" not in tolerance_decisions:
+        decision = r.get("STOP_DECISION_AT_5PCT")
+        if decision in (None, ""):
             raise RuntimeError(
                 "The Individual Stops sheet has no STOP_DECISION_AT_5PCT column. "
-                "Regenerate the workbook with the updated cta_stop_reduction.py and "
-                "include 5 in --sensitivity (the default already does)."
+                "Regenerate using --tolerance 5 --sensitivity 0 5."
             )
+        # Export only the primary 5% decision. Older 0/10/15% columns, if present
+        # in a legacy workbook, are deliberately not copied into the map data.
         out.append({
-            "route": str(r.get("ROUTE", "50")),
+            "route": "50",
             "direction": r.get("DIRECTION"),
             "stop_id": str(r.get("CTASTOPID", "")),
             "stop_name": r.get("STOP_NAME"),
             "street": r.get("STREET"),
             "cross_street": r.get("CROSS_ST"),
-            "stop_decision": r.get("STOP_DECISION"),
-            "stop_decision_5pct": tolerance_decisions["5%"],
-            "tolerance_decisions": tolerance_decisions,
+            "stop_decision": decision,
             "location": r.get("LOCATION"),
             "location_decision": r.get("LOCATION_DECISION"),
             "reason": r.get("LOCATION_REASON"),
@@ -82,23 +88,19 @@ def fmt(v, digits=1):
 
 def popup(r):
     fields = [
-        ("Primary stop decision", r["stop_decision"]),
+        ("Stop decision", r["stop_decision"]),
         ("Stop ID", r["stop_id"]), ("Stop", r["stop_name"]),
         ("Direction", r["direction"]),
         ("Location decision", r["location_decision"]), ("Location", r["location"]),
         ("Reason", r["reason"]), ("Interlined with", r["interlined_routes"]),
         ("Removal reason", r["removal_reason"]),
-        ("Sensitivity", r["sensitivity"]), ("Review flags", r["review_flags"]),
-    ]
-    for tol, decision in sorted(r["tolerance_decisions"].items(), key=lambda x: float(x[0].rstrip("%"))):
-        fields.append((f"Decision at {tol} tolerance", decision))
-    fields.extend([
+        ("Review flags", r["review_flags"]),
         ("Average boardings", fmt(r["avg_boardings"])),
         ("Average alightings", fmt(r["avg_alightings"])),
         ("Average total riders", fmt(r["avg_total"])),
         ("Added walk (ft)", fmt(r["added_walk_ft"])),
         ("Coordinates", f'{r["lat"]:.6f}, {r["lon"]:.6f}'),
-    ])
+    ]
     body = "".join(
         f"<tr><th style='text-align:left;padding:2px 8px 2px 0'>{html.escape(str(k))}</th>"
         f"<td>{html.escape(str(v if v not in (None, '') else '—'))}</td></tr>"
@@ -107,13 +109,12 @@ def popup(r):
     return "<div style='min-width:230px;max-width:340px'><b>New Consolidation · Route 50</b><table>" + body + "</table></div>"
 
 
-def marker_call(records, group, decision_key):
+def marker_call(records):
     lat = [r["lat"] for r in records]
     lon = [r["lon"] for r in records]
     colors = []
     for r in records:
-        decision = r[decision_key]
-        if decision == "REMOVED":
+        if r["stop_decision"] == "REMOVED":
             color = "#c62828"
         elif r["location_decision"] == "PROTECTED":
             color = "#1565c0"
@@ -125,8 +126,8 @@ def marker_call(records, group, decision_key):
     popups = [popup(r) for r in records]
     return {
         "method": "addCircleMarkers",
-        "args": [lat, lon, 8, None, group,
-                 {"interactive": True, "className": "my-consolidation-route50", "stroke": True,
+        "args": [lat, lon, 8, None, LAYER,
+                 {"interactive": True, "className": "new-consolidation-route50", "stroke": True,
                   "color": colors, "weight": 2, "opacity": 1, "fill": True,
                   "fillColor": colors, "fillOpacity": 0.86},
                  None, None, popups, None, None, None, None]
@@ -143,39 +144,33 @@ def patch_map(map_path, records):
     payload = json.loads(tag.string)
     calls = payload["x"]["calls"]
 
-    # Make repeated builds idempotent: remove both prior copies before re-inserting.
+    # Remove previously generated copies, including obsolete primary/comparison layers.
     calls[:] = [c for c in calls if not (
         c.get("method") == "addCircleMarkers"
         and len(c.get("args", [])) > 4
-        and c["args"][4] in GROUPS
+        and c["args"][4] in OLD_LAYER_NAMES | {LAYER}
     )]
 
-    primary_call = marker_call(records, PRIMARY_GROUP, "stop_decision")
-    five_call = marker_call(records, FIVE_GROUP, "stop_decision_5pct")
     layer_idx = next((i for i, c in enumerate(calls) if c.get("method") == "addLayersControl"), None)
     if layer_idx is None:
         raise RuntimeError("Could not find addLayersControl in map widget calls")
-    calls[layer_idx:layer_idx] = [primary_call, five_call]
+    calls.insert(layer_idx, marker_call(records))
 
     for c in calls:
         method, args = c.get("method"), c.get("args", [])
         if method == "addLayersControl" and len(args) > 1:
             overlays = args[1]
-            # Put both user layers at the top, in primary-then-5%-tolerance order.
-            overlays[:] = [g for g in overlays if g not in GROUPS]
-            overlays[0:0] = list(GROUPS)
+            overlays[:] = [g for g in overlays if g not in OLD_LAYER_NAMES | {LAYER}]
+            overlays.insert(0, LAYER)
         elif method == "addSearchFeatures" and args:
-            for group in GROUPS:
-                if group not in args[0]:
-                    args[0].append(group)
+            args[0][:] = [g for g in args[0] if g not in OLD_LAYER_NAMES | {LAYER}]
+            args[0].append(LAYER)
         elif method == "hideGroup" and args:
-            for group in GROUPS:
-                if group not in args[0]:
-                    args[0].append(group)
+            args[0][:] = [g for g in args[0] if g not in OLD_LAYER_NAMES | {LAYER}]
+            args[0].append(LAYER)
 
     tag.string = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
     map_path.write_text(str(soup), encoding="utf-8")
-    # Save the companion data file beside the map, independent of current working directory.
     json_path = map_path.parent / "new_consolidation_route50.json"
     json_path.write_text(json.dumps(records, ensure_ascii=False, indent=2), encoding="utf-8")
     return json_path
@@ -188,5 +183,5 @@ if __name__ == "__main__":
     args = ap.parse_args()
     rows = records_from_workbook(args.workbook)
     json_path = patch_map(args.map, rows)
-    print(f"Added {len(rows)} individual Route 50 markers to each of the two toggleable layers.")
+    print(f"Added {len(rows)} Route 50 markers to the single 5%-primary New Consolidation layer.")
     print(f"Updated companion JSON: {json_path}")
