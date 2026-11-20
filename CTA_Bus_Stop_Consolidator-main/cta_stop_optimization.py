@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-CTA bus stop reduction model (combination optimizer v1).
+CTA bus stop reduction model (combination optimizer v2 - immutable ridership).
 
 Takes the SAME raw boardings/alightings file as cta_stop_cleanup.py (keep both scripts in the
 same folder) and proposes stops to remove, route by route.
@@ -21,8 +21,8 @@ How it decides
        - spacing:     the gap left after removal <= fixed route-type maximum spacing
        - ridership:   bottom --neighbor-logic-pct % of locations automatically pass the ridership test;
                       upper-middle locations use the local lower-neighbor comparison
-     Cost = riders x added walk (feet) to the nearest remaining stop. A removed stop's riders are
-     handed to its neighbors, which makes the neighbors harder to remove next.
+     Cost = riders x added walk (feet) to the nearest remaining stop. Ridership eligibility is based on original CTA averages and original adjacent locations;
+     removed riders are not added to neighbor totals for eligibility.
   4. Directional exception pass: one side of a surviving pair can be dropped if a PROTECTED stop in
      the same direction is within --asym-ft and spacing still holds (flagged ASYMMETRIC).
   5. Interlined sections are identified by at least two consecutive stops in a direction whose
@@ -427,200 +427,297 @@ class RouteModel:
 
 
 class OptimizedRouteModel(RouteModel):
-    """Beam-search optimizer. It preserves the baseline model's eligibility rules,
-    but explores multiple feasible next-removal choices and compares complete outcomes.
+    """Combination optimizer with immutable, original-data ridership eligibility.
+
+    Spacing is evaluated against the proposed surviving configuration. Ridership
+    eligibility is evaluated only against the original CTA averages and original
+    adjacent locations, so earlier removals cannot change another stop's eligibility.
+    The bounded search is repeated with forward and reverse candidate ordering; the
+    best result is selected using a stable, order-independent tie-break.
     """
     def run(self, tol):
-        from copy import deepcopy
         a = self.args
-        cap = self.max_m                         # HARD cap; never tolerance-adjusted
-        trig = self.min_m * (1 + tol)            # tolerance only changes candidate trigger
+        cap = self.max_m
+        trig = self.min_m * (1 + tol)
         asym_m = a.asym_ft * FT_M
         locs, loc_of, cum, pos, seq = self.locs, self.loc_of, self.cum, self.pos, self.seq
         ids = list(self.st.index)
-        id_pos = {v:k for k,v in enumerate(ids)}
-        beam_width = int(getattr(a, 'beam_width', 300))
-        kept0 = frozenset(ids)
-        initial = dict(kept=kept0, absorbed={}, removed={}, guarded=set())
+        id_pos = {v: k for k, v in enumerate(ids)}
+        beam_width = max(1, int(getattr(a, 'beam_width', 12)))
+        # Ridership comparison is deliberately static: no absorbed riders and no
+        # replacement-neighbor totals are ever used for eligibility.
+        def original_ridership(L):
+            return float(self.total0[L])
 
-        def stop_total(st, i): return self.base[i] + st['absorbed'].get(i, 0.0)
-        def loc_total(st, L): return sum(stop_total(st,i) for i in locs[L] if i in st['kept'])
-        def prev_next(st, i):
-            d,k=pos[i]; s=seq[d]; j=k-1
-            while j>=0 and s[j] not in st['kept']: j-=1
-            p=s[j] if j>=0 else None
-            j=k+1
-            while j<len(s) and s[j] not in st['kept']: j+=1
-            n=s[j] if j<len(s) else None
-            return p,n
-        def can_remove(st, members):
-            removing=set(members)
-            for group in self.interline_groups:
-                if group.intersection(removing) and not any(j in st['kept'] for j in group if j not in removing):
-                    return False
-            return True
-        def evaluate(st,L):
-            members=[i for i in locs[L] if i in st['kept']]
-            if not members: return None
-            directional_triggers=[]; merged=True; neighbors=[]; cost=0.0; walks={}
+        def original_direction_total(stop_idx):
+            direction = self.st.at[stop_idx, 'DIRECTION']
+            L = loc_of[stop_idx]
+            return float(sum(self.base[q] for q in locs[L]
+                             if self.st.at[q, 'DIRECTION'] == direction))
+
+        def static_ridership_test(L):
+            members = locs[L]
+            total = original_ridership(L)
+            if self.rank[L] > self.neighbor_logic_cutoff:
+                return True, 'BOTTOM_50_AUTO_PASS', float('nan'), float('nan')
+            adjacent = set()
             for i in members:
-                if i in self.noseq or i not in pos: return None
-                p,n=prev_next(st,i)
-                if p is None or n is None: return None
-                gp,gn=cum[i]-cum[p],cum[n]-cum[i]
-                barrier=((p,i) in self.original_over_limit_edges or (i,n) in self.original_over_limit_edges)
-                if gp+gn>cap and not barrier: merged=False
-                near=min(gp,gn)
-                directional_triggers.append(near<=trig)
-                def same_direction_location_total(j):
-                    direction = self.st.at[j, "DIRECTION"]
-                    return sum(stop_total(st,q) for q in locs[loc_of[j]]
-                               if q in st['kept'] and self.st.at[q, "DIRECTION"] == direction)
-                neighbors.extend([same_direction_location_total(p),same_direction_location_total(n)])
-                cost += stop_total(st,i)*near/FT_M
-                walks[i]=(p,n,gp,gn,near)
-            total=sum(stop_total(st,i) for i in members)
-            bottom=self.rank[L] > self.neighbor_logic_cutoff
-
-            # Paired locations are compared as combined NB+SB units by default.
-            # If ANY adjacent location is currently solo, switch this candidate to
-            # direction-specific comparisons so a solo neighbor is never compared
-            # against an artificial two-direction total.
-            adjacent_locations=set()
+                d, k = pos[i]
+                sq = seq[d]
+                if k > 0:
+                    adjacent.add(loc_of[sq[k - 1]])
+                if k + 1 < len(sq):
+                    adjacent.add(loc_of[sq[k + 1]])
+            # Paired candidate + exclusively paired original adjacent locations:
+            # compare combined NB+SB totals. Otherwise compare each direction only
+            # with the same direction at its original adjacent locations.
+            all_adjacent_paired = bool(adjacent) and all(len(locs[nL]) >= 2 for nL in adjacent)
+            if len(members) >= 2 and all_adjacent_paired:
+                lower = min(original_ridership(nL) for nL in adjacent)
+                passed = total < a.low_volume or (lower > 0 and total <= a.ratio * lower)
+                return passed, 'PAIRED_COMBINED_STATIC', lower, total / lower if lower > 0 else float('nan')
+            checks, lowers = [], []
             for i in members:
-                p,n=prev_next(st,i)
-                adjacent_locations.add(loc_of[p])
-                adjacent_locations.add(loc_of[n])
-            def active_members(neighbor_L):
-                return [q for q in locs[neighbor_L] if q in st['kept']]
-            adjacent_has_solo=any(len(active_members(nL)) < 2 for nL in adjacent_locations)
-            use_combined_pair_logic=(len(members) >= 2 and not adjacent_has_solo)
+                d, k = pos[i]
+                sq = seq[d]
+                neighbors = []
+                for j in (sq[k - 1] if k > 0 else None,
+                          sq[k + 1] if k + 1 < len(sq) else None):
+                    if j is not None:
+                        neighbors.append(original_direction_total(j))
+                lower = min(neighbors) if neighbors else float('nan')
+                value = float(self.base[i])
+                lowers.append(lower)
+                checks.append(value < a.low_volume or
+                              (lower > 0 and value <= a.ratio * lower))
+            lower = min((x for x in lowers if np.isfinite(x)), default=float('nan'))
+            ratio = total / lower if lower > 0 else float('nan')
+            mode = 'DIRECTIONAL_SOLO_STATIC' if len(members) == 1 else 'DIRECTIONAL_SOLO_ADJACENCY_STATIC'
+            return all(checks), mode, lower, ratio
 
-            if use_combined_pair_logic:
-                # Compare the full paired candidate total with full totals for
-                # adjacent paired locations (deduplicated across NB/SB sequences).
-                pair_neighbor_totals=[loc_total(st,nL) for nL in adjacent_locations
-                                      if len(active_members(nL)) >= 2]
-                lower=min(pair_neighbor_totals) if pair_neighbor_totals else float('nan')
-                ridership_pass=(total<a.low_volume or
-                                (lower>0 and total<=a.ratio*lower))
-                ridership_mode='PAIRED_COMBINED'
-            else:
-                # Solo candidates always use this path. Paired candidates use it
-                # whenever at least one adjacent location is solo; each direction
-                # is compared only with same-direction ridership at its neighbors.
-                direction_checks=[]
-                directional_lowers=[]
+        static_eligibility = {L: static_ridership_test(L) for L in self.unprotected}
+
+        def search(order):
+            order_rank = {L: n for n, L in enumerate(order)}
+            def prev_next(st, i):
+                d, k = pos[i]
+                sq = seq[d]
+                j = k - 1
+                while j >= 0 and sq[j] not in st['kept']:
+                    j -= 1
+                p = sq[j] if j >= 0 else None
+                j = k + 1
+                while j < len(sq) and sq[j] not in st['kept']:
+                    j += 1
+                n = sq[j] if j < len(sq) else None
+                return p, n
+
+            def can_remove(st, members):
+                removing = set(members)
+                for group in self.interline_groups:
+                    if group.intersection(removing) and not any(
+                        j in st['kept'] for j in group if j not in removing
+                    ):
+                        return False
+                return True
+
+            def evaluate_spacing(st, L):
+                members = [i for i in locs[L] if i in st['kept']]
+                if not members:
+                    return None
+                triggers, merged, cost, walks = [], True, 0.0, {}
                 for i in members:
-                    d,k=pos[i]; sq=seq[d]
-                    directional_neighbors=[]
-                    for j in (sq[k-1] if k>0 else None,
-                              sq[k+1] if k+1<len(sq) else None):
-                        if j is not None:
-                            direction=self.st.at[i,"DIRECTION"]
-                            directional_neighbors.append(sum(
-                                stop_total(st,q) for q in locs[loc_of[j]]
-                                if q in st['kept'] and self.st.at[q,"DIRECTION"]==direction))
-                    dtotal=stop_total(st,i)
-                    dlower=min(directional_neighbors) if directional_neighbors else float('nan')
-                    directional_lowers.append(dlower)
-                    direction_checks.append(dtotal<a.low_volume or
-                        (dlower>0 and dtotal<=a.ratio*dlower))
-                lower=min(directional_lowers) if directional_lowers else float('nan')
-                ridership_pass=all(direction_checks)
-                ridership_mode='DIRECTIONAL_SOLO_ADJACENCY' if len(members)>=2 else 'DIRECTIONAL_SOLO'
+                    if i in self.noseq or i not in pos:
+                        return None
+                    p, n = prev_next(st, i)
+                    if p is None or n is None:
+                        return None
+                    gp, gn = cum[i] - cum[p], cum[n] - cum[i]
+                    barrier = ((p, i) in self.original_over_limit_edges or
+                               (i, n) in self.original_over_limit_edges)
+                    if gp + gn > cap and not barrier:
+                        merged = False
+                    near = min(gp, gn)
+                    triggers.append(near <= trig)
+                    cost += self.base[i] * near / FT_M
+                    walks[i] = (p, n, gp, gn, near)
+                return dict(members=members, merged=merged,
+                            trigger=bool(triggers) and all(triggers),
+                            cost=cost, total=sum(self.base[i] for i in members), walks=walks)
 
-            # Whole-pair removal needs a spacing trigger in every direction.
-            trigger=bool(directional_triggers) and all(directional_triggers)
-            ridership_ok=bottom or ridership_pass
-            return dict(members=members,merged=merged,trigger=trigger,ridership_ok=ridership_ok,
-                        cost=cost,total=total,lower=lower,
-                        ratio=(total/lower if lower>0 else float('nan')),walks=walks,
-                        ridership_mode=ridership_mode)
-        def apply(st, action):
-            ns=dict(kept=st['kept'], absorbed=dict(st['absorbed']), removed=dict(st['removed']), guarded=set(st['guarded']))
-            kind, payload=action
-            for i in payload:
-                p,n=prev_next(ns,i)
-                gp,gn=cum[i]-cum[p],cum[n]-cum[i]
-                near=min(gp,gn)
-                riders=stop_total(ns,i); wp=1.0/max(gp,1.0); wn=1.0/max(gn,1.0)
-                ns['absorbed'][p]=ns['absorbed'].get(p,0.0)+riders*wp/(wp+wn)
-                ns['absorbed'][n]=ns['absorbed'].get(n,0.0)+riders*wn/(wp+wn)
-                ns['kept']=frozenset(x for x in ns['kept'] if x!=i)
-                ns['removed'][i]=dict(kind=kind,walk_m=near,order=len(ns['removed'])+1)
-            return ns
-        def actions(st):
-            out=[]
-            for L in self.unprotected:
-                if not all(i in st['kept'] for i in locs[L]): continue
-                e=evaluate(st,L)
-                if e and e['merged'] and e['trigger'] and e['ridership_ok']:
-                    if can_remove(st,e['members']): out.append((e['cost'],e['total'],L,('REDUNDANT',tuple(e['members']))))
-                    else: st['guarded'].add(L)
-            # retain the existing protected-neighbor one-sided exception
-            for L in self.unprotected:
-                m=locs[L]
-                if len(m)<2 or not all(i in st['kept'] for i in m): continue
-                for i in m:
-                    if i in self.noseq or i not in pos: continue
-                    p,n=prev_next(st,i)
-                    if p is None or n is None: continue
-                    gp,gn=cum[i]-cum[p],cum[n]-cum[i]
-                    barrier=((p,i) in self.original_over_limit_edges or (i,n) in self.original_over_limit_edges)
-                    near,g=(p,gp) if gp<=gn else (n,gn)
-                    if gp+gn<=cap or barrier:
-                        if g<=asym_m and self.protect[loc_of[near]] and can_remove(st,[i]):
-                            out.append((stop_total(st,i)*min(gp,gn)/FT_M,stop_total(st,i),L,('ASYMMETRIC',(i,))))
-            return out
-        def score(st):
-            # Primary: maximize complete location removals; secondary: minimize cumulative
-            # passenger-weighted added walk; tertiary: minimize removed ridership.
-            whole=sum(1 for L,m in locs.items() if all(i in st['removed'] for i in m))
-            weighted=sum(self.base[i]*r['walk_m']/FT_M for i,r in st['removed'].items())
-            riders=sum(self.base[i] for i in st['removed'])
-            return (whole, -weighted, -riders, len(st['removed']))
-        beam=[initial]; best=initial; seen=set()
-        # Every transition removes at least one stop, so the search is finite.
-        max_depth=len(ids)
-        for _depth in range(max_depth):
-            candidates=[]
+            def apply(st, kind, payload):
+                kept = set(st['kept'])
+                removed = dict(st['removed'])
+                for i in payload:
+                    p, n = prev_next(st, i)
+                    gp, gn = cum[i] - cum[p], cum[n] - cum[i]
+                    removed[i] = dict(kind=kind, walk_m=min(gp, gn), order=len(removed) + 1)
+                    kept.remove(i)
+                    st = dict(kept=frozenset(kept), removed=removed, guarded=st['guarded'])
+                return st
+
+            def actions(st):
+                out = []
+                for L in order:
+                    if not all(i in st['kept'] for i in locs[L]):
+                        continue
+                    e = evaluate_spacing(st, L)
+                    eligible = static_eligibility[L][0]
+                    if e and e['merged'] and e['trigger'] and eligible:
+                        if can_remove(st, e['members']):
+                            payload = tuple(sorted(e['members'], key=lambda i: id_pos[i]))
+                            out.append((e['cost'], e['total'], L, 'REDUNDANT', payload))
+                        else:
+                            st['guarded'] = frozenset(set(st['guarded']) | {L})
+                # Existing asymmetric exception: only one side of a paired
+                # location may be removed when a protected same-direction stop
+                # is within the configured distance and the resulting gap fits.
+                for L in order:
+                    members = locs[L]
+                    if len(members) < 2 or not all(i in st['kept'] for i in members):
+                        continue
+                    for i in members:
+                        if i in self.noseq or i not in pos:
+                            continue
+                        p, n = prev_next(st, i)
+                        if p is None or n is None:
+                            continue
+                        gp, gn = cum[i] - cum[p], cum[n] - cum[i]
+                        barrier = ((p, i) in self.original_over_limit_edges or
+                                   (i, n) in self.original_over_limit_edges)
+                        near, gap = (p, gp) if gp <= gn else (n, gn)
+                        if (gp + gn <= cap or barrier) and gap <= asym_m:
+                            if self.protect[loc_of[near]] and can_remove(st, [i]):
+                                out.append((self.base[i] * min(gp, gn) / FT_M,
+                                            self.base[i], L, 'ASYMMETRIC', (i,)))
+                # Stable action order prevents dataframe/index ordering from
+                # deciding which equal-scoring states survive beam truncation.
+                out.sort(key=lambda x: (x[0], x[1], self.label(x[2]),
+                                        tuple(sorted(_norm_id(self.st.at[i, 'CTASTOPID']) for i in x[4])), x[3]))
+                return out
+
+            def score(st):
+                whole = sum(1 for L, members in locs.items()
+                            if all(i not in st['kept'] for i in members))
+                weighted = sum(self.base[i] * r['walk_m'] / FT_M
+                               for i, r in st['removed'].items())
+                riders = sum(self.base[i] for i in st['removed'])
+                return (whole, -weighted, -riders, len(st['removed']))
+
+            def signature(st):
+                return tuple(sorted(_norm_id(self.st.at[i, 'CTASTOPID']) + '|' +
+                                     str(self.st.at[i, 'DIRECTION']) for i in st['kept']))
+
+            initial = dict(kept=frozenset(ids), removed={}, guarded=frozenset())
+            beam = [initial]
+            best = initial
+            seen = {signature(initial)}
+            for _ in range(len(ids)):
+                candidates = []
+                for st in beam:
+                    acts = actions(st)
+                    if not acts and score(st) > score(best):
+                        best = st
+                    for _c, _r, _L, kind, payload in acts:
+                        ns = apply(st, kind, payload)
+                        sig = signature(ns)
+                        if sig in seen:
+                            continue
+                        seen.add(sig)
+                        candidates.append(ns)
+                        if score(ns) > score(best):
+                            best = ns
+                if not candidates:
+                    break
+                candidates.sort(key=lambda st: (score(st), tuple(reversed(signature(st)))), reverse=True)
+                beam = candidates[:beam_width]
             for st in beam:
-                acts=actions(st)
-                if not acts:
-                    if score(st)>score(best): best=st
-                    continue
-                for _c,_r,_l,act in acts:
-                    ns=apply(st,act)
-                    sig=(tuple(sorted(id_pos[i] for i in ns['kept'])), tuple(sorted((id_pos[i], round(v,5)) for i,v in ns['absorbed'].items())))
-                    if sig in seen: continue
-                    seen.add(sig); candidates.append(ns)
-                    if score(ns)>score(best): best=ns
-            if not candidates: break
-            candidates.sort(key=score,reverse=True)
-            beam=candidates[:beam_width]
-        # Pick the best terminal result among the final beam and all explored states.
-        for st in beam:
-            if score(st)>score(best): best=st
-        reasons={}; diagnostics={}
+                if score(st) > score(best):
+                    best = st
+            return best, score(best), signature(best)
+
+        canonical = sorted(self.unprotected, key=lambda L: (self.label(L),
+                            tuple(sorted(_norm_id(self.st.at[i, 'CTASTOPID']) for i in locs[L]))))
+        # Candidate traversal variants deliberately test whether route traversal
+        # direction affects the bounded search. The chosen result is the best
+        # objective across both searches, with a stable signature tie-break.
+        forward = search(canonical)
+        reverse = search(list(reversed(canonical)))
+        # A third deterministic shuffled traversal catches tie/beam effects that
+        # a simple reversal may not expose. Fixed seed makes runs reproducible.
+        import random
+        shuffled_order = list(canonical)
+        random.Random(20251120).shuffle(shuffled_order)
+        shuffled = search(shuffled_order)
+        results = [forward, reverse, shuffled]
+        best = sorted(results, key=lambda x: (x[1], tuple(reversed(x[2]))), reverse=True)[0][0]
+        order_invariant = len({result[2] for result in results}) == 1
+
+        reasons, diagnostics = {}, {}
+        # Evaluate kept candidates against their final spacing context, but their
+        # ridership eligibility remains the precomputed immutable baseline test.
+        def final_prev_next(i):
+            d, k = pos[i]
+            sq = seq[d]
+            j = k - 1
+            while j >= 0 and sq[j] not in best['kept']:
+                j -= 1
+            p = sq[j] if j >= 0 else None
+            j = k + 1
+            while j < len(sq) and sq[j] not in best['kept']:
+                j += 1
+            return p, sq[j] if j < len(sq) else None
+
         for L in self.unprotected:
-            members=locs[L]
-            if all(i not in best['kept'] for i in members) or any(i not in best['kept'] for i in members): continue
-            e=evaluate(best,L)
-            if L in best['guarded'] and e and e['merged'] and e['trigger'] and e['ridership_ok'] and not can_remove(best,members):
-                reasons[L]='KEPT_LAST_INTERLINE_TRANSFER'
-            elif e is None: reasons[L]='KEPT_NO_NEIGHBOR'
-            elif not e['trigger']: reasons[L]='KEPT_SPACING_OK'
-            elif not e['merged']: reasons[L]='KEPT_NEEDED_FOR_SPACING'
-            elif not e['ridership_ok']: reasons[L]='KEPT_RIDERSHIP_NOT_LOW_ENOUGH_VS_NEIGHBOR'
-            else: reasons[L]='KEPT'
-            if e:
-                diagnostics[L]={'CURRENT_LOWER_NEIGHBOR_RIDERS':e['lower'],
-                                'CURRENT_RIDERSHIP_RATIO_TO_LOWER_NEIGHBOR':e['ratio'],
-                                'RIDERSHIP_COMPARISON_MODE':e.get('ridership_mode','')}
-        kept={i:i in best['kept'] for i in ids}
-        n_after={d:sum(1 for i in s if kept[i]) for d,s in seq.items()}
-        return dict(removed=best['removed'],reasons=reasons,diagnostics=diagnostics,n_after=n_after,kept=kept)
+            members = locs[L]
+            eligible, mode, lower, ratio = static_eligibility[L]
+            diagnostics[L] = {
+                'ORIGINAL_LOWER_NEIGHBOR_RIDERS': lower,
+                'ORIGINAL_RIDERSHIP_RATIO_TO_LOWER_NEIGHBOR': ratio,
+                'RIDERSHIP_COMPARISON_MODE': mode,
+                'ORDER_VALIDATION': 'PASS' if order_invariant else 'DIFFERED_FORWARD_REVERSE',
+                'ORIGINAL_RIDERSHIP_ELIGIBLE': 'Yes' if eligible else 'No',
+            }
+            if all(i not in best['kept'] for i in members) or any(i not in best['kept'] for i in members):
+                continue
+            merged, triggers = True, []
+            for i in members:
+                if i not in pos or i in self.noseq:
+                    merged = False
+                    continue
+                p, n = final_prev_next(i)
+                if p is None or n is None:
+                    merged = False
+                    continue
+                gp, gn = cum[i] - cum[p], cum[n] - cum[i]
+                barrier = ((p, i) in self.original_over_limit_edges or
+                           (i, n) in self.original_over_limit_edges)
+                if gp + gn > cap and not barrier:
+                    merged = False
+                triggers.append(min(gp, gn) <= trig)
+            trigger = bool(triggers) and all(triggers)
+            still_has_interline_peer = all(
+                not group.intersection(set(members)) or
+                any(j in best['kept'] for j in group if j not in set(members))
+                for group in self.interline_groups
+            )
+            if L in best['guarded'] and merged and trigger and eligible and not still_has_interline_peer:
+                reasons[L] = 'KEPT_LAST_INTERLINE_TRANSFER'
+            elif not trigger:
+                reasons[L] = 'KEPT_SPACING_OK'
+            elif not merged:
+                reasons[L] = 'KEPT_NEEDED_FOR_SPACING'
+            elif not eligible:
+                reasons[L] = 'KEPT_RIDERSHIP_NOT_LOW_ENOUGH_VS_ORIGINAL_NEIGHBOR'
+            else:
+                reasons[L] = 'KEPT'
+
+        kept = {i: i in best['kept'] for i in ids}
+        n_after = {d: sum(1 for i in sq if kept[i]) for d, sq in seq.items()}
+        return dict(removed=best['removed'], reasons=reasons, diagnostics=diagnostics,
+                    n_after=n_after, kept=kept,
+                    order_validation='PASS' if order_invariant else 'DIFFERED_FORWARD_REVERSE',
+                    forward_signature=forward[2], reverse_signature=reverse[2])
 
 
 # --------------------------------------------------------------------------- #
@@ -742,6 +839,9 @@ def process(by_dir, pairs, args, tols, primary_tol, rapid_patterns, manual, sel_
                             f"left out of spacing (protected).")
 
         runs = {t: m.run(t / 100.0) for t in tols}
+        for t, result in runs.items():
+            if result.get('order_validation') != 'PASS':
+                warnings.append(f"Route {route} at {t:g}% tolerance: forward/reverse/shuffled search produced different kept-stop sets; selected the better-scoring result. Review ORDER_VALIDATION.")
         prim = runs[primary_tol]
 
         # ---------- location table ---------- #
@@ -831,6 +931,8 @@ def process(by_dir, pairs, args, tols, primary_tol, rapid_patterns, manual, sel_
                     "ADDED_WALK_FT": removal.get("walk_m", np.nan) / FT_M if is_removed else np.nan,
                     "RANK_IN_ROUTE": m.rank[L],
                     "RIDERSHIP_COMPARISON_MODE": prim["diagnostics"].get(L, {}).get("RIDERSHIP_COMPARISON_MODE", ""),
+                    "ORIGINAL_RIDERSHIP_ELIGIBLE": prim["diagnostics"].get(L, {}).get("ORIGINAL_RIDERSHIP_ELIGIBLE", ""),
+                    "ORDER_VALIDATION": prim["diagnostics"].get(L, {}).get("ORDER_VALIDATION", ""),
                     # Keep stop-level outcomes from every sensitivity run so the
                     # workbook and map can compare the primary result with (for example) 5%.
                     **{f"STOP_DECISION_AT_{tol_label(t)}": (
@@ -1133,7 +1235,7 @@ def main():
         f"except where a candidate is adjacent to an ORIGINAL gap already above the maximum (treated as a likely "
         f"barrier gap); for locations subject to neighbor logic, total <= {args.ratio:g} x lower neighbor total "
         f"(or < {args.low_volume:g} riders). Bottom-ranked locations automatically pass the ridership test. "
-        f"Combination optimizer: beam width {args.beam_width}; maximizes whole-location removals, then minimizes passenger-weighted added walk and removed ridership. Removed riders move to neighbors.",
+        f"Combination optimizer: beam width {args.beam_width}; maximizes whole-location removals, then minimizes passenger-weighted added walk and removed ridership. Ridership eligibility uses immutable original CTA averages and original adjacent locations; no absorbed riders are used in eligibility.",
         f"Directional exceptions: one side of a pair removable if a protected same-direction stop is within {args.asym_ft:g} ft.",
         f"Result at primary tolerance: {n_loc_removed} whole locations removed, {len(removed)} stops removed in total.",
         "Row colors in All Locations / Review Queue: soft red = removed; orange = one side of a pair removed; yellow = kept "
@@ -1148,8 +1250,8 @@ def main():
         "and did not meet the local comparison against its lower-ridership adjacent neighbor; it does NOT mean "
         "the stop ranked highly across the whole route. Bottom-ranked locations bypass this comparison but still "
         "must meet the spacing tests. "
-        "Use RANK_IN_ROUTE for route-wide ranking and CURRENT_LOWER_NEIGHBOR_RIDERS / "
-        "CURRENT_RIDERSHIP_RATIO_TO_LOWER_NEIGHBOR to inspect the local comparison. "
+        "Use RANK_IN_ROUTE for route-wide ranking and ORIGINAL_LOWER_NEIGHBOR_RIDERS / "
+        "ORIGINAL_RIDERSHIP_RATIO_TO_LOWER_NEIGHBOR to inspect the immutable local comparison. "
         "SENSITIVITY = BORDERLINE means the outcome changes across the tolerance runs; review those by hand.",
         "Individual Stops contains one row per analyzed route/direction/stop with its own stop ID and coordinates; STOP_DECISION_AT_* columns show the stop-level outcome at each comparison tolerance (STOP_DECISION_AT_0PCT and STOP_DECISION_AT_5PCT by default). INTERLINED_ROUTES lists routes sharing the exact coordinates as part of a contiguous interlined section.",
         "KEPT_LAST_INTERLINE_TRANSFER means this stop/location was otherwise removable, but removing it would eliminate the final remaining shared stop in an interlined section for that direction. These stops are not protected individually; the section-level minimum-one-stop rule applies.",
@@ -1161,7 +1263,8 @@ def main():
     if changes is not None and len(changes):
         changes = changes[changes["ROUTE"].isin(sel)]
     notes.append("Opposite-direction pairing requires matching normalized STREET + CROSS_ST names. Nearby mismatched-name candidates are NOT paired; each remains a solo directional stop and is listed in Pairing Review.")
-    notes.append("Neighbor-ridership comparison: paired locations are compared using combined NB+SB ridership against adjacent paired locations when every adjacent location is also paired. If any adjacent location is solo, the paired candidate is evaluated direction-by-direction against same-direction neighbor ridership. Solo candidates always use direction-specific comparisons. Individual Stops includes RIDERSHIP_COMPARISON_MODE for auditing.")
+    notes.append("Neighbor-ridership comparison uses immutable original CTA averages and original adjacent locations. Paired locations use combined NB+SB totals when all original adjacent locations are paired; otherwise comparisons are direction-specific. Solo candidates always use direction-specific comparisons. Riders from removed stops are never absorbed into neighbor totals for eligibility.")
+    notes.append("Order validation: every tolerance is searched with forward, reverse, and fixed-seed shuffled candidate traversal. The best objective is selected with a stable tie-break. ORDER_VALIDATION in All Locations / Individual Stops reports whether both traversals reached the same kept-stop set; DIFFERED_FORWARD_REVERSE flags a route requiring review because the bounded beam search did not converge to the same set.")
     write_workbook(args.output, notes, summary, locs, removed, individual, gaps, changes, pairing_review)
 
     # Plain CSV list of the removed stops (handy for mapping or comparing against another list)
