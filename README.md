@@ -13,7 +13,7 @@ consolidations. The project combines:
 
 > **Data source and scope:** This analysis uses CTA stop/pick data directly
 > from the Chicago Transit Authority, covering the entirety of calendar
-> year 2025, for weeekdays only.
+> year 2025.
 >
 > **Important:** This is a planning and screening model, not an official
 > CTA recommendation or an automated service-change decision. The use of
@@ -1090,3 +1090,18 @@ source repository's license before redistributing modified copies.
   https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site
 - Configuring a publishing source:
   https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
+
+## Pairing and directional-spacing correction (November 20, 2026)
+
+Opposite-direction stops are paired using mutual-nearest geographic coordinates
+within the configured pairing radius (default 100 meters), rather than requiring
+matching street and cross-street labels. This handles cases where CTA labels the
+two sides of one physical stop location differently, such as Damen & 2559 South
+(Northbound) and Damen & 2608 South (Southbound).
+
+Spacing eligibility remains direction-specific. Opposite-direction stops are never
+used as each other's spacing neighbors. For a paired location to be removed as a
+whole, each directional member must independently have a same-direction neighbor
+within the tolerance-adjusted minimum-spacing trigger. The fixed 1,500-foot
+maximum resulting gap remains unchanged. The paired location's ridership continues
+to use the paired/solo-adjacency comparison logic.

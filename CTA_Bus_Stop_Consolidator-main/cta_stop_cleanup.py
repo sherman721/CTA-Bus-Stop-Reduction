@@ -290,30 +290,34 @@ def norm_streets(street, cross):
 
 
 def pair_stops(stops: pd.DataFrame, max_dist: float) -> pd.DataFrame:
-    """Pair opposite-direction stops only when street AND cross-street names agree.
+    """Pair opposite-direction stops by mutual-nearest coordinates, not labels.
 
-    Nearby stops with mismatched intersection names are deliberately left as solo
-    directional stops. The optimizer writes those candidates to a Pairing Review sheet.
+    Matching is route-specific and direction-specific. A pair must be within
+    max_dist and each stop must be the other's nearest opposite-direction stop.
     """
     pairs = []
     for route, rt in stops.groupby("ROUTEA"):
         rt = rt.dropna(subset=["LAT", "LON"])
         idx = rt.index.to_numpy()
         lat, lon = rt["LAT"].to_numpy(), rt["LON"].to_numpy()
-        dirs = rt["DIRECTION"].to_numpy()
-        names = [norm_streets(a, b) for a, b in zip(rt["STREET"], rt["CROSS_ST"])]
+        dirs = rt["DIRECTION"].astype(str).to_numpy()
         D = haversine_matrix(lat, lon, lat, lon)
         D[dirs[:, None] == dirs[None, :]] = np.inf
-        upper = np.triu(np.ones_like(D, dtype=bool), k=1)
-        cand = [(D[i, j], i, j) for i, j in np.argwhere(np.isfinite(D) & upper)
-                if D[i, j] <= max_dist and names[i] == names[j]]
-        cand.sort()
+        nearest = {}
+        for i in range(len(rt)):
+            candidates = np.flatnonzero(np.isfinite(D[i]) & (D[i] <= max_dist))
+            if len(candidates):
+                nearest[i] = min(candidates, key=lambda j: (D[i, j], str(dirs[j]), str(idx[j])))
+        candidates = [(D[i, j], i, j) for i, j in nearest.items()
+                      if nearest.get(j) == i and i < j]
+        candidates.sort(key=lambda x: (x[0], str(idx[x[1]]), str(idx[x[2]])))
         used = set()
-        for d, i, j in cand:
+        for distance, i, j in candidates:
             if i in used or j in used:
                 continue
             used.update((i, j))
-            pairs.append((idx[i], idx[j], d, "Name + distance"))
+            pairs.append((idx[i], idx[j], distance,
+                          "Mutual nearest opposite-direction coordinates"))
     return pd.DataFrame(pairs, columns=["IDX_A", "IDX_B", "DIST_M", "METHOD"])
 
 

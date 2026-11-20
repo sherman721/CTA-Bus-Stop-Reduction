@@ -267,7 +267,7 @@ class RouteModel:
             members = [i for i in locs[L] if kept[i]]
             if not members:
                 return None
-            merged_ok, trigger, nb, cost = True, False, [], 0.0
+            merged_ok, directional_triggers, nb, cost = True, [], [], 0.0
             for i in members:
                 if i in self.noseq or i not in pos:
                     return None
@@ -282,8 +282,7 @@ class RouteModel:
                 if gp + gn > cap and not preexisting_barrier_gap:
                     merged_ok = False
                 m = min(gp, gn)
-                if m <= trig:
-                    trigger = True
+                directional_triggers.append(m <= trig)
                 def same_direction_location_total(j):
                     direction = self.st.at[j, "DIRECTION"]
                     return sum(stop_total(q) for q in locs[loc_of[j]]
@@ -316,6 +315,8 @@ class RouteModel:
                 dlower = min(directional_neighbors) if directional_neighbors else np.nan
                 direction_checks.append(dtotal < a.low_volume or
                     (dlower > 0 and dtotal <= a.ratio * dlower))
+            # Whole-pair removal needs a spacing trigger in every direction.
+            trigger = bool(directional_triggers) and all(directional_triggers)
             rule_b = bottom_half or all(direction_checks)
             return dict(merged_ok=merged_ok, trigger=trigger, rule_b=rule_b, cost=cost, tot=tot,
                         lower_neighbor=lower_neighbor, ratio_to_lower=ratio_to_lower)
@@ -461,7 +462,7 @@ class OptimizedRouteModel(RouteModel):
         def evaluate(st,L):
             members=[i for i in locs[L] if i in st['kept']]
             if not members: return None
-            trigger=False; merged=True; neighbors=[]; cost=0.0; walks={}
+            directional_triggers=[]; merged=True; neighbors=[]; cost=0.0; walks={}
             for i in members:
                 if i in self.noseq or i not in pos: return None
                 p,n=prev_next(st,i)
@@ -470,7 +471,7 @@ class OptimizedRouteModel(RouteModel):
                 barrier=((p,i) in self.original_over_limit_edges or (i,n) in self.original_over_limit_edges)
                 if gp+gn>cap and not barrier: merged=False
                 near=min(gp,gn)
-                trigger |= near<=trig
+                directional_triggers.append(near<=trig)
                 def same_direction_location_total(j):
                     direction = self.st.at[j, "DIRECTION"]
                     return sum(stop_total(st,q) for q in locs[loc_of[j]]
@@ -529,6 +530,8 @@ class OptimizedRouteModel(RouteModel):
                 ridership_pass=all(direction_checks)
                 ridership_mode='DIRECTIONAL_SOLO_ADJACENCY' if len(members)>=2 else 'DIRECTIONAL_SOLO'
 
+            # Whole-pair removal needs a spacing trigger in every direction.
+            trigger=bool(directional_triggers) and all(directional_triggers)
             ridership_ok=bottom or ridership_pass
             return dict(members=members,merged=merged,trigger=trigger,ridership_ok=ridership_ok,
                         cost=cost,total=total,lower=lower,
