@@ -6,7 +6,7 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('--map',type=Path,default=Path('index.html'));p.add_argument('--geojson',type=Path,required=True);a=p.parse_args();features=json.loads(a.geojson.read_text())['features'];raw=a.map.read_text();m=re.search(r'(<script\b[^>]*type="application/json"[^>]*>)(.*?)(</script>)',raw,re.S);assert m,'Widget JSON missing';payload=json.loads(m[2]);calls=payload['x']['calls'];groups={};
     for f in features:
         r=f['properties'];groups.setdefault((r['scenario'],r['route']),[]).append(f)
-    names=[];new=[];legends=[]
+    names=[];new=[];legends=[];shared={}
     old_calls=list(calls)
     for (scenario,route),fs in groups.items():
         for metric in ['Walking Distance','Affected Ridership','Walking Burden']:
@@ -27,8 +27,11 @@ def main():
                     label=(f'{v:g}' if i<len(values)-1 else ('≥306.25 (size cap)' if metric=='Affected Ridership' else '≥19.75 approx. (size cap)'))
                     labels.append(f'<span style="display:inline-flex;align-items:center;gap:6px;min-height:{2*radius+2:.2f}px"><span style="display:inline-block;box-sizing:border-box;width:{2*radius:.2f}px;height:{2*radius:.2f}px;border-radius:50%;background:{color};background:rgba({37 if metric=="Affected Ridership" else 185},{99 if metric=="Affected Ridership" else 28},{235 if metric=="Affected Ridership" else 28},{opacity});border:1px solid {color}"></span>{label}</span>')
             units={'Walking Distance':'Mean added walk (ft)','Affected Ridership':'Daily boardings + alightings','Walking Burden':'Daily passenger-hours added'}[metric]
-            lid='impact-legend:'+name
-            legends.append(dict(method='addLegend',args=[dict(position='bottomleft',type='categorical',colors=colors_key,labels=labels,opacity=.65 if metric=='Walking Distance' else 1,title=html.escape(name)+'<br>'+units,className='info legend',group=name,layerId=lid)]))
+            lid='impact-legend:'+metric
+            if metric not in shared:
+                shared[metric]=[]
+                legends.append(dict(method='addLegend',args=[dict(position='bottomleft',type='categorical',colors=colors_key,labels=labels,opacity=.65 if metric=='Walking Distance' else 1,title=html.escape(metric)+'<br>'+units,className='info legend',layerId=lid)]))
+            shared[metric].append(name)
     calls[:]=[c for c in calls if not(c['method']=='addLegend' and c['args'][0].get('layerId','').startswith('impact-legend:'))]
     calls[:]=[c for c in calls if not(c['method']=='addCircleMarkers' and c['args'][4] in names)];idx=next(i for i,c in enumerate(calls) if c['method']=='addLayersControl');calls[idx:idx]=new
     for c in calls:
@@ -38,11 +41,32 @@ def main():
     # Register legends before hideGroup so initial overlay removal hides them.
     idx=next(i for i,c in enumerate(calls) if c['method']=='hideGroup')
     calls[idx:idx]=legends
-    # Explicitly hide legend controls initially, even if the group was already hidden.
-    idx=next(i for i,c in enumerate(calls) if c['method']=='hideGroup')
-    calls[idx+1:idx+1]=[dict(method='removeControl',args=[c['args'][0]['layerId']]) for c in legends]
-    # Remove previous generated initial-hide calls, retaining exactly one per legend.
-    seen=set(); calls[:]=[c for c in calls if not(c['method']=='removeControl' and str(c['args'][0]).startswith('impact-legend:') and (c['args'][0] in seen or seen.add(c['args'][0])))]
+    # Remove old per-layer hide calls; shared controls are managed after render.
+    calls[:]=[c for c in calls if not(c['method']=='removeControl' and str(c['args'][0]).startswith('impact-legend:'))]
+    hook = """function(el,x){
+      /* shared-impact-legends */
+      var map=this.getMap(), groups=GROUPS;
+      var entries=Object.keys(groups).map(function(metric){
+        var id='impact-legend:'+metric;
+        return {id:id,control:map.controls.get(id),names:groups[metric]};
+      });
+      function sync(){
+        entries.forEach(function(e){
+          var visible=e.names.some(function(name){
+            var layer=map.layerManager.getLayerGroup(name,false);
+            return layer && map.hasLayer(layer);
+          });
+          if(visible && !map.controls.get(e.id)) map.controls.add(e.control,e.id);
+          if(!visible && map.controls.get(e.id)) map.controls.remove(e.id);
+        });
+      }
+      map.on('layeradd layerremove overlayadd overlayremove groupadd groupremove',sync);
+      sync();
+    }""".replace('GROUPS',json.dumps(shared))
+    if not payload.get('jsHooks'): payload['jsHooks']={}
+    hooks=payload.setdefault('jsHooks',{}).setdefault('render',[])
+    hooks[:]=[h for h in hooks if 'shared-impact-legends' not in h.get('code','')]
+    hooks.append(dict(code=hook,data=None))
     # R widget eval paths use positional call indices; rebuild easy-button paths.
     evals=[]
     for path in payload.get('evals',[]):
