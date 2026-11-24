@@ -1097,3 +1097,6 @@ The current project name is **New Consolidation**. Use
 integration references. Older files or map layers may still contain
 legacy names; update them when practical so the project uses consistent
 naming.
+
+## Route 50 walking impact overlays
+Run `python build_impacts.py --geojson distributional_impacts.geojson` from this directory. Six hidden-by-default overlays compare CTA Consolidation and New Consolidation against the original permanent inventory. Walking distance colors: yellow <=330 ft, orange <=660 ft, red >660 ft. Affected activity uses blue circles; walking burden uses translucent red proportional circles (overlap highlights concentrations; not a kernel-density heatmap). Radii scale with square root of activity or passenger-hours, capped at 35 or 40 pixels respectively. Same scales for both scenarios. Popups show redistribution destinations and modeled distances. Keep the existing jawg_tiles directory. Re-run after regenerating GeoJSON. Existing consolidation integration remains separate.

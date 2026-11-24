@@ -54,3 +54,6 @@ Core analysis ends with physical resource quantities; no financial or consumptio
 | capital | one_time_removal_cost, one_time_amenity_cost |
 
 Run `python optional_costs.py --inputs my_inputs.json --output outputs/my_cost_results.json`. Missing inputs in enabled modules are errors; disabled modules are explicitly not evaluated. Zero is valid only when deliberately supplied. Use separate runs for propulsion types with appropriate route-wide weighted intensities, or separate fleet-specific resource data; do not sum full-route runs. No automatic annualization defaults, labor recovery assumptions, or aggregate cost totals. See methodology.
+
+## Distributional analysis
+Run `python distributional_analysis.py` after reconciliation. Outputs: stop_impacts.csv, walking_distribution.csv, distributional_impacts.geojson. Default permanent scope matches the map; `--scope scheduled` is available for comparison (absolute burden including temporary closure). Copy GeoJSON to map repository and run its separate build_impacts.py script.
