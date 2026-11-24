@@ -10,7 +10,7 @@ Run the complete core analysis from the toolkit folder:
 python run_analysis.py
 ```
 
-The runner executes all nine core scripts in dependency order, regenerates outputs, and stops on errors. It uses the same Python interpreter and toolkit working directory for every step. Allow several minutes for the break-even calculation. Known generated outputs are cleared before each full run; unrelated files are preserved. A failed run leaves partial results and `run_status.json` marked incomplete. Empty CSV outputs are truncated to zero bytes. No map HTML is modified. Optional cost analysis is skipped unless explicitly requested:
+The runner executes all ten core stages in dependency order, regenerates outputs, and stops on errors. It uses the same Python interpreter and toolkit working directory for every step. Allow several minutes for the break-even calculation. Known generated outputs are cleared before each full run; unrelated files are preserved. A failed run leaves partial results and `run_status.json` marked incomplete. Empty CSV outputs are truncated to zero bytes. No map HTML is modified. Optional cost analysis is skipped unless explicitly requested:
 
 ```sh
 python run_analysis.py --cost-inputs my_inputs.json
@@ -100,3 +100,7 @@ Run `python distributional_analysis.py` after reconciliation. Outputs: stop_impa
 
 ## Audit corrections
 `scenario_summary.csv` reports designated `stops`, `expected_interior_stops_per_trip` and `expected_total_stops_per_trip` (interior plus two mandatory terminals). The former ambiguous `expected_stops_per_trip` column is retired. Stop-level `probability` remains the raw demand-based Poisson probability; runtime calculations override terminal probabilities to one. `service_reinvestment.csv` now reports fully recalculated ride, walk, wait and net hours; the fixed-ride approximation column is retired. Run the full pipeline to refresh all dependent outputs. Fixed assumptions: 100% retention, inverse-distance redistribution, Poisson primary model, no confirmed barrier override, AM proxy for PM, and always-run break-even sensitivity; the corresponding config keys are not implemented switches.
+
+## Consolidated results workbook
+
+The final core stage runs `build_results_workbook.py`, which reads current CSV outputs, config.json and SOURCES.md and uses `results_template.xlsx` for formatting. Keep the template beside the script. The generated workbook is `outputs/CTA_Results.xlsx` and is replaced on every full run. To rebuild only the workbook, run `python3 build_results_workbook.py` after a successful analysis. No new dependencies are required. Negative chart bars retain their series colors. Optional cost results remain separate.
