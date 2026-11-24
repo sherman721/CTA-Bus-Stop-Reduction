@@ -41,3 +41,16 @@ After the existing pipeline, run `python break_even.py` and `python field_stoppi
 
 ### Phase 7
 Run `python operating_analysis.py` after Phase 6. Produces `outputs/operating_resources.csv`: daily revenue mileage, theoretical resource hours, fixed-departure concurrency lower bounds and energy-intensity break-even thresholds. No actual fleet assignment or fuel savings is asserted.
+
+## Phase 8 — Optional cost and energy inputs
+Core analysis ends with physical resource quantities; no financial or consumption assumptions are required. Copy `cost_inputs.template.json` to a separate input file and fill in method (`anchored`, `standalone`, `field`), scenario (`cta`, `proposed`), reinvest (true/false), annual equivalent weekdays, currency and source (document provenance and date for every supplied parameter). Enable only the modules you can support by replacing their null with an object containing the following keys:
+
+| Module | Required keys |
+|---|---|
+| labor | paid_hours_saved_per_day, marginal_cost_per_paid_hour |
+| vehicle_maintenance | marginal_nonenergy_maintenance_cost_per_mile |
+| energy | unit, baseline_units_per_mile, scenario_units_per_mile, price_per_unit |
+| stop_maintenance | net_annual_stop_maintenance_savings |
+| capital | one_time_removal_cost, one_time_amenity_cost |
+
+Run `python optional_costs.py --inputs my_inputs.json --output outputs/my_cost_results.json`. Missing inputs in enabled modules are errors; disabled modules are explicitly not evaluated. Zero is valid only when deliberately supplied. Use separate runs for propulsion types with appropriate route-wide weighted intensities, or separate fleet-specific resource data; do not sum full-route runs. No automatic annualization defaults, labor recovery assumptions, or aggregate cost totals. See methodology.
