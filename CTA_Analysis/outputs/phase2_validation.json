@@ -1,0 +1,141 @@
+{
+  "full_trips": {
+    "South": 83,
+    "North": 83
+  },
+  "excluded": 7,
+  "summary": [
+    {
+      "scope": "scheduled",
+      "scenario": "original",
+      "direction": "South",
+      "stops": 87,
+      "trips": 83,
+      "boardings": 4022.9022499999996,
+      "alightings": 4022.90425,
+      "expected_stops_per_trip": 47.92878042058284,
+      "walking_passenger_hours": 0.0
+    },
+    {
+      "scope": "scheduled",
+      "scenario": "cta",
+      "direction": "South",
+      "stops": 80,
+      "trips": 83,
+      "boardings": 4022.9022499999996,
+      "alightings": 4022.90425,
+      "expected_stops_per_trip": 46.78860927019678,
+      "walking_passenger_hours": 8.699034056964576
+    },
+    {
+      "scope": "scheduled",
+      "scenario": "proposed",
+      "direction": "South",
+      "stops": 58,
+      "trips": 83,
+      "boardings": 4022.9022499999996,
+      "alightings": 4022.90425,
+      "expected_stops_per_trip": 41.24323896153008,
+      "walking_passenger_hours": 47.41018048489171
+    },
+    {
+      "scope": "permanent",
+      "scenario": "original",
+      "direction": "South",
+      "stops": 87,
+      "trips": 83,
+      "boardings": 4022.9022499999996,
+      "alightings": 4022.90425,
+      "expected_stops_per_trip": 47.92878042058284,
+      "walking_passenger_hours": 0.0
+    },
+    {
+      "scope": "permanent",
+      "scenario": "cta",
+      "direction": "South",
+      "stops": 80,
+      "trips": 83,
+      "boardings": 4022.9022499999996,
+      "alightings": 4022.90425,
+      "expected_stops_per_trip": 46.78860927019678,
+      "walking_passenger_hours": 8.699034056964576
+    },
+    {
+      "scope": "permanent",
+      "scenario": "proposed",
+      "direction": "South",
+      "stops": 58,
+      "trips": 83,
+      "boardings": 4022.9022499999996,
+      "alightings": 4022.90425,
+      "expected_stops_per_trip": 41.24323896153008,
+      "walking_passenger_hours": 47.41018048489171
+    },
+    {
+      "scope": "scheduled",
+      "scenario": "original",
+      "direction": "North",
+      "stops": 84,
+      "trips": 83,
+      "boardings": 3909.0895833333334,
+      "alightings": 3909.0840000000003,
+      "expected_stops_per_trip": 46.275530894325705,
+      "walking_passenger_hours": 2.735802579129519
+    },
+    {
+      "scope": "scheduled",
+      "scenario": "cta",
+      "direction": "North",
+      "stops": 78,
+      "trips": 83,
+      "boardings": 3909.0895833333334,
+      "alightings": 3909.0840000000003,
+      "expected_stops_per_trip": 45.76130816783558,
+      "walking_passenger_hours": 5.365383710597013
+    },
+    {
+      "scope": "scheduled",
+      "scenario": "proposed",
+      "direction": "North",
+      "stops": 59,
+      "trips": 83,
+      "boardings": 3909.0895833333334,
+      "alightings": 3909.0840000000003,
+      "expected_stops_per_trip": 40.75793481351893,
+      "walking_passenger_hours": 40.13700855294085
+    },
+    {
+      "scope": "permanent",
+      "scenario": "original",
+      "direction": "North",
+      "stops": 85,
+      "trips": 83,
+      "boardings": 3909.0895833333334,
+      "alightings": 3909.0840000000003,
+      "expected_stops_per_trip": 46.50582280723599,
+      "walking_passenger_hours": 0.0
+    },
+    {
+      "scope": "permanent",
+      "scenario": "cta",
+      "direction": "North",
+      "stops": 79,
+      "trips": 83,
+      "boardings": 3909.0895833333334,
+      "alightings": 3909.0840000000003,
+      "expected_stops_per_trip": 45.99160008074586,
+      "walking_passenger_hours": 2.629581131467493
+    },
+    {
+      "scope": "permanent",
+      "scenario": "proposed",
+      "direction": "North",
+      "stops": 59,
+      "trips": 83,
+      "boardings": 3909.0895833333334,
+      "alightings": 3909.0840000000003,
+      "expected_stops_per_trip": 40.75793481351893,
+      "walking_passenger_hours": 40.13700855294085
+    }
+  ]
+}

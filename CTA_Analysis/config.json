@@ -1,0 +1,47 @@
+{
+  "route": "50",
+  "service_date": "20260922",
+  "running_speed_mph": 25,
+  "acceleration_ft_s2": 3.4,
+  "deceleration_ft_s2": 4.0,
+  "walking_speed_m_s": 1.33,
+  "door_cycle_seconds": 4,
+  "boarding_seconds": 2.75,
+  "alighting_seconds": 1.75,
+  "roadway": "urban_single_lane_mixed",
+  "roadway_loss_min_mile": {
+    "urban_single_lane_mixed": 3.0,
+    "urban_multilane_mixed": 2,
+    "cbd_mixed": 3,
+    "suburban_mixed": 1,
+    "cbd_bus_lane_no_turns": 1.2,
+    "cbd_bus_lane_turns": 2,
+    "urban_bus_lane_no_turns": 0.8,
+    "urban_bus_lane_turns": 1.7,
+    "suburban_bus_lane_no_turns": 0.4,
+    "suburban_bus_lane_turns": 0.7
+  },
+  "layover_minutes_per_terminal": 9,
+  "clearance_distance_ft": 40,
+  "barrier_review_gap_ft": 1500,
+  "confirmed_barriers": [],
+  "stopping_probability": "poisson",
+  "redistribution": "inverse_distance",
+  "retention": 1.0,
+  "periods": {
+    "am_peak": [
+      6,
+      9
+    ],
+    "midday": [
+      9,
+      15
+    ],
+    "pm_peak": [
+      15,
+      19
+    ]
+  },
+  "sensitivity_enabled": false,
+  "pm_field_proxy": "am_peak"
+}

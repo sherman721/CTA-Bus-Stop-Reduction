@@ -1,0 +1,445 @@
+trip,source_row,direction,stop_id,name,kind,period,arrival,raw_measurement,seconds,status,qc,include,note
+823am_Northbound_from_orange li,2,North,14135,35TH/ARCHER & ORANGE LINE STATION,dwell,am_peak,08:23:00,,,unknown,boundary,False,Got on bus
+823am_Northbound_from_orange li,3,North,4433,ARCHER & 35TH STREET/HOYNE,dwell,am_peak,08:24:33,,,skipped,skipped,False,
+823am_Northbound_from_orange li,4,North,8749,DAMEN & ARCHER,dwell,am_peak,08:26:05,19.77,19.77,stopped,valid,True,
+823am_Northbound_from_orange li,5,North,8750,DAMEN & 33RD STREET,dwell,am_peak,08:27:03,3.0,3.0,stopped,valid,True,
+823am_Northbound_from_orange li,6,North,8751,DAMEN & 2559 SOUTH,dwell,am_peak,08:30:33,,,skipped,skipped,False,
+823am_Northbound_from_orange li,7,North,8752,DAMEN & 2501 SOUTH,dwell,am_peak,,,,not_served,removed,False,This should be eliminated
+823am_Northbound_from_orange li,8,North,8753,DAMEN & BLUE ISLAND,dwell,am_peak,08:31:30,,,skipped,skipped,False,
+823am_Northbound_from_orange li,9,North,8891,DAMEN & 23RD STREET,dwell,am_peak,08:32:23,,,skipped,skipped,False,
+823am_Northbound_from_orange li,10,North,14489,DAMEN & CERMAK,dwell,am_peak,08:33:24,6.61,6.61,stopped,valid,True,
+823am_Northbound_from_orange li,11,North,15199,DAMEN & PINK LINE STATION,dwell,am_peak,08:34:46,,,skipped,skipped,False,
+823am_Northbound_from_orange li,12,North,8895,DAMEN & 19TH STREET,dwell,am_peak,08:36:20,,,skipped,skipped,False,
+823am_Northbound_from_orange li,13,North,8896,DAMEN & 18TH STREET,dwell,am_peak,08:37:08,12.98,12.98,stopped,valid,True,
+823am_Northbound_from_orange li,14,North,8897,DAMEN & 17TH STREET,dwell,am_peak,08:37:56,,,skipped,skipped,False,
+823am_Northbound_from_orange li,15,North,8898,DAMEN & 14TH STREET,dwell,am_peak,,,,not_served,removed,False,This should be eliminated
+823am_Northbound_from_orange li,16,North,8899,DAMEN & HASTINGS,dwell,am_peak,,,,not_served,removed,False,This should be eliminated
+823am_Northbound_from_orange li,17,North,8900,DAMEN & 13TH STREET,dwell,am_peak,08:39:16,4.41,4.41,stopped,valid,True,
+823am_Northbound_from_orange li,18,North,8902,DAMEN & ROOSEVELT,dwell,am_peak,08:40:27,4.82,4.82,stopped,valid,True,bus stop moved
+823am_Northbound_from_orange li,19,North,8904,DAMEN & TAYLOR,dwell,am_peak,08:41:48,8.27,8.27,stopped,valid,True,
+823am_Northbound_from_orange li,20,North,8905,DAMEN & POLK,dwell,am_peak,08:42:50,9.13,9.13,stopped,valid,True,
+823am_Northbound_from_orange li,21,North,8906,DAMEN & OGDEN,dwell,am_peak,08:43:33,9.7,9.7,stopped,valid,True,
+823am_Northbound_from_orange li,22,North,8907,DAMEN & HARRISON,dwell,am_peak,08:44:53,4.6,4.6,stopped,valid,True,
+823am_Northbound_from_orange li,23,North,15869,DAMEN & BLUE LINE STATION,dwell,am_peak,08:46:06,,,skipped,skipped,False,
+823am_Northbound_from_orange li,24,North,111,DAMEN & JACKSON,dwell,am_peak,08:46:44,,,skipped,skipped,False,
+823am_Northbound_from_orange li,25,North,17274,DAMEN & ADAMS,dwell,am_peak,08:47:05,,,skipped,skipped,False,
+823am_Northbound_from_orange li,26,North,8910,DAMEN & MADISON,dwell,am_peak,08:47:50,6.6,6.6,stopped,valid,True,
+823am_Northbound_from_orange li,27,North,8911,DAMEN & WARREN,dwell,am_peak,08:48:41,,,skipped,skipped,False,
+823am_Northbound_from_orange li,28,North,8912,DAMEN & WASHINGTON,dwell,am_peak,08:48:49,,,skipped,skipped,False,
+823am_Northbound_from_orange li,29,North,8913,DAMEN & LAKE,dwell,am_peak,08:49:27,,,skipped,skipped,False,
+823am_Northbound_from_orange li,30,North,18623,DAMEN & LAKE,dwell,am_peak,,,,unknown,unknown,False,
+823am_Northbound_from_orange li,31,North,8914,DAMEN & FULTON,dwell,am_peak,,,,not_served,removed,False,This should be eliminated
+823am_Northbound_from_orange li,32,North,8915,DAMEN & CARROLL,dwell,am_peak,08:50:24,,,skipped,skipped,False,
+823am_Northbound_from_orange li,33,North,8916,DAMEN & HUBBARD,dwell,am_peak,,,,not_served,removed,False,This should be eliminated
+823am_Northbound_from_orange li,34,North,8917,DAMEN & GRAND,dwell,am_peak,08:51:22,,,skipped,skipped,False,
+823am_Northbound_from_orange li,35,North,8918,DAMEN & OHIO,dwell,am_peak,08:52:22,,,skipped,skipped,False,
+823am_Northbound_from_orange li,36,North,8919,DAMEN & HURON,dwell,am_peak,08:52:48,,,unknown,boundary,False,got off bus
+823am_Northbound_from_orange li,37,North,8920,DAMEN & CHICAGO,dwell,am_peak,,,,not_observed,outside_coverage,False,
+1028am_Northbound_from_orange l,2,North,14135,35TH/ARCHER & ORANGE LINE STATION,dwell,midday,10:28:31,,,unknown,boundary,False,Got on bus
+1028am_Northbound_from_orange l,3,North,4433,ARCHER & 35TH STREET/HOYNE,dwell,midday,,,,unknown,unknown,False,
+1028am_Northbound_from_orange l,4,North,8749,DAMEN & ARCHER,dwell,midday,10:32:04,18.49,18.49,stopped,valid,True,
+1028am_Northbound_from_orange l,5,North,8750,DAMEN & 33RD STREET,dwell,midday,10:33:00,,,skipped,skipped,False,
+1028am_Northbound_from_orange l,6,North,8751,DAMEN & 2559 SOUTH,dwell,midday,10:34:58,7.28,7.28,stopped,valid,True,
+1028am_Northbound_from_orange l,7,North,8752,DAMEN & 2501 SOUTH,dwell,midday,,,,not_served,removed,False,This should be eliminated
+1028am_Northbound_from_orange l,8,North,8753,DAMEN & BLUE ISLAND,dwell,midday,10:36:11,10.78,10.78,stopped,valid,True,
+1028am_Northbound_from_orange l,9,North,8891,DAMEN & 23RD STREET,dwell,midday,10:36:50,6.21,6.21,stopped,valid,True,
+1028am_Northbound_from_orange l,10,North,14489,DAMEN & CERMAK,dwell,midday,10:37:44,12.05,12.05,stopped,valid,True,
+1028am_Northbound_from_orange l,11,North,15199,DAMEN & PINK LINE STATION,dwell,midday,10:39:10,16.43,16.43,stopped,valid,True,
+1028am_Northbound_from_orange l,12,North,8895,DAMEN & 19TH STREET,dwell,midday,,,,unknown,unknown,False,
+1028am_Northbound_from_orange l,13,North,8896,DAMEN & 18TH STREET,dwell,midday,10:41:07,11.0,11.0,stopped,valid,True,
+1028am_Northbound_from_orange l,14,North,8897,DAMEN & 17TH STREET,dwell,midday,,,,unknown,unknown,False,
+1028am_Northbound_from_orange l,15,North,8898,DAMEN & 14TH STREET,dwell,midday,,,,not_served,removed,False,This should be eliminated
+1028am_Northbound_from_orange l,16,North,8899,DAMEN & HASTINGS,dwell,midday,,,,not_served,removed,False,This should be eliminated
+1028am_Northbound_from_orange l,17,North,8900,DAMEN & 13TH STREET,dwell,midday,10:43:00,,,skipped,skipped,False,
+1028am_Northbound_from_orange l,18,North,8902,DAMEN & ROOSEVELT,dwell,midday,10:43:41,8.93,8.93,stopped,valid,True,bus stop moved
+1028am_Northbound_from_orange l,19,North,8904,DAMEN & TAYLOR,dwell,midday,10:44:25,13.66,13.66,stopped,valid,True,
+1028am_Northbound_from_orange l,20,North,8905,DAMEN & POLK,dwell,midday,10:45:46,24.4,24.4,stopped,valid,True,
+1028am_Northbound_from_orange l,21,North,8906,DAMEN & OGDEN,dwell,midday,10:47:09,26.87,26.87,stopped,valid,True,
+1028am_Northbound_from_orange l,22,North,8907,DAMEN & HARRISON,dwell,midday,10:47:50,7.83,7.83,stopped,valid,True,
+1028am_Northbound_from_orange l,23,North,15869,DAMEN & BLUE LINE STATION,dwell,midday,10:50:01,,,skipped,skipped,False,
+1028am_Northbound_from_orange l,24,North,111,DAMEN & JACKSON,dwell,midday,10:50:24,,,skipped,skipped,False,
+1028am_Northbound_from_orange l,25,North,17274,DAMEN & ADAMS,dwell,midday,10:51:00,5.66,5.66,stopped,valid,True,
+1028am_Northbound_from_orange l,26,North,8910,DAMEN & MADISON,dwell,midday,10:52:08,13.48,13.48,stopped,valid,True,
+1028am_Northbound_from_orange l,27,North,8911,DAMEN & WARREN,dwell,midday,10:53:18,6.16,6.16,stopped,valid,True,
+1028am_Northbound_from_orange l,28,North,8912,DAMEN & WASHINGTON,dwell,midday,10:54:12,7.1,7.1,stopped,valid,True,
+1028am_Northbound_from_orange l,29,North,8913,DAMEN & LAKE,dwell,midday,10:55:06,6.13,6.13,stopped,valid,True,
+1028am_Northbound_from_orange l,30,North,18623,DAMEN & LAKE,dwell,midday,,,,unknown,unknown,False,
+1028am_Northbound_from_orange l,31,North,8914,DAMEN & FULTON,dwell,midday,,,,not_served,removed,False,This should be eliminated
+1028am_Northbound_from_orange l,32,North,8915,DAMEN & CARROLL,dwell,midday,,,,unknown,unknown,False,
+1028am_Northbound_from_orange l,33,North,8916,DAMEN & HUBBARD,dwell,midday,,,,not_served,removed,False,This should be eliminated
+1028am_Northbound_from_orange l,34,North,8917,DAMEN & GRAND,dwell,midday,10:56:42,6.5,6.5,stopped,valid,True,
+1028am_Northbound_from_orange l,35,North,8918,DAMEN & OHIO,dwell,midday,10:57:23,,,unknown,boundary,False,got off here
+1028am_Northbound_from_orange l,36,North,8919,DAMEN & HURON,dwell,midday,,,,not_observed,outside_coverage,False,
+1028am_Northbound_from_orange l,37,North,8920,DAMEN & CHICAGO,dwell,midday,,,,not_observed,outside_coverage,False,
+1151am_Northbound_from_orange l,2,North,14135,35TH/ARCHER & ORANGE LINE STATION,dwell,midday,11:51:00,,,unknown,boundary,False,Got on bus
+1151am_Northbound_from_orange l,3,North,4433,ARCHER & 35TH STREET/HOYNE,dwell,midday,11:52:05,6.1,6.1,stopped,valid,True,
+1151am_Northbound_from_orange l,4,North,8749,DAMEN & ARCHER,dwell,midday,,,,unknown,unknown,False,
+1151am_Northbound_from_orange l,5,North,8750,DAMEN & 33RD STREET,dwell,midday,,,,unknown,unknown,False,
+1151am_Northbound_from_orange l,6,North,8751,DAMEN & 2559 SOUTH,dwell,midday,,,,unknown,unknown,False,
+1151am_Northbound_from_orange l,7,North,8752,DAMEN & 2501 SOUTH,dwell,midday,,,,not_served,removed,False,This should be eliminated
+1151am_Northbound_from_orange l,8,North,8753,DAMEN & BLUE ISLAND,dwell,midday,11:58:30,5.0,5.0,stopped,valid,True,
+1151am_Northbound_from_orange l,9,North,8891,DAMEN & 23RD STREET,dwell,midday,11:59:15,3.93,3.93,stopped,valid,True,
+1151am_Northbound_from_orange l,10,North,14489,DAMEN & CERMAK,dwell,midday,12:00:00,10.0,10.0,stopped,valid,True,
+1151am_Northbound_from_orange l,11,North,15199,DAMEN & PINK LINE STATION,dwell,midday,12:02:22,7.97,7.97,stopped,valid,True,
+1151am_Northbound_from_orange l,12,North,8895,DAMEN & 19TH STREET,dwell,midday,12:03:30,,,skipped,skipped,False,
+1151am_Northbound_from_orange l,13,North,8896,DAMEN & 18TH STREET,dwell,midday,12:04:37,4.85,4.85,stopped,valid,True,
+1151am_Northbound_from_orange l,14,North,8897,DAMEN & 17TH STREET,dwell,midday,12:05:10,4.51,4.51,stopped,valid,True,
+1151am_Northbound_from_orange l,15,North,8898,DAMEN & 14TH STREET,dwell,midday,,,,not_served,removed,False,This should be eliminated
+1151am_Northbound_from_orange l,16,North,8899,DAMEN & HASTINGS,dwell,midday,,,,not_served,removed,False,This should be eliminated
+1151am_Northbound_from_orange l,17,North,8900,DAMEN & 13TH STREET,dwell,midday,12:06:30,,,skipped,skipped,False,
+1151am_Northbound_from_orange l,18,North,8902,DAMEN & ROOSEVELT,dwell,midday,12:08:20,13.6,13.6,stopped,valid,True,bus stop moved
+1151am_Northbound_from_orange l,19,North,8904,DAMEN & TAYLOR,dwell,midday,12:09:38,61.14,61.14,stopped,valid,True,
+1151am_Northbound_from_orange l,20,North,8905,DAMEN & POLK,dwell,midday,12:11:52,35.0,35.0,stopped,valid,True,
+1151am_Northbound_from_orange l,21,North,8906,DAMEN & OGDEN,dwell,midday,,,,unknown,unknown,False,
+1151am_Northbound_from_orange l,22,North,8907,DAMEN & HARRISON,dwell,midday,,,,unknown,unknown,False,
+1151am_Northbound_from_orange l,23,North,15869,DAMEN & BLUE LINE STATION,dwell,midday,,,,unknown,boundary,False,got off bus here
+1151am_Northbound_from_orange l,24,North,111,DAMEN & JACKSON,dwell,midday,,,,not_observed,outside_coverage,False,
+1151am_Northbound_from_orange l,25,North,17274,DAMEN & ADAMS,dwell,midday,,,,not_observed,outside_coverage,False,
+1151am_Northbound_from_orange l,26,North,8910,DAMEN & MADISON,dwell,midday,,,,not_observed,outside_coverage,False,
+1151am_Northbound_from_orange l,27,North,8911,DAMEN & WARREN,dwell,midday,,,,not_observed,outside_coverage,False,
+1151am_Northbound_from_orange l,28,North,8912,DAMEN & WASHINGTON,dwell,midday,,,,not_observed,outside_coverage,False,
+1151am_Northbound_from_orange l,29,North,8913,DAMEN & LAKE,dwell,midday,,,,not_observed,outside_coverage,False,
+1151am_Northbound_from_orange l,30,North,18623,DAMEN & LAKE,dwell,midday,,,,not_observed,outside_coverage,False,
+1151am_Northbound_from_orange l,31,North,8914,DAMEN & FULTON,dwell,midday,,,,not_observed,outside_coverage,False,This should be eliminated
+1151am_Northbound_from_orange l,32,North,8915,DAMEN & CARROLL,dwell,midday,,,,not_observed,outside_coverage,False,
+1151am_Northbound_from_orange l,33,North,8916,DAMEN & HUBBARD,dwell,midday,,,,not_observed,outside_coverage,False,This should be eliminated
+1151am_Northbound_from_orange l,34,North,8917,DAMEN & GRAND,dwell,midday,,,,not_observed,outside_coverage,False,
+1151am_Northbound_from_orange l,35,North,8918,DAMEN & OHIO,dwell,midday,,,,not_observed,outside_coverage,False,
+1151am_Northbound_from_orange l,36,North,8919,DAMEN & HURON,dwell,midday,,,,not_observed,outside_coverage,False,
+1151am_Northbound_from_orange l,37,North,8920,DAMEN & CHICAGO,dwell,midday,,,,not_observed,outside_coverage,False,
+(Clearance)_848am_Northbound_fr,2,North,14135,35TH/ARCHER & ORANGE LINE STATION,clearance,am_peak,08:48:20,,,unknown,boundary,False,Got on bus
+(Clearance)_848am_Northbound_fr,3,North,4433,ARCHER & 35TH STREET/HOYNE,clearance,am_peak,08:49:46,53.77,53.77,stopped,valid,True,
+(Clearance)_848am_Northbound_fr,4,North,8749,DAMEN & ARCHER,clearance,am_peak,08:51:27,8.56,8.56,stopped,valid,True,
+(Clearance)_848am_Northbound_fr,5,North,8750,DAMEN & 33RD STREET,clearance,am_peak,08:52:18,,,skipped,skipped,False,
+(Clearance)_848am_Northbound_fr,6,North,8751,DAMEN & 2559 SOUTH,clearance,am_peak,08:56:20,,,skipped,skipped,False,
+(Clearance)_848am_Northbound_fr,7,North,8752,DAMEN & 2501 SOUTH,clearance,am_peak,,,,not_served,removed,False,This should be eliminated
+(Clearance)_848am_Northbound_fr,8,North,8753,DAMEN & BLUE ISLAND,clearance,am_peak,08:58:10,8.93,8.93,stopped,valid,True,
+(Clearance)_848am_Northbound_fr,9,North,8891,DAMEN & 23RD STREET,clearance,am_peak,08:59:20,9.48,9.48,stopped,valid,True,
+(Clearance)_848am_Northbound_fr,10,North,14489,DAMEN & CERMAK,clearance,am_peak,08:59:33,,,skipped,skipped,False,
+(Clearance)_848am_Northbound_fr,11,North,15199,DAMEN & PINK LINE STATION,clearance,am_peak,09:01:00,,,unknown,truck_delay,False,Waited for truck
+(Clearance)_848am_Northbound_fr,12,North,8895,DAMEN & 19TH STREET,clearance,am_peak,09:03:15,,,skipped,skipped,False,
+(Clearance)_848am_Northbound_fr,13,North,8896,DAMEN & 18TH STREET,clearance,am_peak,09:03:42,,,skipped,skipped,False,
+(Clearance)_848am_Northbound_fr,14,North,8897,DAMEN & 17TH STREET,clearance,am_peak,09:04:10,,,skipped,skipped,False,
+(Clearance)_848am_Northbound_fr,15,North,8898,DAMEN & 14TH STREET,clearance,am_peak,,,,not_served,removed,False,This should be eliminated
+(Clearance)_848am_Northbound_fr,16,North,8899,DAMEN & HASTINGS,clearance,am_peak,,,,not_served,removed,False,This should be eliminated
+(Clearance)_848am_Northbound_fr,17,North,8900,DAMEN & 13TH STREET,clearance,am_peak,09:05:40,,,skipped,skipped,False,
+(Clearance)_848am_Northbound_fr,18,North,8902,DAMEN & ROOSEVELT,clearance,am_peak,09:06:50,,,unknown,unknown,False,bus stop moved
+(Clearance)_848am_Northbound_fr,19,North,8904,DAMEN & TAYLOR,clearance,am_peak,09:07:13,36.92,36.92,stopped,valid,True,
+(Clearance)_848am_Northbound_fr,20,North,8905,DAMEN & POLK,clearance,am_peak,09:08:45,42.5,42.5,stopped,valid,True,
+(Clearance)_848am_Northbound_fr,21,North,8906,DAMEN & OGDEN,clearance,am_peak,09:10:07,86.62,86.62,stopped,valid,True,
+(Clearance)_848am_Northbound_fr,22,North,8907,DAMEN & HARRISON,clearance,am_peak,09:11:56,9.99,9.99,stopped,valid,True,
+(Clearance)_848am_Northbound_fr,23,North,15869,DAMEN & BLUE LINE STATION,clearance,am_peak,09:12:47,,,skipped,skipped,False,
+(Clearance)_848am_Northbound_fr,24,North,111,DAMEN & JACKSON,clearance,am_peak,09:13:10,41.32,41.32,stopped,valid,True,
+(Clearance)_848am_Northbound_fr,25,North,17274,DAMEN & ADAMS,clearance,am_peak,,,,unknown,unknown,False,
+(Clearance)_848am_Northbound_fr,26,North,8910,DAMEN & MADISON,clearance,am_peak,09:15:00,,,skipped,skipped,False,
+(Clearance)_848am_Northbound_fr,27,North,8911,DAMEN & WARREN,clearance,am_peak,09:15:55,38.27,38.27,stopped,valid,True,
+(Clearance)_848am_Northbound_fr,28,North,8912,DAMEN & WASHINGTON,clearance,am_peak,,,,unknown,unknown,False,
+(Clearance)_848am_Northbound_fr,29,North,8913,DAMEN & LAKE,clearance,am_peak,09:17:23,10.45,10.45,stopped,valid,True,
+(Clearance)_848am_Northbound_fr,30,North,18623,DAMEN & LAKE,clearance,am_peak,,,,unknown,unknown,False,
+(Clearance)_848am_Northbound_fr,31,North,8914,DAMEN & FULTON,clearance,am_peak,,,,not_served,removed,False,This should be eliminated
+(Clearance)_848am_Northbound_fr,32,North,8915,DAMEN & CARROLL,clearance,am_peak,09:18:30,,,skipped,skipped,False,
+(Clearance)_848am_Northbound_fr,33,North,8916,DAMEN & HUBBARD,clearance,am_peak,,,,not_served,removed,False,This should be eliminated
+(Clearance)_848am_Northbound_fr,34,North,8917,DAMEN & GRAND,clearance,am_peak,09:19:06,58.12,58.12,stopped,valid,True,
+(Clearance)_848am_Northbound_fr,35,North,8918,DAMEN & OHIO,clearance,am_peak,09:20:45,3.08,3.08,stopped,boundary,False,
+(Clearance)_848am_Northbound_fr,36,North,8919,DAMEN & HURON,clearance,am_peak,,,,not_observed,outside_coverage,False,
+(Clearance)_848am_Northbound_fr,37,North,8920,DAMEN & CHICAGO,clearance,am_peak,,,,not_observed,outside_coverage,False,
+(Clearance)1014am_Northbound_fr,2,North,14135,35TH/ARCHER & ORANGE LINE STATION,clearance,midday,10:14:00,,,unknown,boundary,False,Got on bus
+(Clearance)1014am_Northbound_fr,3,North,4433,ARCHER & 35TH STREET/HOYNE,clearance,midday,10:15:27,24.5,24.5,stopped,valid,True,
+(Clearance)1014am_Northbound_fr,4,North,8749,DAMEN & ARCHER,clearance,midday,10:17:17,20.88,20.88,stopped,valid,True,
+(Clearance)1014am_Northbound_fr,5,North,8750,DAMEN & 33RD STREET,clearance,midday,10:18:35,,,skipped,skipped,False,
+(Clearance)1014am_Northbound_fr,6,North,8751,DAMEN & 2559 SOUTH,clearance,midday,10:21:18,,,skipped,skipped,False,
+(Clearance)1014am_Northbound_fr,7,North,8752,DAMEN & 2501 SOUTH,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance)1014am_Northbound_fr,8,North,8753,DAMEN & BLUE ISLAND,clearance,midday,10:22:16,10.01,10.01,stopped,valid,True,
+(Clearance)1014am_Northbound_fr,9,North,8891,DAMEN & 23RD STREET,clearance,midday,10:23:10,,,skipped,skipped,False,
+(Clearance)1014am_Northbound_fr,10,North,14489,DAMEN & CERMAK,clearance,midday,10:24:20,9.88,9.88,stopped,valid,True,
+(Clearance)1014am_Northbound_fr,11,North,15199,DAMEN & PINK LINE STATION,clearance,midday,10:25:35,8.49,8.49,stopped,truck_delay,False,Waited for truck
+(Clearance)1014am_Northbound_fr,12,North,8895,DAMEN & 19TH STREET,clearance,midday,10:26:31,6.56,6.56,stopped,valid,True,
+(Clearance)1014am_Northbound_fr,13,North,8896,DAMEN & 18TH STREET,clearance,midday,10:27:18,8.68,8.68,stopped,valid,True,
+(Clearance)1014am_Northbound_fr,14,North,8897,DAMEN & 17TH STREET,clearance,midday,10:28:06,5.69,5.69,stopped,valid,True,
+(Clearance)1014am_Northbound_fr,15,North,8898,DAMEN & 14TH STREET,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance)1014am_Northbound_fr,16,North,8899,DAMEN & HASTINGS,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance)1014am_Northbound_fr,17,North,8900,DAMEN & 13TH STREET,clearance,midday,10:29:11,,,skipped,skipped,False,
+(Clearance)1014am_Northbound_fr,18,North,8902,DAMEN & ROOSEVELT,clearance,midday,10:30:20,5.2,5.2,stopped,valid,True,bus stop moved
+(Clearance)1014am_Northbound_fr,19,North,8904,DAMEN & TAYLOR,clearance,midday,10:31:11,27.66,27.66,stopped,valid,True,
+(Clearance)1014am_Northbound_fr,20,North,8905,DAMEN & POLK,clearance,midday,10:32:31,,,skipped,skipped,False,
+(Clearance)1014am_Northbound_fr,21,North,8906,DAMEN & OGDEN,clearance,midday,10:34:01,62.74,62.74,stopped,valid,True,
+(Clearance)1014am_Northbound_fr,22,North,8907,DAMEN & HARRISON,clearance,midday,10:36:00,9.99,9.99,stopped,valid,True,
+(Clearance)1014am_Northbound_fr,23,North,15869,DAMEN & BLUE LINE STATION,clearance,midday,10:36:50,5.59,5.59,stopped,valid,True,
+(Clearance)1014am_Northbound_fr,24,North,111,DAMEN & JACKSON,clearance,midday,10:37:55,29.35,29.35,stopped,valid,True,
+(Clearance)1014am_Northbound_fr,25,North,17274,DAMEN & ADAMS,clearance,midday,,,,unknown,unknown,False,
+(Clearance)1014am_Northbound_fr,26,North,8910,DAMEN & MADISON,clearance,midday,10:39:51,,,skipped,skipped,False,
+(Clearance)1014am_Northbound_fr,27,North,8911,DAMEN & WARREN,clearance,midday,,,,unknown,unknown,False,
+(Clearance)1014am_Northbound_fr,28,North,8912,DAMEN & WASHINGTON,clearance,midday,10:40:43,37.36,37.36,stopped,valid,True,
+(Clearance)1014am_Northbound_fr,29,North,8913,DAMEN & LAKE,clearance,midday,10:42:00,32.39,32.39,stopped,valid,True,
+(Clearance)1014am_Northbound_fr,30,North,18623,DAMEN & LAKE,clearance,midday,,,,unknown,unknown,False,
+(Clearance)1014am_Northbound_fr,31,North,8914,DAMEN & FULTON,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance)1014am_Northbound_fr,32,North,8915,DAMEN & CARROLL,clearance,midday,10:44:00,,,skipped,skipped,False,
+(Clearance)1014am_Northbound_fr,33,North,8916,DAMEN & HUBBARD,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance)1014am_Northbound_fr,34,North,8917,DAMEN & GRAND,clearance,midday,10:44:40,22.98,22.98,stopped,valid,True,
+(Clearance)1014am_Northbound_fr,35,North,8918,DAMEN & OHIO,clearance,midday,10:45:00,5.0,5.0,stopped,boundary,False,
+(Clearance)1014am_Northbound_fr,36,North,8919,DAMEN & HURON,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance)1014am_Northbound_fr,37,North,8920,DAMEN & CHICAGO,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance)1116am_Northbound_fr,2,North,14135,35TH/ARCHER & ORANGE LINE STATION,clearance,midday,11:16:00,,,unknown,boundary,False,Got on bus
+(Clearance)1116am_Northbound_fr,3,North,4433,ARCHER & 35TH STREET/HOYNE,clearance,midday,11:18:15,,,skipped,skipped,False,
+(Clearance)1116am_Northbound_fr,4,North,8749,DAMEN & ARCHER,clearance,midday,11:19:34,7.43,7.43,stopped,valid,True,
+(Clearance)1116am_Northbound_fr,5,North,8750,DAMEN & 33RD STREET,clearance,midday,11:20:34,,,skipped,skipped,False,
+(Clearance)1116am_Northbound_fr,6,North,8751,DAMEN & 2559 SOUTH,clearance,midday,11:22:52,,,skipped,skipped,False,
+(Clearance)1116am_Northbound_fr,7,North,8752,DAMEN & 2501 SOUTH,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance)1116am_Northbound_fr,8,North,8753,DAMEN & BLUE ISLAND,clearance,midday,11:24:09,15.87,15.87,stopped,valid,True,
+(Clearance)1116am_Northbound_fr,9,North,8891,DAMEN & 23RD STREET,clearance,midday,11:25:42,14.0,14.0,stopped,valid,True,
+(Clearance)1116am_Northbound_fr,10,North,14489,DAMEN & CERMAK,clearance,midday,11:26:47,,,skipped,skipped,False,
+(Clearance)1116am_Northbound_fr,11,North,15199,DAMEN & PINK LINE STATION,clearance,midday,11:27:45,23.78,23.78,stopped,truck_delay,False,Waited for truck
+(Clearance)1116am_Northbound_fr,12,North,8895,DAMEN & 19TH STREET,clearance,midday,11:29:06,,,skipped,skipped,False,
+(Clearance)1116am_Northbound_fr,13,North,8896,DAMEN & 18TH STREET,clearance,midday,11:30:18,49.41,49.41,stopped,valid,True,
+(Clearance)1116am_Northbound_fr,14,North,8897,DAMEN & 17TH STREET,clearance,midday,11:31:33,,,skipped,skipped,False,
+(Clearance)1116am_Northbound_fr,15,North,8898,DAMEN & 14TH STREET,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance)1116am_Northbound_fr,16,North,8899,DAMEN & HASTINGS,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance)1116am_Northbound_fr,17,North,8900,DAMEN & 13TH STREET,clearance,midday,11:32:54,6.38,6.38,stopped,valid,True,
+(Clearance)1116am_Northbound_fr,18,North,8902,DAMEN & ROOSEVELT,clearance,midday,11:33:40,5.37,5.37,stopped,valid,True,bus stop moved
+(Clearance)1116am_Northbound_fr,19,North,8904,DAMEN & TAYLOR,clearance,midday,11:34:22,23.6,23.6,stopped,valid,True,
+(Clearance)1116am_Northbound_fr,20,North,8905,DAMEN & POLK,clearance,midday,11:35:00,,,unknown,boundary,False,
+(Clearance)1116am_Northbound_fr,21,North,8906,DAMEN & OGDEN,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance)1116am_Northbound_fr,22,North,8907,DAMEN & HARRISON,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance)1116am_Northbound_fr,23,North,15869,DAMEN & BLUE LINE STATION,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance)1116am_Northbound_fr,24,North,111,DAMEN & JACKSON,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance)1116am_Northbound_fr,25,North,17274,DAMEN & ADAMS,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance)1116am_Northbound_fr,26,North,8910,DAMEN & MADISON,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance)1116am_Northbound_fr,27,North,8911,DAMEN & WARREN,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance)1116am_Northbound_fr,28,North,8912,DAMEN & WASHINGTON,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance)1116am_Northbound_fr,29,North,8913,DAMEN & LAKE,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance)1116am_Northbound_fr,30,North,18623,DAMEN & LAKE,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance)1116am_Northbound_fr,31,North,8914,DAMEN & FULTON,clearance,midday,,,,not_observed,outside_coverage,False,This should be eliminated
+(Clearance)1116am_Northbound_fr,32,North,8915,DAMEN & CARROLL,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance)1116am_Northbound_fr,33,North,8916,DAMEN & HUBBARD,clearance,midday,,,,not_observed,outside_coverage,False,This should be eliminated
+(Clearance)1116am_Northbound_fr,34,North,8917,DAMEN & GRAND,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance)1116am_Northbound_fr,35,North,8918,DAMEN & OHIO,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance)1116am_Northbound_fr,36,North,8919,DAMEN & HURON,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance)1116am_Northbound_fr,37,North,8920,DAMEN & CHICAGO,clearance,midday,,,,not_observed,outside_coverage,False,
+ 757am_Southbound_from_Polk_Log,2,South,8858,DAMEN & CHICAGO,dwell,am_peak,,,,not_observed,outside_coverage,False,
+ 757am_Southbound_from_Polk_Log,3,South,8859,DAMEN & HURON,dwell,am_peak,,,,not_observed,outside_coverage,False,
+ 757am_Southbound_from_Polk_Log,4,South,8860,DAMEN & OHIO,dwell,am_peak,,,,not_observed,outside_coverage,False,
+ 757am_Southbound_from_Polk_Log,5,South,15902,DAMEN & GRAND,dwell,am_peak,,,,not_observed,outside_coverage,False,
+ 757am_Southbound_from_Polk_Log,6,South,8862,DAMEN & HUBBARD,dwell,am_peak,,,,not_observed,outside_coverage,False,This should be eliminated
+ 757am_Southbound_from_Polk_Log,7,South,8863,DAMEN & CARROLL,dwell,am_peak,,,,not_observed,outside_coverage,False,
+ 757am_Southbound_from_Polk_Log,8,South,8864,DAMEN & FULTON,dwell,am_peak,,,,not_observed,outside_coverage,False,This should be eliminated
+ 757am_Southbound_from_Polk_Log,9,South,14962,DAMEN & LAKE,dwell,am_peak,,,,not_observed,outside_coverage,False,
+ 757am_Southbound_from_Polk_Log,10,South,17272,DAMEN & WASHINGTON,dwell,am_peak,,,,not_observed,outside_coverage,False,
+ 757am_Southbound_from_Polk_Log,11,South,17267,DAMEN & MADISON,dwell,am_peak,,,,not_observed,outside_coverage,False,
+ 757am_Southbound_from_Polk_Log,12,South,17273,DAMEN & ADAMS,dwell,am_peak,,,,not_observed,outside_coverage,False,
+ 757am_Southbound_from_Polk_Log,13,South,15449,DAMEN & JACKSON,dwell,am_peak,,,,not_observed,outside_coverage,False,
+ 757am_Southbound_from_Polk_Log,14,South,44,DAMEN & CONGRESS,dwell,am_peak,,,,not_observed,outside_coverage,False,
+ 757am_Southbound_from_Polk_Log,15,South,8872,DAMEN & HARRISON,dwell,am_peak,,,,not_observed,outside_coverage,False,
+ 757am_Southbound_from_Polk_Log,16,South,8873,DAMEN & OGDEN,dwell,am_peak,,,,not_observed,outside_coverage,False,
+ 757am_Southbound_from_Polk_Log,17,South,8874,DAMEN & POLK,dwell,am_peak,07:57:00,Got on bus here,,unknown,boundary,False,Got on bus here
+ 757am_Southbound_from_Polk_Log,18,South,8875,DAMEN & 820 SOUTH V.A. HOSPITAL,dwell,am_peak,07:57:00,19.18,19.18,stopped,transition_delay,False,Bus driver told people stop eliminated. Use this for Taylor driver said
+ 757am_Southbound_from_Polk_Log,19,South,8876,DAMEN & TAYLOR,dwell,am_peak,,,,not_served,removed,False,This should be eliminated
+ 757am_Southbound_from_Polk_Log,20,South,8878,DAMEN & ROOSEVELT,dwell,am_peak,08:00:00,15.64,15.64,stopped,valid,True,
+ 757am_Southbound_from_Polk_Log,21,South,8880,DAMEN & 13TH STREET,dwell,am_peak,08:02:00,12.25,12.25,stopped,valid,True,
+ 757am_Southbound_from_Polk_Log,22,South,8881,DAMEN & HASTINGS,dwell,am_peak,,,,not_served,removed,False,This should be eliminated
+ 757am_Southbound_from_Polk_Log,23,South,8882,DAMEN & 14TH STREET,dwell,am_peak,,,,not_served,removed,False,This should be eliminated
+ 757am_Southbound_from_Polk_Log,24,South,8883,DAMEN & 17TH STREET,dwell,am_peak,08:03:50,,,skipped,skipped,False,
+ 757am_Southbound_from_Polk_Log,25,South,8884,DAMEN & 18TH STREET,dwell,am_peak,08:04:00,,,skipped,skipped,False,
+ 757am_Southbound_from_Polk_Log,26,South,8885,DAMEN & 19TH STREET,dwell,am_peak,08:04:44,,,skipped,skipped,False,
+ 757am_Southbound_from_Polk_Log,27,South,15200,DAMEN & PINK LINE STATION,dwell,am_peak,08:06:40,8.55,8.55,stopped,valid,True,
+ 757am_Southbound_from_Polk_Log,28,South,8888,DAMEN & CERMAK,dwell,am_peak,08:07:36,5.3,5.3,stopped,valid,True,
+ 757am_Southbound_from_Polk_Log,29,South,8889,DAMEN & 23RD STREET,dwell,am_peak,08:08:25,,,skipped,skipped,False,
+ 757am_Southbound_from_Polk_Log,30,South,8890,DAMEN & COULTER,dwell,am_peak,,,,not_served,removed,False,This should be eliminated
+ 757am_Southbound_from_Polk_Log,31,South,14961,DAMEN & BLUE ISLAND,dwell,am_peak,08:10:15,1.1,1.1,stopped,valid,True,
+ 757am_Southbound_from_Polk_Log,32,South,8755,DAMEN & 2501 SOUTH,dwell,am_peak,,,,not_served,removed,False,This should be eliminated
+ 757am_Southbound_from_Polk_Log,33,South,8756,DAMEN & 2610 SOUTH,dwell,am_peak,8:12: AM,,,unknown,unknown,False,
+ 757am_Southbound_from_Polk_Log,34,South,8757,DAMEN & 33RD STREET,dwell,am_peak,08:14:22,,,skipped,skipped,False,
+ 757am_Southbound_from_Polk_Log,35,South,8758,DAMEN & ARCHER,dwell,am_peak,08:14:51,,,skipped,skipped,False,
+ 757am_Southbound_from_Polk_Log,36,South,4485,ARCHER & 35TH STREET/HOYNE,dwell,am_peak,08:16:30,,,skipped,skipped,False,
+ 757am_Southbound_from_Polk_Log,37,South,4486,LEAVITT & 35TH STREET,dwell,am_peak,08:17:04,,,skipped,skipped,False,
+ 757am_Southbound_from_Polk_Log,38,South,17509,35TH/ARCHER & ORANGE LINE STATION,dwell,am_peak,08:17:45,18.03,18.03,stopped,boundary,False,
+ 757am_Southbound_from_Polk_Log,39,South,14135,35TH/ARCHER & ORANGE LINE STATION,dwell,am_peak,,,,not_observed,outside_coverage,False,
+954am_Southbound_from_Ohio_Logg,2,South,8858,DAMEN & CHICAGO,dwell,midday,,,,not_observed,outside_coverage,False,
+954am_Southbound_from_Ohio_Logg,3,South,8859,DAMEN & HURON,dwell,midday,,,,not_observed,outside_coverage,False,
+954am_Southbound_from_Ohio_Logg,4,South,8860,DAMEN & OHIO,dwell,midday,09:54:00,,,unknown,boundary,False,Got on bus
+954am_Southbound_from_Ohio_Logg,5,South,15902,DAMEN & GRAND,dwell,midday,09:55:41,4.52,4.52,stopped,valid,True,
+954am_Southbound_from_Ohio_Logg,6,South,8862,DAMEN & HUBBARD,dwell,midday,,,,not_served,removed,False,This should be eliminated
+954am_Southbound_from_Ohio_Logg,7,South,8863,DAMEN & CARROLL,dwell,midday,09:56:31,5.38,5.38,stopped,valid,True,
+954am_Southbound_from_Ohio_Logg,8,South,8864,DAMEN & FULTON,dwell,midday,,,,not_served,removed,False,This should be eliminated
+954am_Southbound_from_Ohio_Logg,9,South,14962,DAMEN & LAKE,dwell,midday,09:58:23,16.41,16.41,stopped,valid,True,
+954am_Southbound_from_Ohio_Logg,10,South,17272,DAMEN & WASHINGTON,dwell,midday,09:59:06,,,skipped,skipped,False,
+954am_Southbound_from_Ohio_Logg,11,South,17267,DAMEN & MADISON,dwell,midday,10:00:04,7.48,7.48,stopped,valid,True,
+954am_Southbound_from_Ohio_Logg,12,South,17273,DAMEN & ADAMS,dwell,midday,10:01:15,6.94,6.94,stopped,valid,True,
+954am_Southbound_from_Ohio_Logg,13,South,15449,DAMEN & JACKSON,dwell,midday,10:01:49,15.84,15.84,stopped,valid,True,
+954am_Southbound_from_Ohio_Logg,14,South,44,DAMEN & CONGRESS,dwell,midday,,,,unknown,unknown,False,
+954am_Southbound_from_Ohio_Logg,15,South,8872,DAMEN & HARRISON,dwell,midday,,14.58,14.58,stopped,valid,True,didn't get arrival time
+954am_Southbound_from_Ohio_Logg,16,South,8873,DAMEN & OGDEN,dwell,midday,10:04:02,9.99,9.99,stopped,valid,True,
+954am_Southbound_from_Ohio_Logg,17,South,8874,DAMEN & POLK,dwell,midday,10:05:25,14.7,14.7,stopped,valid,True,
+954am_Southbound_from_Ohio_Logg,18,South,8875,DAMEN & 820 SOUTH V.A. HOSPITAL,dwell,midday,10:06:52,28.23,28.23,stopped,valid,True,
+954am_Southbound_from_Ohio_Logg,19,South,8876,DAMEN & TAYLOR,dwell,midday,,,,not_served,removed,False,This should be eliminated
+954am_Southbound_from_Ohio_Logg,20,South,8878,DAMEN & ROOSEVELT,dwell,midday,10:08:56,15.73,15.73,stopped,valid,True,
+954am_Southbound_from_Ohio_Logg,21,South,8880,DAMEN & 13TH STREET,dwell,midday,10:10:07,5.99,5.99,stopped,valid,True,
+954am_Southbound_from_Ohio_Logg,22,South,8881,DAMEN & HASTINGS,dwell,midday,,,,not_served,removed,False,This should be eliminated
+954am_Southbound_from_Ohio_Logg,23,South,8882,DAMEN & 14TH STREET,dwell,midday,,,,not_served,removed,False,This should be eliminated
+954am_Southbound_from_Ohio_Logg,24,South,8883,DAMEN & 17TH STREET,dwell,midday,10:12:08,7.48,7.48,stopped,valid,True,
+954am_Southbound_from_Ohio_Logg,25,South,8884,DAMEN & 18TH STREET,dwell,midday,10:12:52,5.85,5.85,stopped,valid,True,
+954am_Southbound_from_Ohio_Logg,26,South,8885,DAMEN & 19TH STREET,dwell,midday,10:13:19,,,skipped,skipped,False,
+954am_Southbound_from_Ohio_Logg,27,South,15200,DAMEN & PINK LINE STATION,dwell,midday,10:13:44,6.51,6.51,stopped,valid,True,
+954am_Southbound_from_Ohio_Logg,28,South,8888,DAMEN & CERMAK,dwell,midday,10:15:05,7.46,7.46,stopped,valid,True,
+954am_Southbound_from_Ohio_Logg,29,South,8889,DAMEN & 23RD STREET,dwell,midday,10:15:46,15.78,15.78,stopped,valid,True,
+954am_Southbound_from_Ohio_Logg,30,South,8890,DAMEN & COULTER,dwell,midday,,,,not_served,removed,False,This should be eliminated
+954am_Southbound_from_Ohio_Logg,31,South,14961,DAMEN & BLUE ISLAND,dwell,midday,10:16:25,6.11,6.11,stopped,valid,True,
+954am_Southbound_from_Ohio_Logg,32,South,8755,DAMEN & 2501 SOUTH,dwell,midday,,,,not_served,removed,False,This should be eliminated
+954am_Southbound_from_Ohio_Logg,33,South,8756,DAMEN & 2608 SOUTH,dwell,midday,,,,unknown,unknown,False,
+954am_Southbound_from_Ohio_Logg,34,South,8757,DAMEN & 33RD STREET,dwell,midday,10:20:15,6.91,6.91,stopped,valid,True,
+954am_Southbound_from_Ohio_Logg,35,South,8758,DAMEN & ARCHER,dwell,midday,10:21:20,,,skipped,skipped,False,
+954am_Southbound_from_Ohio_Logg,36,South,4485,ARCHER & 35TH STREET/HOYNE,dwell,midday,10:21:53,6.43,6.43,stopped,valid,True,
+954am_Southbound_from_Ohio_Logg,37,South,4486,LEAVITT & 35TH STREET,dwell,midday,,,,unknown,unknown,False,
+954am_Southbound_from_Ohio_Logg,38,South,17509,35TH/ARCHER & ORANGE LINE STATION,dwell,midday,10:23:00,,,unknown,boundary,False,
+954am_Southbound_from_Ohio_Logg,39,South,14135,35TH/ARCHER & ORANGE LINE STATION,dwell,midday,,,,not_observed,outside_coverage,False,
+110610am_Southbound_from_Ohio_L,2,South,8858,DAMEN & CHICAGO,dwell,midday,,,,not_observed,outside_coverage,False,
+110610am_Southbound_from_Ohio_L,3,South,8859,DAMEN & HURON,dwell,midday,,,,not_observed,outside_coverage,False,
+110610am_Southbound_from_Ohio_L,4,South,8860,DAMEN & OHIO,dwell,midday,11:06:10,,,unknown,boundary,False,Got on bus
+110610am_Southbound_from_Ohio_L,5,South,15902,DAMEN & GRAND,dwell,midday,11:07:10,4.19,4.19,stopped,valid,True,
+110610am_Southbound_from_Ohio_L,6,South,8862,DAMEN & HUBBARD,dwell,midday,,,,not_served,removed,False,This should be eliminated
+110610am_Southbound_from_Ohio_L,7,South,8863,DAMEN & CARROLL,dwell,midday,,,,unknown,unknown,False,
+110610am_Southbound_from_Ohio_L,8,South,8864,DAMEN & FULTON,dwell,midday,,,,not_served,removed,False,This should be eliminated
+110610am_Southbound_from_Ohio_L,9,South,14962,DAMEN & LAKE,dwell,midday,11:09:25,12.12,12.12,stopped,valid,True,
+110610am_Southbound_from_Ohio_L,10,South,17272,DAMEN & WASHINGTON,dwell,midday,,,,unknown,unknown,False,
+110610am_Southbound_from_Ohio_L,11,South,17267,DAMEN & MADISON,dwell,midday,11:11:23,,,skipped,skipped,False,
+110610am_Southbound_from_Ohio_L,12,South,17273,DAMEN & ADAMS,dwell,midday,11:12:22,,,skipped,skipped,False,
+110610am_Southbound_from_Ohio_L,13,South,15449,DAMEN & JACKSON,dwell,midday,11:13:06,,,skipped,skipped,False,
+110610am_Southbound_from_Ohio_L,14,South,44,DAMEN & CONGRESS,dwell,midday,,,,unknown,unknown,False,
+110610am_Southbound_from_Ohio_L,15,South,8872,DAMEN & HARRISON,dwell,midday,11:14:50,10.6,10.6,stopped,valid,True,didn't get arrival time
+110610am_Southbound_from_Ohio_L,16,South,8873,DAMEN & OGDEN,dwell,midday,,,,unknown,unknown,False,
+110610am_Southbound_from_Ohio_L,17,South,8874,DAMEN & POLK,dwell,midday,11:17:04,9.83,9.83,stopped,valid,True,
+110610am_Southbound_from_Ohio_L,18,South,8875,DAMEN & 820 SOUTH V.A. HOSPITAL,dwell,midday,11:17:46,4.45,4.45,stopped,valid,True,
+110610am_Southbound_from_Ohio_L,19,South,8876,DAMEN & TAYLOR,dwell,midday,,,,not_served,removed,False,This should be eliminated
+110610am_Southbound_from_Ohio_L,20,South,8878,DAMEN & ROOSEVELT,dwell,midday,11:19:03,8.21,8.21,stopped,valid,True,
+110610am_Southbound_from_Ohio_L,21,South,8880,DAMEN & 13TH STREET,dwell,midday,11:20:31,,,skipped,skipped,False,
+110610am_Southbound_from_Ohio_L,22,South,8881,DAMEN & HASTINGS,dwell,midday,,,,not_served,removed,False,This should be eliminated
+110610am_Southbound_from_Ohio_L,23,South,8882,DAMEN & 14TH STREET,dwell,midday,,,,not_served,removed,False,This should be eliminated
+110610am_Southbound_from_Ohio_L,24,South,8883,DAMEN & 17TH STREET,dwell,midday,11:21:35,,,skipped,skipped,False,
+110610am_Southbound_from_Ohio_L,25,South,8884,DAMEN & 18TH STREET,dwell,midday,11:21:45,8.46,8.46,stopped,valid,True,
+110610am_Southbound_from_Ohio_L,26,South,8885,DAMEN & 19TH STREET,dwell,midday,11:22:45,,,skipped,skipped,False,
+110610am_Southbound_from_Ohio_L,27,South,15200,DAMEN & PINK LINE STATION,dwell,midday,11:23:32,11.85,11.85,stopped,valid,True,
+110610am_Southbound_from_Ohio_L,28,South,8888,DAMEN & CERMAK,dwell,midday,11:24:37,6.3,6.3,stopped,valid,True,
+110610am_Southbound_from_Ohio_L,29,South,8889,DAMEN & 23RD STREET,dwell,midday,11:26:18,3.02,3.02,stopped,valid,True,
+110610am_Southbound_from_Ohio_L,30,South,8890,DAMEN & COULTER,dwell,midday,,,,not_served,removed,False,This should be eliminated
+110610am_Southbound_from_Ohio_L,31,South,14961,DAMEN & BLUE ISLAND,dwell,midday,11:27:10,8.18,8.18,stopped,valid,True,
+110610am_Southbound_from_Ohio_L,32,South,8755,DAMEN & 2501 SOUTH,dwell,midday,,,,not_served,removed,False,This should be eliminated
+110610am_Southbound_from_Ohio_L,33,South,8756,DAMEN & 2608 SOUTH,dwell,midday,,,,unknown,unknown,False,
+110610am_Southbound_from_Ohio_L,34,South,8757,DAMEN & 33RD STREET,dwell,midday,,,,unknown,unknown,False,
+110610am_Southbound_from_Ohio_L,35,South,8758,DAMEN & ARCHER,dwell,midday,11:32:42,,,skipped,skipped,False,
+110610am_Southbound_from_Ohio_L,36,South,4485,ARCHER & 35TH STREET/HOYNE,dwell,midday,11:33:41,,,skipped,skipped,False,
+110610am_Southbound_from_Ohio_L,37,South,4486,LEAVITT & 35TH STREET,dwell,midday,11:34:10,,,skipped,skipped,False,
+110610am_Southbound_from_Ohio_L,38,South,17509,35TH/ARCHER & ORANGE LINE STATION,dwell,midday,11:35:00,,,unknown,boundary,False,final stop
+110610am_Southbound_from_Ohio_L,39,South,14135,35TH/ARCHER & ORANGE LINE STATION,dwell,midday,,,,not_observed,outside_coverage,False,
+(Clearance) 818 am Southbound P,2,South,8858,DAMEN & CHICAGO,clearance,am_peak,,,,not_observed,outside_coverage,False,
+(Clearance) 818 am Southbound P,3,South,8859,DAMEN & HURON,clearance,am_peak,,,,not_observed,outside_coverage,False,
+(Clearance) 818 am Southbound P,4,South,8860,DAMEN & OHIO,clearance,am_peak,,,,not_observed,outside_coverage,False,
+(Clearance) 818 am Southbound P,5,South,15902,DAMEN & GRAND,clearance,am_peak,,,,not_observed,outside_coverage,False,
+(Clearance) 818 am Southbound P,6,South,8862,DAMEN & HUBBARD,clearance,am_peak,,,,not_observed,outside_coverage,False,This should be eliminated
+(Clearance) 818 am Southbound P,7,South,8863,DAMEN & CARROLL,clearance,am_peak,,,,not_observed,outside_coverage,False,
+(Clearance) 818 am Southbound P,8,South,8864,DAMEN & FULTON,clearance,am_peak,,,,not_observed,outside_coverage,False,This should be eliminated
+(Clearance) 818 am Southbound P,9,South,14962,DAMEN & LAKE,clearance,am_peak,,,,not_observed,outside_coverage,False,
+(Clearance) 818 am Southbound P,10,South,17272,DAMEN & WASHINGTON,clearance,am_peak,,,,not_observed,outside_coverage,False,
+(Clearance) 818 am Southbound P,11,South,17267,DAMEN & MADISON,clearance,am_peak,,,,not_observed,outside_coverage,False,
+(Clearance) 818 am Southbound P,12,South,17273,DAMEN & ADAMS,clearance,am_peak,,,,not_observed,outside_coverage,False,
+(Clearance) 818 am Southbound P,13,South,15449,DAMEN & JACKSON,clearance,am_peak,,,,not_observed,outside_coverage,False,
+(Clearance) 818 am Southbound P,14,South,44,DAMEN & CONGRESS,clearance,am_peak,,,,not_observed,outside_coverage,False,
+(Clearance) 818 am Southbound P,15,South,8872,DAMEN & HARRISON,clearance,am_peak,,,,not_observed,outside_coverage,False,
+(Clearance) 818 am Southbound P,16,South,8873,DAMEN & OGDEN,clearance,am_peak,,,,not_observed,outside_coverage,False,
+(Clearance) 818 am Southbound P,17,South,8874,DAMEN & POLK,clearance,am_peak,08:18:00,,,unknown,boundary,False,
+(Clearance) 818 am Southbound P,18,South,8875,DAMEN & 820 SOUTH V.A. HOSPITAL,clearance,am_peak,08:19:00,22.96,22.96,stopped,valid,True,
+(Clearance) 818 am Southbound P,19,South,8876,DAMEN & TAYLOR,clearance,am_peak,,,,not_served,removed,False,This should be eliminated
+(Clearance) 818 am Southbound P,20,South,8878,DAMEN & ROOSEVELT,clearance,am_peak,08:21:22,7.66,7.66,stopped,valid,True,
+(Clearance) 818 am Southbound P,21,South,8880,DAMEN & 13TH STREET,clearance,am_peak,08:22:00,20.1,20.1,stopped,valid,True,
+(Clearance) 818 am Southbound P,22,South,8881,DAMEN & HASTINGS,clearance,am_peak,,,,not_served,removed,False,This should be eliminated
+(Clearance) 818 am Southbound P,23,South,8882,DAMEN & 14TH STREET,clearance,am_peak,,,,not_served,removed,False,This should be eliminated
+(Clearance) 818 am Southbound P,24,South,8883,DAMEN & 17TH STREET,clearance,am_peak,08:24:10,,,skipped,skipped,False,
+(Clearance) 818 am Southbound P,25,South,8884,DAMEN & 18TH STREET,clearance,am_peak,08:24:30,,,skipped,skipped,False,
+(Clearance) 818 am Southbound P,26,South,8885,DAMEN & 19TH STREET,clearance,am_peak,08:25:30,,,skipped,skipped,False,
+(Clearance) 818 am Southbound P,27,South,15200,DAMEN & PINK LINE STATION,clearance,am_peak,08:26:00,,,unknown,driver_break,False,Bus driver took 4:45.24 minute long break
+(Clearance) 818 am Southbound P,28,South,8888,DAMEN & CERMAK,clearance,am_peak,08:32:25,9.36,9.36,stopped,valid,True,
+(Clearance) 818 am Southbound P,29,South,8889,DAMEN & 23RD STREET,clearance,am_peak,08:33:11,9.65,9.65,stopped,valid,True,
+(Clearance) 818 am Southbound P,30,South,8890,DAMEN & COULTER,clearance,am_peak,,,,not_served,removed,False,This should be eliminated
+(Clearance) 818 am Southbound P,31,South,14961,DAMEN & BLUE ISLAND,clearance,am_peak,08:33:50,,,skipped,skipped,False,
+(Clearance) 818 am Southbound P,32,South,8755,DAMEN & 2501 SOUTH,clearance,am_peak,,,,not_served,removed,False,This should be eliminated
+(Clearance) 818 am Southbound P,33,South,8756,DAMEN & 2608 SOUTH,clearance,am_peak,08:35:42,,,skipped,skipped,False,
+(Clearance) 818 am Southbound P,34,South,8757,DAMEN & 33RD STREET,clearance,am_peak,08:37:42,6.1,6.1,stopped,valid,True,
+(Clearance) 818 am Southbound P,35,South,8758,DAMEN & ARCHER,clearance,am_peak,08:38:26,43.75,43.75,stopped,valid,True,
+(Clearance) 818 am Southbound P,36,South,4485,ARCHER & 35TH STREET/HOYNE,clearance,am_peak,08:39:47,,,skipped,skipped,False,
+(Clearance) 818 am Southbound P,37,South,4486,LEAVITT & 35TH STREET,clearance,am_peak,08:41:15,,,skipped,skipped,False,
+(Clearance) 818 am Southbound P,38,South,17509,35TH/ARCHER & ORANGE LINE STATION,clearance,am_peak,08:41:38,,,unknown,boundary,False,final stop
+(Clearance) 818 am Southbound P,39,South,14135,35TH/ARCHER & ORANGE LINE STATION,clearance,am_peak,,,,not_observed,outside_coverage,False,
+(Clearance) 936 am Southbound O,2,South,8858,DAMEN & CHICAGO,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance) 936 am Southbound O,3,South,8859,DAMEN & HURON,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance) 936 am Southbound O,4,South,8860,DAMEN & OHIO,clearance,midday,09:36:00,,,unknown,boundary,False,
+(Clearance) 936 am Southbound O,5,South,15902,DAMEN & GRAND,clearance,midday,09:37:28,7.58,7.58,stopped,valid,True,
+(Clearance) 936 am Southbound O,6,South,8862,DAMEN & HUBBARD,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance) 936 am Southbound O,7,South,8863,DAMEN & CARROLL,clearance,midday,09:38:30,4.26,4.26,stopped,valid,True,
+(Clearance) 936 am Southbound O,8,South,8864,DAMEN & FULTON,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance) 936 am Southbound O,9,South,14962,DAMEN & LAKE,clearance,midday,09:39:43,5.0,5.0,stopped,valid,True,
+(Clearance) 936 am Southbound O,10,South,17272,DAMEN & WASHINGTON,clearance,midday,,,,unknown,unknown,False,
+(Clearance) 936 am Southbound O,11,South,17267,DAMEN & MADISON,clearance,midday,09:41:54,,,skipped,skipped,False,
+(Clearance) 936 am Southbound O,12,South,17273,DAMEN & ADAMS,clearance,midday,,,,unknown,unknown,False,
+(Clearance) 936 am Southbound O,13,South,15449,DAMEN & JACKSON,clearance,midday,09:43:36,5.95,5.95,stopped,valid,True,
+(Clearance) 936 am Southbound O,14,South,44,DAMEN & CONGRESS,clearance,midday,,,,unknown,unknown,False,
+(Clearance) 936 am Southbound O,15,South,8872,DAMEN & HARRISON,clearance,midday,09:44:30,36.26,36.26,stopped,valid,True,
+(Clearance) 936 am Southbound O,16,South,8873,DAMEN & OGDEN,clearance,midday,09:45:41,10.53,10.53,stopped,valid,True,
+(Clearance) 936 am Southbound O,17,South,8874,DAMEN & POLK,clearance,midday,09:46:59,51.69,51.69,stopped,valid,True,
+(Clearance) 936 am Southbound O,18,South,8875,DAMEN & 820 SOUTH V.A. HOSPITAL,clearance,midday,09:48:26,4.73,4.73,stopped,valid,True,
+(Clearance) 936 am Southbound O,19,South,8876,DAMEN & TAYLOR,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance) 936 am Southbound O,20,South,8878,DAMEN & ROOSEVELT,clearance,midday,09:49:19,17.46,17.46,stopped,valid,True,
+(Clearance) 936 am Southbound O,21,South,8880,DAMEN & 13TH STREET,clearance,midday,09:50:16,6.36,6.36,stopped,valid,True,
+(Clearance) 936 am Southbound O,22,South,8881,DAMEN & HASTINGS,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance) 936 am Southbound O,23,South,8882,DAMEN & 14TH STREET,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance) 936 am Southbound O,24,South,8883,DAMEN & 17TH STREET,clearance,midday,,,,unknown,unknown,False,
+(Clearance) 936 am Southbound O,25,South,8884,DAMEN & 18TH STREET,clearance,midday,09:52:10,81.07,81.07,stopped,valid,True,
+(Clearance) 936 am Southbound O,26,South,8885,DAMEN & 19TH STREET,clearance,midday,09:54:00,,,skipped,skipped,False,
+(Clearance) 936 am Southbound O,27,South,15200,DAMEN & PINK LINE STATION,clearance,midday,09:54:35,,,skipped,skipped,False,
+(Clearance) 936 am Southbound O,28,South,8888,DAMEN & CERMAK,clearance,midday,09:55:12,,,skipped,skipped,False,
+(Clearance) 936 am Southbound O,29,South,8889,DAMEN & 23RD STREET,clearance,midday,09:56:10,,,skipped,skipped,False,
+(Clearance) 936 am Southbound O,30,South,8890,DAMEN & COULTER,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance) 936 am Southbound O,31,South,14961,DAMEN & BLUE ISLAND,clearance,midday,09:56:40,,,skipped,skipped,False,
+(Clearance) 936 am Southbound O,32,South,8755,DAMEN & 2501 SOUTH,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance) 936 am Southbound O,33,South,8756,DAMEN & 2608 SOUTH,clearance,midday,,,,unknown,unknown,False,
+(Clearance) 936 am Southbound O,34,South,8757,DAMEN & 33RD STREET,clearance,midday,10:00:11,,,skipped,skipped,False,
+(Clearance) 936 am Southbound O,35,South,8758,DAMEN & ARCHER,clearance,midday,10:00:41,,,skipped,skipped,False,
+(Clearance) 936 am Southbound O,36,South,4485,ARCHER & 35TH STREET/HOYNE,clearance,midday,10:01:24,,,skipped,skipped,False,
+(Clearance) 936 am Southbound O,37,South,4486,LEAVITT & 35TH STREET,clearance,midday,10:02:23,,,skipped,skipped,False,
+(Clearance) 936 am Southbound O,38,South,17509,35TH/ARCHER & ORANGE LINE STATION,clearance,midday,10:02:46,,,unknown,boundary,False,final stop
+(Clearance) 936 am Southbound O,39,South,14135,35TH/ARCHER & ORANGE LINE STATION,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance) 1047 am Southbound ,2,South,8858,DAMEN & CHICAGO,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance) 1047 am Southbound ,3,South,8859,DAMEN & HURON,clearance,midday,,,,not_observed,outside_coverage,False,
+(Clearance) 1047 am Southbound ,4,South,8860,DAMEN & OHIO,clearance,midday,10:47:00,,,unknown,boundary,False,
+(Clearance) 1047 am Southbound ,5,South,15902,DAMEN & GRAND,clearance,midday,10:47:45,7.38,7.38,stopped,valid,True,
+(Clearance) 1047 am Southbound ,6,South,8862,DAMEN & HUBBARD,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance) 1047 am Southbound ,7,South,8863,DAMEN & CARROLL,clearance,midday,10:48:23,5.81,5.81,stopped,valid,True,
+(Clearance) 1047 am Southbound ,8,South,8864,DAMEN & FULTON,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance) 1047 am Southbound ,9,South,14962,DAMEN & LAKE,clearance,midday,10:50:00,14.69,14.69,stopped,valid,True,
+(Clearance) 1047 am Southbound ,10,South,17272,DAMEN & WASHINGTON,clearance,midday,10:52:32,8.29,8.29,stopped,valid,True,
+(Clearance) 1047 am Southbound ,11,South,17267,DAMEN & MADISON,clearance,midday,,,,unknown,unknown,False,
+(Clearance) 1047 am Southbound ,12,South,17273,DAMEN & ADAMS,clearance,midday,10:54:34,,,skipped,skipped,False,
+(Clearance) 1047 am Southbound ,13,South,15449,DAMEN & JACKSON,clearance,midday,10:55:14,5.97,5.97,stopped,valid,True,
+(Clearance) 1047 am Southbound ,14,South,44,DAMEN & CONGRESS,clearance,midday,,,,unknown,unknown,False,
+(Clearance) 1047 am Southbound ,15,South,8872,DAMEN & HARRISON,clearance,midday,10:56:13,29.52,29.52,stopped,valid,True,
+(Clearance) 1047 am Southbound ,16,South,8873,DAMEN & OGDEN,clearance,midday,10:57:15,49.54,49.54,stopped,valid,True,
+(Clearance) 1047 am Southbound ,17,South,8874,DAMEN & POLK,clearance,midday,10:58:34,5.86,5.86,stopped,valid,True,
+(Clearance) 1047 am Southbound ,18,South,8875,DAMEN & 820 SOUTH V.A. HOSPITAL,clearance,midday,10:59:15,16.77,16.77,stopped,valid,True,
+(Clearance) 1047 am Southbound ,19,South,8876,DAMEN & TAYLOR,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance) 1047 am Southbound ,20,South,8878,DAMEN & ROOSEVELT,clearance,midday,11:00:27,48.42,48.42,stopped,valid,True,
+(Clearance) 1047 am Southbound ,21,South,8880,DAMEN & 13TH STREET,clearance,midday,11:01:55,,,skipped,skipped,False,
+(Clearance) 1047 am Southbound ,22,South,8881,DAMEN & HASTINGS,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance) 1047 am Southbound ,23,South,8882,DAMEN & 14TH STREET,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance) 1047 am Southbound ,24,South,8883,DAMEN & 17TH STREET,clearance,midday,11:03:00,,,skipped,skipped,False,
+(Clearance) 1047 am Southbound ,25,South,8884,DAMEN & 18TH STREET,clearance,midday,11:03:44,23.32,23.32,stopped,valid,True,
+(Clearance) 1047 am Southbound ,26,South,8885,DAMEN & 19TH STREET,clearance,midday,11:04:51,5.45,5.45,stopped,valid,True,
+(Clearance) 1047 am Southbound ,27,South,15200,DAMEN & PINK LINE STATION,clearance,midday,11:05:42,10.5,10.5,stopped,copied_note_valid,True,Bus driver took 4:45.24 minute long break
+(Clearance) 1047 am Southbound ,28,South,8888,DAMEN & CERMAK,clearance,midday,11:06:53,9.91,9.91,stopped,valid,True,
+(Clearance) 1047 am Southbound ,29,South,8889,DAMEN & 23RD STREET,clearance,midday,,,,unknown,unknown,False,
+(Clearance) 1047 am Southbound ,30,South,8890,DAMEN & COULTER,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance) 1047 am Southbound ,31,South,14961,DAMEN & BLUE ISLAND,clearance,midday,11:08:50,,,skipped,skipped,False,
+(Clearance) 1047 am Southbound ,32,South,8755,DAMEN & 2501 SOUTH,clearance,midday,,,,not_served,removed,False,This should be eliminated
+(Clearance) 1047 am Southbound ,33,South,8756,DAMEN & 2608 SOUTH,clearance,midday,11:09:47,,,skipped,skipped,False,
+(Clearance) 1047 am Southbound ,34,South,8757,DAMEN & 33RD STREET,clearance,midday,11:13:19,,,skipped,skipped,False,
+(Clearance) 1047 am Southbound ,35,South,8758,DAMEN & ARCHER,clearance,midday,11:13:45,18.1,18.1,stopped,valid,True,
+(Clearance) 1047 am Southbound ,36,South,4485,ARCHER & 35TH STREET/HOYNE,clearance,midday,,,,unknown,unknown,False,
+(Clearance) 1047 am Southbound ,37,South,4486,LEAVITT & 35TH STREET,clearance,midday,11:14:50,,,skipped,skipped,False,
+(Clearance) 1047 am Southbound ,38,South,17509,35TH/ARCHER & ORANGE LINE STATION,clearance,midday,11:15:10,,,unknown,boundary,False,final stop
+(Clearance) 1047 am Southbound ,39,South,14135,35TH/ARCHER & ORANGE LINE STATION,clearance,midday,,,,not_observed,outside_coverage,False,

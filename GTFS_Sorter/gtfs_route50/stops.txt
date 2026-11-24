@@ -1,0 +1,170 @@
+stop_id,stop_code,stop_name,stop_desc,stop_lat,stop_lon,location_type,parent_station,wheelchair_boarding
+44,44,Damen & Congress,"Damen & Congress, Southbound, Northwest Corner",41.87514532,-87.67664815,0,,1
+111,111,Damen & Jackson,"Damen & Jackson, Northbound, Southeast Corner",41.87741727,-87.67635712,0,,1
+1802,1802,Clark & Bryn Mawr,"Clark & Bryn Mawr, Southbound, Northwest Corner",41.98359212,-87.66887221,0,,1
+4433,4433,Archer & 35th Street/Hoyne,"Archer & 35th Street/Hoyne, Northeastbound, Southwest Corner",41.83017094,-87.67785555,0,,1
+4485,4485,Archer & 35th Street/Hoyne,"Archer & 35th Street/Hoyne, Southwestbound, Northeast Corner",41.83054376,-87.67759343,0,,1
+4486,4486,Leavitt & 35th Street,"Leavitt & 35th Street, Southbound, Southwest Corner",41.83016884,-87.68023476,0,,1
+4787,4787,Foster & Wolcott,"Foster & Wolcott, Eastbound, Southwest Corner",41.97601187,-87.67651677,0,,1
+4788,4788,Foster & Ravenswood,"Foster & Ravenswood, Eastbound, Southwest Corner",41.97607435,-87.6749524,0,,1
+4789,4789,Foster & Paulina,"Foster & Paulina, Eastbound, Southwest Corner",41.97607758,-87.67215682,0,,1
+4802,4802,Foster & Paulina,"Foster & Paulina, Westbound, Northeast Corner",41.97620854,-87.67194005,0,,1
+4803,4803,Foster & Ravenswood,"Foster & Ravenswood, Westbound, Northeast Corner",41.97617054,-87.67427806,0,,1
+4804,4804,Foster & Wolcott,"Foster & Wolcott, Westbound, Northeast Corner",41.97613854,-87.67624206,0,,1
+4954,4954,Damen & Eastwood (Brown Line),"Damen & Eastwood (Brown Line), Northbound, Eastside of the Street",41.96607787,-87.67903577,0,,1
+8616,8616,Ashland & Balmoral,"Ashland & Balmoral, Southbound, Northwest Corner",41.97992621,-87.6698516,0,,1
+8617,8617,Ashland & Berwyn,"Ashland & Berwyn, Southbound, Northwest Corner",41.97809987,-87.66976977,0,,1
+8618,8618,Ashland & Foster,"Ashland & Foster, Southbound, Northwest Corner",41.97627387,-87.66973777,0,,1
+8619,8619,Damen & Foster,"Damen & Foster, Southbound, Southwest Corner",41.9758648,-87.67950371,0,,1
+8620,8620,Ashland & Foster,"Ashland & Foster, Northbound, Northeast Corner",41.97641641,-87.66949463,0,,1
+8621,8621,Ashland & Berwyn,"Ashland & Berwyn, Northbound, Southeast Corner",41.97790987,-87.66957977,0,,1
+8622,8622,Ashland & Balmoral,"Ashland & Balmoral, Northbound, Southeast Corner",41.97972928,-87.66958659,0,,1
+8749,8749,Damen & Archer,"Damen & Archer, Northbound, Northeast Corner",41.83211741,-87.67525625,0,,1
+8750,8750,Damen & 33rd Street,"Damen & 33rd Street, Northbound, Southeast Corner",41.83394684,-87.67530376,0,,1
+8751,8751,2559 S Damen,"2559 S Damen, Northbound, Southeast Corner",41.84478385,-87.67549776,0,,1
+8752,8752,2501 S Damen,"2501 S Damen, Northbound, Eastside of the Street",41.84648085,-87.67557876,0,,1
+8753,8753,Damen & Blue Island,"Damen & Blue Island, Northbound, Northeast Corner",41.84883951,-87.67566105,0,,1
+8755,8755,2501 S Damen,"2501 S Damen, Southbound, Westside of the Street",41.84646501,-87.67578128,0,,1
+8756,8756,2608 S Damen,"2608 S Damen, Southbound, Westside of the Street",41.84475615,-87.67578285,0,,1
+8757,8757,Damen & 33rd Street,"Damen & 33rd Street, Southbound, Northwest Corner",41.83411184,-87.67544876,0,,1
+8758,8758,Damen & Archer,"Damen & Archer, Southbound, Northwest Corner",41.83192573,-87.67540223,0,,1
+8805,8805,Edgewater & Clark,"Edgewater & Clark, Eastbound, Southwest Corner",41.98584751,-87.66939243,0,,1
+8815,8815,Damen & Winona,"Damen & Winona, Southbound, Westside of the Street",41.97471187,-87.67941577,0,,1
+8816,8816,Damen & Argyle,"Damen & Argyle, Southbound, Northwest Corner",41.97247787,-87.67937077,0,,1
+8817,8817,Damen & Ainslie,"Damen & Ainslie, Southbound, Northwest Corner",41.97065887,-87.67931577,0,,1
+8819,8819,Damen & Eastwood (Brown Line),"Damen & Eastwood (Brown Line), Southbound, Northwest Corner",41.96609187,-87.67918277,0,,1
+8820,8820,Damen & Wilson,"Damen & Wilson, Southbound, Northwest Corner",41.96520128,-87.67917852,0,,1
+8821,8821,Damen & Sunnyside,"Damen & Sunnyside, Southbound, Northwest Corner",41.96335787,-87.67910377,0,,1
+8822,8822,Damen & Montrose,"Damen & Montrose, Southbound, Northwest Corner",41.9615847,-87.67906941,0,,1
+8823,8823,Damen & Cullom,"Damen & Cullom, Southbound, Northwest Corner",41.95971286,-87.67898377,0,,1
+8824,8824,Damen & Berteau,"Damen & Berteau, Southbound, Northwest Corner",41.95788986,-87.67893377,0,,1
+8825,8825,Damen & Belle Plaine,"Damen & Belle Plaine, Southbound, Westside of the Street",41.95606586,-87.67888477,0,,1
+8827,8827,Damen & Irving Park/Lincoln,"Damen & Irving Park/Lincoln, Southbound, Southwest Corner",41.95394699,-87.67884671,0,,1
+8828,8828,Damen & Byron,"Damen & Byron, Southbound, Northwest Corner",41.95241886,-87.67877877,0,,1
+8829,8829,Damen & Grace,"Damen & Grace, Southbound, Northwest Corner",41.95059586,-87.67872877,0,,1
+8830,8830,Damen & Waveland,"Damen & Waveland, Southbound, Northwest Corner",41.94877286,-87.67867877,0,,1
+8831,8831,Damen & Addison,"Damen & Addison, Southbound, Northwest Corner",41.94700544,-87.67863902,0,,1
+8832,8832,Damen & Cornelia,"Damen & Cornelia, Southbound, Northwest Corner",41.94512186,-87.67857777,0,,1
+8833,8833,Damen & Roscoe,"Damen & Roscoe, Southbound, Northwest Corner",41.94330386,-87.67852777,0,,1
+8834,8834,Damen & School,"Damen & School, Southbound, Northwest Corner",41.94148086,-87.67847777,0,,1
+8835,8835,Damen & Belmont,"Damen & Belmont, Southbound, Northwest Corner",41.93965786,-87.67842677,0,,1
+8836,8836,Damen & Barry,"Damen & Barry, Southbound, Northwest Corner",41.93785886,-87.67836877,0,,1
+8837,8837,Damen & Wellington,"Damen & Wellington, Southbound, Northwest Corner",41.93597971,-87.67828189,0,,1
+8838,8838,Damen & George,"Damen & George, Southbound, Northwest Corner",41.93416036,-87.67827966,0,,1
+8839,8839,Damen & Clybourn/Diversey,"Damen & Clybourn/Diversey, Southbound, Northwest Corner",41.93249674,-87.67819633,0,,1
+8841,8841,Damen & Fullerton,"Damen & Fullerton, Southbound, Southwest Corner",41.92486534,-87.67798242,0,,1
+8842,8842,Damen & Webster,"Damen & Webster, Southbound, Northwest Corner",41.92147386,-87.67785377,0,,1
+8843,8843,Damen & Dickens,"Damen & Dickens, Southbound, Northwest Corner",41.91965586,-87.67776177,0,,1
+8844,8844,Damen & Armitage,"Damen & Armitage, Southbound, Northwest Corner",41.91786234,-87.67771976,0,,1
+8845,8845,Damen & Cortland,"Damen & Cortland, Southbound, Northwest Corner",41.91631986,-87.67766377,0,,1
+8846,8846,Damen & Churchill,"Damen & Churchill, Southbound, Northwest Corner",41.91480386,-87.67763177,0,,1
+8847,8847,Damen & Wabansia,"Damen & Wabansia, Southbound, Northwest Corner",41.91238986,-87.67758177,0,,1
+8849,8849,Damen & Milwaukee/North Ave (Blue Line),"Damen & Milwaukee/North Ave (Blue Line), Southbound, Southwest Corner",41.91026471,-87.67755126,0,,1
+8851,8851,Damen & Schiller,"Damen & Schiller, Southbound, Northwest Corner",41.90722686,-87.67744177,0,,1
+8853,8853,Damen & Potomac,"Damen & Potomac, Southbound, Northwest Corner",41.90509086,-87.67737777,0,,1
+8855,8855,Damen & Thomas,"Damen & Thomas, Southbound, Northwest Corner",41.90146086,-87.67726777,0,,1
+8857,8857,Damen & Iowa,"Damen & Iowa, Southbound, Northwest Corner",41.89783585,-87.67715877,0,,1
+8858,8858,Damen & Chicago,"Damen & Chicago, Southbound, Northwest Corner",41.89601785,-87.67710377,0,,1
+8859,8859,Damen & Huron,"Damen & Huron, Southbound, Northwest Corner",41.89419385,-87.67705477,0,,1
+8860,8860,Damen & Ohio,"Damen & Ohio, Southbound, Northwest Corner",41.89235585,-87.67700476,0,,1
+8862,8862,Damen & Hubbard,"Damen & Hubbard, Southbound, Northwest Corner",41.88980985,-87.67693577,0,,1
+8863,8863,Damen & Carroll,"Damen & Carroll, Southbound, Northwest Corner",41.88776385,-87.67687776,0,,1
+8864,8864,Damen & Fulton,"Damen & Fulton, Southbound, Northwest Corner",41.88685885,-87.67685476,0,,1
+8872,8872,Damen & Harrison,"Damen & Harrison, Southbound, Northwest Corner",41.87413445,-87.6765559,0,,1
+8873,8873,Damen & Ogden,"Damen & Ogden, Southbound, Northwest Corner",41.87282349,-87.676547,0,,1
+8874,8874,Damen & Polk,"Damen & Polk, Southbound, Northwest Corner",41.87161217,-87.67649684,0,,1
+8875,8875,V.A. Medical Center,"V.A. Medical Center, Southbound, Westside of the Street",41.87023539,-87.67642569,0,,1
+8876,8876,Damen & Taylor,"Damen & Taylor, Southbound, Northwest Corner",41.86923783,-87.67638373,0,,1
+8878,8878,Damen & Roosevelt,"Damen & Roosevelt, Southbound, Northwest Corner",41.86699557,-87.67641205,0,,1
+8880,8880,Damen & 13th Street,"Damen & 13th Street, Southbound, Northwest Corner",41.86501085,-87.67627376,0,,1
+8881,8881,Damen & Hastings,"Damen & Hastings, Southbound, Northwest Corner",41.86406385,-87.67624776,0,,1
+8882,8882,Damen & 14th Street,"Damen & 14th Street, Southbound, Northwest Corner",41.86317685,-87.67622276,0,,1
+8883,8883,Damen & 17th Street,"Damen & 17th Street, Southbound, Southwest Corner",41.85842948,-87.67610327,0,,1
+8884,8884,Damen & 18th Street,"Damen & 18th Street, Southbound, Northwest Corner",41.85775679,-87.67609098,0,,1
+8885,8885,Damen & 19th Street,"Damen & 19th Street, Southbound, Northwest Corner",41.85590385,-87.67602376,0,,1
+8888,8888,Damen & Cermak,"Damen & Cermak, Southbound, Northwest Corner",41.85228729,-87.67593725,0,,1
+8889,8889,Damen & 23rd Street,"Damen & 23rd Street, Southbound, Northwest Corner",41.85044385,-87.67586776,0,,1
+8890,8890,Damen & Coulter,"Damen & Coulter, Southbound, Northwest Corner",41.84953785,-87.67585276,0,,1
+8891,8891,Damen & 23rd Street,"Damen & 23rd Street, Northbound, Southeast Corner",41.85027885,-87.67572276,0,,1
+8895,8895,Damen & 19th Street,"Damen & 19th Street, Northbound, Southeast Corner",41.85573785,-87.67587876,0,,1
+8896,8896,Damen & 18th Street,"Damen & 18th Street, Northbound, Southeast Corner",41.85757067,-87.67591956,0,,1
+8897,8897,Damen & 17th Street,"Damen & 17th Street, Northbound, Southeast Corner",41.85848285,-87.67594876,0,,1
+8898,8898,Damen & 14th Street,"Damen & 14th Street, Northbound, Northeast Corner",41.86327185,-87.67607576,0,,1
+8899,8899,Damen & Hastings,"Damen & Hastings, Northbound, Southeast Corner",41.86389785,-87.67610176,0,,1
+8900,8900,Damen & 13th Street,"Damen & 13th Street, Northbound, Southeast Corner",41.86484485,-87.67612776,0,,1
+8901,8901,Damen & Roosevelt,"Damen & Roosevelt, Northbound, Southeast Corner",41.86653663,-87.67615574,0,,1
+8902,8902,Damen & Roosevelt,"Damen & Roosevelt, Northbound, Northeast Corner",41.86720399,-87.67609734,0,,1
+8904,8904,Damen & Taylor,"Damen & Taylor, Northbound, Southeast Corner",41.86902342,-87.67622274,0,,1
+8905,8905,Damen & Polk,"Damen & Polk, Northbound, Southeast Corner",41.87139751,-87.67628417,0,,1
+8906,8906,Damen & Ogden,"Damen & Ogden, Northbound, Southeast Corner",41.87264469,-87.67631964,0,,1
+8907,8907,Damen & Harrison,"Damen & Harrison, Northbound, Southeast Corner",41.87395765,-87.67635643,0,,1
+8910,8910,Damen & Madison,"Damen & Madison, Northbound, Southeast Corner",41.88121985,-87.67656376,0,,1
+8911,8911,Damen & Warren,"Damen & Warren, Northbound, Southeast Corner",41.8820996,-87.67657328,0,,1
+8912,8912,Damen & Washington,"Damen & Washington, Northbound, Southeast Corner",41.88306785,-87.67661076,0,,1
+8913,8913,Damen & Lake (Green Line),"Damen & Lake (Green Line), Northbound, Southeast Corner",41.88489785,-87.67666076,0,,1
+8914,8914,Damen & Fulton,"Damen & Fulton, Northbound, Southeast Corner",41.88669385,-87.67670976,0,,1
+8915,8915,Damen & Carroll,"Damen & Carroll, Northbound, Southeast Corner",41.88759785,-87.67673176,0,,1
+8916,8916,Damen & Hubbard,"Damen & Hubbard, Northbound, Southeast Corner",41.88964385,-87.67679076,0,,1
+8917,8917,Damen & Grand,"Damen & Grand, Northbound, Southeast Corner",41.89073585,-87.67681976,0,,1
+8918,8918,Damen & Ohio,"Damen & Ohio, Northbound, Southeast Corner",41.89219085,-87.67685977,0,,1
+8919,8919,Damen & Huron,"Damen & Huron, Northbound, Southeast Corner",41.89402885,-87.67690976,0,,1
+8920,8920,Damen & Chicago,"Damen & Chicago, Northbound, Southeast Corner",41.89585185,-87.67695877,0,,1
+8921,8921,Damen & Iowa,"Damen & Iowa, Northbound, Southeast Corner",41.89767085,-87.67701377,0,,1
+8922,8922,Damen & Augusta,"Damen & Augusta, Northbound, Southeast Corner",41.8994405,-87.67707071,0,,1
+8923,8923,Damen & Thomas,"Damen & Thomas, Northbound, Southeast Corner",41.90129486,-87.67712277,0,,1
+8925,8925,Damen & Potomac,"Damen & Potomac, Northbound, Southeast Corner",41.90492586,-87.67723277,0,,1
+8929,8929,Damen & Milwaukee/North Ave (Blue Line),"Damen & Milwaukee/North Ave (Blue Line), Northbound, Southeast Corner",41.9099598,-87.67737616,0,,1
+8930,8930,Damen & Wabansia,"Damen & Wabansia, Northbound, Southeast Corner",41.91222386,-87.67743677,0,,1
+8931,8931,Damen & Churchill,"Damen & Churchill, Northbound, Eastside of the Street",41.91472086,-87.67748577,0,,1
+8932,8932,Damen & Cortland,"Damen & Cortland, Northbound, Southeast Corner",41.9158835,-87.67750504,0,,1
+8933,8933,Damen & Armitage,"Damen & Armitage, Northbound, Southeast Corner",41.91766573,-87.67752906,0,,1
+8934,8934,Damen & Dickens,"Damen & Dickens, Northbound, Southeast Corner",41.91949086,-87.67761577,0,,1
+8935,8935,Damen & Webster,"Damen & Webster, Northbound, Southeast Corner",41.92130786,-87.67770877,0,,1
+8938,8938,Damen & Clybourn/Diversey,"Damen & Clybourn/Diversey, Northbound, Southeast Corner",41.93185343,-87.67797719,0,,1
+8939,8939,Damen & George,"Damen & George, Northbound, Southeast Corner",41.93402686,-87.67810577,0,,1
+8940,8940,Damen & Wellington,"Damen & Wellington, Northbound, Southeast Corner",41.93584886,-87.67816477,0,,1
+8941,8941,Damen & Barry,"Damen & Barry, Northbound, Southeast Corner",41.93769386,-87.67822377,0,,1
+8942,8942,Damen & Belmont,"Damen & Belmont, Northbound, Southeast Corner",41.93949286,-87.67828177,0,,1
+8943,8943,Damen & School,"Damen & School, Northbound, Southeast Corner",41.94131486,-87.67833177,0,,1
+8944,8944,Damen & Roscoe,"Damen & Roscoe, Northbound, Southeast Corner",41.94313786,-87.67838177,0,,1
+8945,8945,Damen & Cornelia,"Damen & Cornelia, Northbound, Southeast Corner",41.94495586,-87.67843277,0,,1
+8946,8946,Damen & Addison,"Damen & Addison, Northbound, Southeast Corner",41.94673185,-87.67847875,0,,1
+8947,8947,Damen & Waveland,"Damen & Waveland, Northbound, Southeast Corner",41.94860786,-87.67853277,0,,1
+8948,8948,Damen & Grace,"Damen & Grace, Northbound, Southeast Corner",41.95042986,-87.67858377,0,,1
+8949,8949,Damen & Byron,"Damen & Byron, Northbound, Southeast Corner",41.95225286,-87.67863377,0,,1
+8951,8951,Damen & Irving Park/Lincoln,"Damen & Irving Park/Lincoln, Northbound, Northeast Corner",41.95439535,-87.67867319,0,,1
+8952,8952,Damen & Belle Plaine,"Damen & Belle Plaine, Northbound, Southeast Corner",41.95590086,-87.67873877,0,,1
+8953,8953,Damen & Berteau,"Damen & Berteau, Northbound, Southeast Corner",41.95772387,-87.67878877,0,,1
+8954,8954,Damen & Cullom,"Damen & Cullom, Northbound, Southeast Corner",41.95954786,-87.67883777,0,,1
+8955,8955,Damen & Montrose,"Damen & Montrose, Northbound, Southeast Corner",41.96135593,-87.67886233,0,,1
+8956,8956,Damen & Sunnyside,"Damen & Sunnyside, Northbound, Southeast Corner",41.96319287,-87.67895877,0,,1
+8957,8957,Damen & Wilson,"Damen & Wilson, Northbound, Southeast Corner",41.96501635,-87.67899821,0,,1
+8958,8958,Damen & Ainslie,"Damen & Ainslie, Northbound, Southeast Corner",41.97049287,-87.67917077,0,,1
+8960,8960,Damen & Winona,"Damen & Winona, Northbound, Southeast Corner",41.97462887,-87.67926977,0,,1
+8961,8961,Damen & Foster,"Damen & Foster, Northbound, Southeast Corner",41.9759273,-87.67930222,0,,1
+8969,8969,Ashland & Bryn Mawr,"Ashland & Bryn Mawr, Northbound, Southeast Corner",41.98340779,-87.66969089,0,,1
+14135,14135,35th/Archer Orange Line Station,"35th/Archer Orange Line Station, Southwestbound, Bus Terminal",41.82882605,-87.68113248,0,,1
+14489,14489,Damen & Cermak,"Damen & Cermak, Northbound, Northeast Corner",41.85231101,-87.67575719,0,,1
+14961,14961,Damen & Blue Island,"Damen & Blue Island, Southbound, Southwest Corner",41.84811604,-87.67583464,0,,1
+14962,14962,Damen & Lake (Green Line),"Damen & Lake (Green Line), Southbound, Southwest Corner",41.88477234,-87.67681582,0,,1
+14963,14963,Damen & Division,"Damen & Division, Southbound, Southwest Corner",41.90302997,-87.67733398,0,,1
+14975,14975,Damen & Division,"Damen & Division, Northbound, Northeast Corner",41.90342966,-87.67717022,0,,1
+15132,15132,Ashland & Gregory,"Ashland & Gregory, Southbound, Northwest Corner",41.98261532,-87.66986571,0,,1
+15199,15199,Damen Pink Line Station,"Damen Pink Line Station, Northbound, Northeast Corner",41.85420841,-87.67582603,0,,1
+15200,15200,Damen Pink Line Station,"Damen Pink Line Station, Southbound, Westside of the Street",41.85445412,-87.67597095,0,,1
+15226,15226,Damen & Lawrence,"Damen & Lawrence, Southbound, Southwest Corner",41.96853094,-87.67928413,0,,1
+15449,15449,Damen & Jackson,"Damen & Jackson, Southbound, Southwest Corner",41.87714948,-87.67663169,0,,1
+15869,15869,Illinois Medical District Blue Line Station,"Illinois Medical District Blue Line Station, Northbound, Eastside of the Street",41.87564256,-87.67630955,0,,1
+15902,15902,Damen & Grand,"Damen & Grand, Southbound, Southwest Corner",41.89061832,-87.67699707,0,,1
+16045,16045,Damen & Augusta,"Damen & Augusta, Southbound, Southwest Corner",41.89935009,-87.67723511,0,,1
+17267,17267,Damen & Madison,"Damen & Madison, Southbound, Southwest Corner",41.88109709,-87.67674219,0,,1
+17272,17272,Damen & Washington,"Damen & Washington, Southbound, Southwest Corner",41.88294253,-87.67678237,0,,1
+17273,17273,Damen & Adams,"Damen & Adams, Southbound, Southwest Corner",41.87857769,-87.6766733,0,,1
+17274,17274,Damen & Adams,"Damen & Adams, Northbound, Northeast Corner",41.87894412,-87.67649874,0,,1
+17509,17509,35th/Archer Orange Line Station,,41.82927466,-87.68053272,0,,1
+18321,18321,Damen & Fullerton,"Damen & Fullerton, Northbound, Northeast Corner",41.92528355,-87.6777872,0,,1
+18508,18508,Damen & Schiller,"Damen & Schiller, Northbound, Northeast Corner",41.90746183,-87.67727639,0,,1
+18755,18755,Damen & Argyle,"Damen & Argyle, Northbound, Northeast Corner",41.97272657,-87.6791782,0,,1
+18761,18761,Damen & Lawrence,"Damen & Lawrence, Northbound, Northeast Corner",41.96907124,-87.67907973,0,,1
+18834,18834,Ashland & Catalpa,"Ashland & Catalpa, Southbound, Southwest Corner",41.98144558,-87.66988478,0,,1
+18836,18836,Ashland & Hollywood,"Ashland & Hollywood, Northbound, Southeast Corner",41.98500033,-87.66972378,0,,1

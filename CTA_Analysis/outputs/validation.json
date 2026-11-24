@@ -1,0 +1,85 @@
+{
+  "service_date": "20260922",
+  "active_services": [
+    "68201",
+    "68202"
+  ],
+  "stops": 171,
+  "removed": 55,
+  "trips": 173,
+  "directions": {
+    "South": 88,
+    "North": 85
+  },
+  "unmatched_ridership": 3,
+  "unmatched_gtfs_keys": [
+    [
+      "North",
+      "18836"
+    ],
+    [
+      "North",
+      "8901"
+    ],
+    [
+      "South",
+      "18834"
+    ]
+  ],
+  "field_logs": 12,
+  "field_qc": {
+    "boundary": 24,
+    "skipped": 89,
+    "valid": 142,
+    "removed": 64,
+    "unknown": 37,
+    "outside_coverage": 82,
+    "truck_delay": 3,
+    "transition_delay": 1,
+    "driver_break": 1,
+    "copied_note_valid": 1
+  },
+  "barrier_candidates": 6,
+  "field_summary": [
+    {
+      "kind": "clearance",
+      "period": "am_peak",
+      "n": 19,
+      "mean_sec": 27.60578947368421,
+      "median_sec": 20.1,
+      "sd_sec": 22.61719363566613,
+      "min_sec": 6.1,
+      "max_sec": 86.62
+    },
+    {
+      "kind": "clearance",
+      "period": "midday",
+      "n": 49,
+      "mean_sec": 19.01918367346939,
+      "median_sec": 10.5,
+      "sd_sec": 17.441602425037132,
+      "min_sec": 4.26,
+      "max_sec": 81.07
+    },
+    {
+      "kind": "dwell",
+      "period": "am_peak",
+      "n": 16,
+      "mean_sec": 8.295625,
+      "median_sec": 7.4399999999999995,
+      "sd_sec": 4.907558753256722,
+      "min_sec": 1.1,
+      "max_sec": 19.77
+    },
+    {
+      "kind": "dwell",
+      "period": "midday",
+      "n": 59,
+      "mean_sec": 11.12864406779661,
+      "median_sec": 7.97,
+      "sd_sec": 9.166346517265005,
+      "min_sec": 3.02,
+      "max_sec": 61.14
+    }
+  ]
+}
