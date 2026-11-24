@@ -12,7 +12,9 @@ def read_zip(path, name):
         return z.read(matches[0])
 def table(path,name): return list(csv.DictReader(io.StringIO(read_zip(path,name).decode('utf-8-sig'))))
 def write(out,name,rows):
-    if not rows: return
+    if not rows:
+        (out/(name+'.csv')).write_text('')
+        return
     with (out/(name+'.csv')).open('w',newline='') as f:
         w=csv.DictWriter(f,fieldnames=list(rows[0]));w.writeheader();w.writerows(rows)
 def seconds(t):

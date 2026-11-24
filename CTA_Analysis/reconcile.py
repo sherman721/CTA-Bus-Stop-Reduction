@@ -43,9 +43,11 @@ def main():
                 for r in kept:
                     b,al=demand[r['stop_id']];p=-math.expm1(-(b+al)/n);rows.append(dict(scope=scope,scenario=scenario,direction=d,stop_id=r['stop_id'],historical_id=r['historical_id'],name=r['name'],distance_ft=r['distance_ft'],boardings=b,alightings=al,trips=n,probability=p,temporary_inactive=r['temporary_inactive']))
                 for j,k in enumerate(['boardings','alightings']):assert math.isclose(sum(v[j] for v in demand.values()),sum(float(r[k]) for r in source),abs_tol=1e-7)
-                summary.append(dict(scope=scope,scenario=scenario,direction=d,stops=len(kept),trips=n,boardings=sum(v[0] for v in demand.values()),alightings=sum(v[1] for v in demand.values()),expected_stops_per_trip=sum(-math.expm1(-sum(v)/n) for v in demand.values()),walking_passenger_hours=walking*.3048/c['walking_speed_m_s']/3600))
+                summary.append(dict(scope=scope,scenario=scenario,direction=d,stops=len(kept),trips=n,boardings=sum(v[0] for v in demand.values()),alightings=sum(v[1] for v in demand.values()),expected_interior_stops_per_trip=sum(-math.expm1(-sum(demand[r['stop_id']])/n) for r in kept[1:-1]),expected_total_stops_per_trip=2+sum(-math.expm1(-sum(demand[r['stop_id']])/n) for r in kept[1:-1]),walking_passenger_hours=walking*.3048/c['walking_speed_m_s']/3600))
         for p in ['am_peak','midday','pm_peak','other']:
             t=[t for t in full if t['direction']==d and t['period']==p]; starts=sorted({int(t['start_sec']) for t in t}); h=[(y-x)/60 for x,y in zip(starts,starts[1:])];schedule.append(dict(direction=d,period=p,trips=len(t),mean_runtime_min=st.mean(float(t['runtime_min']) for t in t),mean_headway_min=st.mean(h) if h else ''))
     for name,data in [('reconciled_inventory',list(inventory.values())),('scenario_stops',rows),('redistribution',alloc),('scenario_summary',summary),('full_schedule_summary',schedule)]:write(out,name,data)
-    print(json.dumps(dict(full_trips=counts,excluded=len(trips)-len(full),summary=summary),indent=2))
+    report=dict(full_trips=counts,excluded=len(trips)-len(full),summary=summary, demand_conservation_passed=True)
+    (out/'phase2_validation.json').write_text(json.dumps(report,indent=2))
+    print(json.dumps(report,indent=2))
 if __name__=='__main__':main()

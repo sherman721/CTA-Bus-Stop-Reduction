@@ -5,12 +5,12 @@ trip,direction,stop_id,kind,observed,predicted
 823am_Northbound_from_orange li,North,8751,dwell,0,0.14490784554990657
 823am_Northbound_from_orange li,North,8753,dwell,0,0.5960227595846062
 823am_Northbound_from_orange li,North,8891,dwell,0,0.5537605548056597
-823am_Northbound_from_orange li,North,14489,dwell,1,0.8182128305294563
+823am_Northbound_from_orange li,North,14489,dwell,1,0.8182128305294561
 823am_Northbound_from_orange li,North,15199,dwell,0,0.7647192750725132
 823am_Northbound_from_orange li,North,8895,dwell,0,0.4742527730907641
 823am_Northbound_from_orange li,North,8896,dwell,1,0.6234720703698018
 823am_Northbound_from_orange li,North,8897,dwell,0,0.21198404966809503
-823am_Northbound_from_orange li,North,8900,dwell,1,0.7479709306029831
+823am_Northbound_from_orange li,North,8900,dwell,1,0.747970930602983
 823am_Northbound_from_orange li,North,8902,dwell,1,0.719652929983674
 823am_Northbound_from_orange li,North,8904,dwell,1,0.8673452008592965
 823am_Northbound_from_orange li,North,8905,dwell,1,0.9433075057648008
@@ -20,21 +20,21 @@ trip,direction,stop_id,kind,observed,predicted
 823am_Northbound_from_orange li,North,111,dwell,0,0.9404381469805408
 823am_Northbound_from_orange li,North,17274,dwell,0,0.7502031845370694
 823am_Northbound_from_orange li,North,8910,dwell,1,0.8673521264310725
-823am_Northbound_from_orange li,North,8911,dwell,0,0.26347289178516053
+823am_Northbound_from_orange li,North,8911,dwell,0,0.2634728917851606
 823am_Northbound_from_orange li,North,8912,dwell,0,0.3970794685126805
 823am_Northbound_from_orange li,North,8913,dwell,0,0.9055992063851244
 823am_Northbound_from_orange li,North,8915,dwell,0,0.4720919593436672
 823am_Northbound_from_orange li,North,8917,dwell,0,0.6810096920751961
-823am_Northbound_from_orange li,North,8918,dwell,0,0.4607815691650208
+823am_Northbound_from_orange li,North,8918,dwell,0,0.4607815691650207
 1028am_Northbound_from_orange l,North,8749,dwell,1,0.5133058967090108
 1028am_Northbound_from_orange l,North,8750,dwell,0,0.3445693977998231
 1028am_Northbound_from_orange l,North,8751,dwell,1,0.14490784554990657
 1028am_Northbound_from_orange l,North,8753,dwell,1,0.5960227595846062
 1028am_Northbound_from_orange l,North,8891,dwell,1,0.5537605548056597
-1028am_Northbound_from_orange l,North,14489,dwell,1,0.8182128305294563
+1028am_Northbound_from_orange l,North,14489,dwell,1,0.8182128305294561
 1028am_Northbound_from_orange l,North,15199,dwell,1,0.7647192750725132
 1028am_Northbound_from_orange l,North,8896,dwell,1,0.6234720703698018
-1028am_Northbound_from_orange l,North,8900,dwell,0,0.7479709306029831
+1028am_Northbound_from_orange l,North,8900,dwell,0,0.747970930602983
 1028am_Northbound_from_orange l,North,8902,dwell,1,0.719652929983674
 1028am_Northbound_from_orange l,North,8904,dwell,1,0.8673452008592965
 1028am_Northbound_from_orange l,North,8905,dwell,1,0.9433075057648008
@@ -44,19 +44,19 @@ trip,direction,stop_id,kind,observed,predicted
 1028am_Northbound_from_orange l,North,111,dwell,0,0.9404381469805408
 1028am_Northbound_from_orange l,North,17274,dwell,1,0.7502031845370694
 1028am_Northbound_from_orange l,North,8910,dwell,1,0.8673521264310725
-1028am_Northbound_from_orange l,North,8911,dwell,1,0.26347289178516053
+1028am_Northbound_from_orange l,North,8911,dwell,1,0.2634728917851606
 1028am_Northbound_from_orange l,North,8912,dwell,1,0.3970794685126805
 1028am_Northbound_from_orange l,North,8913,dwell,1,0.9055992063851244
 1028am_Northbound_from_orange l,North,8917,dwell,1,0.6810096920751961
 1151am_Northbound_from_orange l,North,4433,dwell,1,0.33974921718322115
 1151am_Northbound_from_orange l,North,8753,dwell,1,0.5960227595846062
 1151am_Northbound_from_orange l,North,8891,dwell,1,0.5537605548056597
-1151am_Northbound_from_orange l,North,14489,dwell,1,0.8182128305294563
+1151am_Northbound_from_orange l,North,14489,dwell,1,0.8182128305294561
 1151am_Northbound_from_orange l,North,15199,dwell,1,0.7647192750725132
 1151am_Northbound_from_orange l,North,8895,dwell,0,0.4742527730907641
 1151am_Northbound_from_orange l,North,8896,dwell,1,0.6234720703698018
 1151am_Northbound_from_orange l,North,8897,dwell,1,0.21198404966809503
-1151am_Northbound_from_orange l,North,8900,dwell,0,0.7479709306029831
+1151am_Northbound_from_orange l,North,8900,dwell,0,0.747970930602983
 1151am_Northbound_from_orange l,North,8902,dwell,1,0.719652929983674
 1151am_Northbound_from_orange l,North,8904,dwell,1,0.8673452008592965
 1151am_Northbound_from_orange l,North,8905,dwell,1,0.9433075057648008
@@ -66,11 +66,11 @@ trip,direction,stop_id,kind,observed,predicted
 (Clearance)_848am_Northbound_fr,North,8751,clearance,0,0.14490784554990657
 (Clearance)_848am_Northbound_fr,North,8753,clearance,1,0.5960227595846062
 (Clearance)_848am_Northbound_fr,North,8891,clearance,1,0.5537605548056597
-(Clearance)_848am_Northbound_fr,North,14489,clearance,0,0.8182128305294563
+(Clearance)_848am_Northbound_fr,North,14489,clearance,0,0.8182128305294561
 (Clearance)_848am_Northbound_fr,North,8895,clearance,0,0.4742527730907641
 (Clearance)_848am_Northbound_fr,North,8896,clearance,0,0.6234720703698018
 (Clearance)_848am_Northbound_fr,North,8897,clearance,0,0.21198404966809503
-(Clearance)_848am_Northbound_fr,North,8900,clearance,0,0.7479709306029831
+(Clearance)_848am_Northbound_fr,North,8900,clearance,0,0.747970930602983
 (Clearance)_848am_Northbound_fr,North,8904,clearance,1,0.8673452008592965
 (Clearance)_848am_Northbound_fr,North,8905,clearance,1,0.9433075057648008
 (Clearance)_848am_Northbound_fr,North,8906,clearance,1,0.8601971535271258
@@ -78,7 +78,7 @@ trip,direction,stop_id,kind,observed,predicted
 (Clearance)_848am_Northbound_fr,North,15869,clearance,0,0.5555169571140929
 (Clearance)_848am_Northbound_fr,North,111,clearance,1,0.9404381469805408
 (Clearance)_848am_Northbound_fr,North,8910,clearance,0,0.8673521264310725
-(Clearance)_848am_Northbound_fr,North,8911,clearance,1,0.26347289178516053
+(Clearance)_848am_Northbound_fr,North,8911,clearance,1,0.2634728917851606
 (Clearance)_848am_Northbound_fr,North,8913,clearance,1,0.9055992063851244
 (Clearance)_848am_Northbound_fr,North,8915,clearance,0,0.4720919593436672
 (Clearance)_848am_Northbound_fr,North,8917,clearance,1,0.6810096920751961
@@ -88,12 +88,12 @@ trip,direction,stop_id,kind,observed,predicted
 (Clearance)1014am_Northbound_fr,North,8751,clearance,0,0.14490784554990657
 (Clearance)1014am_Northbound_fr,North,8753,clearance,1,0.5960227595846062
 (Clearance)1014am_Northbound_fr,North,8891,clearance,0,0.5537605548056597
-(Clearance)1014am_Northbound_fr,North,14489,clearance,1,0.8182128305294563
+(Clearance)1014am_Northbound_fr,North,14489,clearance,1,0.8182128305294561
 (Clearance)1014am_Northbound_fr,North,15199,clearance,1,0.7647192750725132
 (Clearance)1014am_Northbound_fr,North,8895,clearance,1,0.4742527730907641
 (Clearance)1014am_Northbound_fr,North,8896,clearance,1,0.6234720703698018
 (Clearance)1014am_Northbound_fr,North,8897,clearance,1,0.21198404966809503
-(Clearance)1014am_Northbound_fr,North,8900,clearance,0,0.7479709306029831
+(Clearance)1014am_Northbound_fr,North,8900,clearance,0,0.747970930602983
 (Clearance)1014am_Northbound_fr,North,8902,clearance,1,0.719652929983674
 (Clearance)1014am_Northbound_fr,North,8904,clearance,1,0.8673452008592965
 (Clearance)1014am_Northbound_fr,North,8905,clearance,0,0.9433075057648008
@@ -112,12 +112,12 @@ trip,direction,stop_id,kind,observed,predicted
 (Clearance)1116am_Northbound_fr,North,8751,clearance,0,0.14490784554990657
 (Clearance)1116am_Northbound_fr,North,8753,clearance,1,0.5960227595846062
 (Clearance)1116am_Northbound_fr,North,8891,clearance,1,0.5537605548056597
-(Clearance)1116am_Northbound_fr,North,14489,clearance,0,0.8182128305294563
+(Clearance)1116am_Northbound_fr,North,14489,clearance,0,0.8182128305294561
 (Clearance)1116am_Northbound_fr,North,15199,clearance,1,0.7647192750725132
 (Clearance)1116am_Northbound_fr,North,8895,clearance,0,0.4742527730907641
 (Clearance)1116am_Northbound_fr,North,8896,clearance,1,0.6234720703698018
 (Clearance)1116am_Northbound_fr,North,8897,clearance,0,0.21198404966809503
-(Clearance)1116am_Northbound_fr,North,8900,clearance,1,0.7479709306029831
+(Clearance)1116am_Northbound_fr,North,8900,clearance,1,0.747970930602983
 (Clearance)1116am_Northbound_fr,North,8902,clearance,1,0.719652929983674
 (Clearance)1116am_Northbound_fr,North,8904,clearance,1,0.8673452008592965
  757am_Southbound_from_Polk_Log,South,8875,dwell,1,0.9352297559736312
@@ -125,8 +125,8 @@ trip,direction,stop_id,kind,observed,predicted
  757am_Southbound_from_Polk_Log,South,8880,dwell,1,0.7446180419771984
  757am_Southbound_from_Polk_Log,South,8883,dwell,0,0.19727893536915878
  757am_Southbound_from_Polk_Log,South,8884,dwell,0,0.5846962006414068
- 757am_Southbound_from_Polk_Log,South,8885,dwell,0,0.406329437995113
- 757am_Southbound_from_Polk_Log,South,15200,dwell,1,0.8544330961690729
+ 757am_Southbound_from_Polk_Log,South,8885,dwell,0,0.40632943799511295
+ 757am_Southbound_from_Polk_Log,South,15200,dwell,1,0.8544330961690728
  757am_Southbound_from_Polk_Log,South,8888,dwell,1,0.8661693010979867
  757am_Southbound_from_Polk_Log,South,8889,dwell,0,0.6499042662024628
  757am_Southbound_from_Polk_Log,South,14961,dwell,1,0.5291431414512239
@@ -149,8 +149,8 @@ trip,direction,stop_id,kind,observed,predicted
 954am_Southbound_from_Ohio_Logg,South,8880,dwell,1,0.7446180419771984
 954am_Southbound_from_Ohio_Logg,South,8883,dwell,1,0.19727893536915878
 954am_Southbound_from_Ohio_Logg,South,8884,dwell,1,0.5846962006414068
-954am_Southbound_from_Ohio_Logg,South,8885,dwell,0,0.406329437995113
-954am_Southbound_from_Ohio_Logg,South,15200,dwell,1,0.8544330961690729
+954am_Southbound_from_Ohio_Logg,South,8885,dwell,0,0.40632943799511295
+954am_Southbound_from_Ohio_Logg,South,15200,dwell,1,0.8544330961690728
 954am_Southbound_from_Ohio_Logg,South,8888,dwell,1,0.8661693010979867
 954am_Southbound_from_Ohio_Logg,South,8889,dwell,1,0.6499042662024628
 954am_Southbound_from_Ohio_Logg,South,14961,dwell,1,0.5291431414512239
@@ -169,8 +169,8 @@ trip,direction,stop_id,kind,observed,predicted
 110610am_Southbound_from_Ohio_L,South,8880,dwell,0,0.7446180419771984
 110610am_Southbound_from_Ohio_L,South,8883,dwell,0,0.19727893536915878
 110610am_Southbound_from_Ohio_L,South,8884,dwell,1,0.5846962006414068
-110610am_Southbound_from_Ohio_L,South,8885,dwell,0,0.406329437995113
-110610am_Southbound_from_Ohio_L,South,15200,dwell,1,0.8544330961690729
+110610am_Southbound_from_Ohio_L,South,8885,dwell,0,0.40632943799511295
+110610am_Southbound_from_Ohio_L,South,15200,dwell,1,0.8544330961690728
 110610am_Southbound_from_Ohio_L,South,8888,dwell,1,0.8661693010979867
 110610am_Southbound_from_Ohio_L,South,8889,dwell,1,0.6499042662024628
 110610am_Southbound_from_Ohio_L,South,14961,dwell,1,0.5291431414512239
@@ -182,7 +182,7 @@ trip,direction,stop_id,kind,observed,predicted
 (Clearance) 818 am Southbound P,South,8880,clearance,1,0.7446180419771984
 (Clearance) 818 am Southbound P,South,8883,clearance,0,0.19727893536915878
 (Clearance) 818 am Southbound P,South,8884,clearance,0,0.5846962006414068
-(Clearance) 818 am Southbound P,South,8885,clearance,0,0.406329437995113
+(Clearance) 818 am Southbound P,South,8885,clearance,0,0.40632943799511295
 (Clearance) 818 am Southbound P,South,8888,clearance,1,0.8661693010979867
 (Clearance) 818 am Southbound P,South,8889,clearance,1,0.6499042662024628
 (Clearance) 818 am Southbound P,South,14961,clearance,0,0.5291431414512239
@@ -203,8 +203,8 @@ trip,direction,stop_id,kind,observed,predicted
 (Clearance) 936 am Southbound O,South,8878,clearance,1,0.7212003079132474
 (Clearance) 936 am Southbound O,South,8880,clearance,1,0.7446180419771984
 (Clearance) 936 am Southbound O,South,8884,clearance,1,0.5846962006414068
-(Clearance) 936 am Southbound O,South,8885,clearance,0,0.406329437995113
-(Clearance) 936 am Southbound O,South,15200,clearance,0,0.8544330961690729
+(Clearance) 936 am Southbound O,South,8885,clearance,0,0.40632943799511295
+(Clearance) 936 am Southbound O,South,15200,clearance,0,0.8544330961690728
 (Clearance) 936 am Southbound O,South,8888,clearance,0,0.8661693010979867
 (Clearance) 936 am Southbound O,South,8889,clearance,0,0.6499042662024628
 (Clearance) 936 am Southbound O,South,14961,clearance,0,0.5291431414512239
@@ -226,8 +226,8 @@ trip,direction,stop_id,kind,observed,predicted
 (Clearance) 1047 am Southbound ,South,8880,clearance,0,0.7446180419771984
 (Clearance) 1047 am Southbound ,South,8883,clearance,0,0.19727893536915878
 (Clearance) 1047 am Southbound ,South,8884,clearance,1,0.5846962006414068
-(Clearance) 1047 am Southbound ,South,8885,clearance,1,0.406329437995113
-(Clearance) 1047 am Southbound ,South,15200,clearance,1,0.8544330961690729
+(Clearance) 1047 am Southbound ,South,8885,clearance,1,0.40632943799511295
+(Clearance) 1047 am Southbound ,South,15200,clearance,1,0.8544330961690728
 (Clearance) 1047 am Southbound ,South,8888,clearance,1,0.8661693010979867
 (Clearance) 1047 am Southbound ,South,14961,clearance,0,0.5291431414512239
 (Clearance) 1047 am Southbound ,South,8756,clearance,0,0.14047185452578953
